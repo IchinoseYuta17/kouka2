@@ -1,13 +1,41 @@
 <%@page pageEncoding="UTF-8" %>
+<head>
+	    <style>
+
+        .global-navi ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .global-navi ul li {
+            margin-bottom: 15px;
+        }
+
+        .global-navi {
+         margin-left:20px;
+        }
+
+        .global-navi nav li {
+            padding-left: 20px;
+        }
+    </style>
+</head>
 <div class="global-navi" style="border-right: 2px solid black; flex:0 0 15%">
-    <h2>メニュー</h2>
-    <h3><a href="/kouka2">学生管理</a></h3>
-    <nav>
-        <ul>
-            <li><a href="/kouka2/student/ToStudentList.action">学生一覧</a></li>
-            <li><a href="/kouka2/student/ToInsertForm.action">学生追加</a></li>
-            <li><a href="/kouka2/student/ToUpdateSelect.action">学生更新</a></li>
-            <li><a href="/kouka2/student/ToDeleteSelect.action">学生削除</a></li>
-        </ul>
-    </nav>
+    <ul>
+
+    <li><a href="#">メニュー</a></li>
+    <li><a href="#">学生管理</a></li>
+
+	<li><nav>
+		<ul>成績管理
+			<li><a href="#">成績登録</a></li>
+			<li><a href="#">成績参照</a></li>
+		</ul>
+	</nav></li>
+
+	<a href="#">科目管理</a>
+
+	</ul>
+
+
 </div>
