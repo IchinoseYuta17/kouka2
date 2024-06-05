@@ -4,50 +4,50 @@ package bean;
 public class Student implements java.io.Serializable {
 
     // DBの項目名と同じ名前のprivateなフィールドを定義
-    private String NO;           // 学生番号
-    private String NAME;         // 学生名
-    private int ENT_YEAR;        // 入学年度
-    private String CLASS_NUM;    // クラス番号
-    private boolean IS_ATTEND;   // 在学中フラグ
-    private String SCHOOL_CD;    // 学校コード
+    private String no;           // 学生番号
+    private String name;         // 学生名
+    private int entYear;        // 入学年度
+    private String classNum;    // クラス番号
+    private boolean isAttend;   // 在学中フラグ
+    private String school;    // 学校コード
 
     // ゲッターメソッド
-    public String getNO() {
-        return NO;
+    public String getNo() {
+        return no;
     }
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
-    public int getENT_YEAR() {
-        return ENT_YEAR;
+    public int getENntYear() {
+        return entYear;
     }
-    public String getCLASS_NUM() {
-        return CLASS_NUM;
+    public String getClassNum() {
+        return classNum;
     }
-    public boolean getIS_ATTEND() {
-        return IS_ATTEND;
+    public boolean getIsAttend() {
+        return isAttend;
     }
-    public String getSCHOOL_CD() {
-        return SCHOOL_CD;
+    public String getSchool() {
+        return school;
     }
 
     // セッターメソッド
-    public void setNO(String NO) {
-        this.NO = NO;
+    public void setNo(String no) {
+        this.no = no;
     }
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
-    public void setENT_YEAR(int ENT_YEAR) {
-        this.ENT_YEAR = ENT_YEAR;
+    public void setEntYear(int entYear) {
+        this.entYear = entYear;
     }
-    public void setCLASS_NUM(String CLASS_NUM) {
-        this.CLASS_NUM = CLASS_NUM;
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
     }
-    public void setIS_ATTEND(boolean IS_ATTEND) {
-        this.IS_ATTEND = IS_ATTEND;
+    public void setIsAttend(boolean isAttend) {
+        this.isAttend = isAttend;
     }
-    public void setSCHOOL_CD(String SCHOOL_CD) {
-        this.SCHOOL_CD = SCHOOL_CD;
+    public void setSchool(String school) {
+        this.school = school;
     }
 }
