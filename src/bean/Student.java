@@ -9,7 +9,7 @@ public class Student implements java.io.Serializable {
     private int entYear;        // 入学年度
     private String classNum;    // クラス番号
     private boolean isAttend;   // 在学中フラグ
-    private String school;    // 学校コード
+    private School school;    // 学校コード
 
     // ゲッターメソッド
     public String getNo() {
@@ -27,7 +27,7 @@ public class Student implements java.io.Serializable {
     public boolean getIsAttend() {
         return isAttend;
     }
-    public String getSchool() {
+    public School getSchool() {
         return school;
     }
 
@@ -47,7 +47,7 @@ public class Student implements java.io.Serializable {
     public void setIsAttend(boolean isAttend) {
         this.isAttend = isAttend;
     }
-    public void setSchool(String school) {
+    public void setSchool(School school) {
         this.school = school;
     }
 }
