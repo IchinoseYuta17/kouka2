@@ -127,10 +127,10 @@ public class StudentDAO extends DAO {
         return studentList;
     }
 
-    // 学生情報を保存するメソッド
-    public boolean save(Student student) throws Exception {
+    // 学生情報を保存(更新)するメソッド
+    public boolean studentUpdate(Student student) throws Exception {
         Connection con = getConnection();
-        boolean isUpdate = get(student.getNo()) != null; // 学生が存在するかどうかを確認
+        boolean isUpdate = studentGet(student.getNo()) != null; // 学生が存在するかどうかを確認
 
         PreparedStatement st;
         if (isUpdate) {
@@ -173,7 +173,4 @@ public class StudentDAO extends DAO {
 
         return line > 0; // 削除が成功したかどうかを返す
     }
-
-    //学生更新するメソッド
-
 }
