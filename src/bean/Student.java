@@ -18,7 +18,7 @@ public class Student implements java.io.Serializable {
     public String getName() {
         return name;
     }
-    public int getENntYear() {
+    public int getEntYear() {
         return entYear;
     }
     public String getClassNum() {
