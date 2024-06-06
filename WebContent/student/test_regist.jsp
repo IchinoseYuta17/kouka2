@@ -3,5 +3,5 @@
 <%@include file="../header.html" %>
 <%@include file="header.jsp" %>
 <%@include file="menu.jsp" %>
-
+<h2>成績管理一覧画面ページ</h2>
 <%@include file="../footer.html" %>

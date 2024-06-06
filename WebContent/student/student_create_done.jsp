@@ -3,5 +3,5 @@
 <%@include file="../header.html" %>
 <%@include file="header.jsp" %>
 <%@include file="menu.jsp" %>
-
+<h2>学生登録完了画面ページ</h2>
 <%@include file="../footer.html" %>

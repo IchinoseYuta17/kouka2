@@ -28,8 +28,8 @@
 
 	<li><nav>
 		<ul>成績管理
-			<li><a href="subject_create_done.jsp">成績登録</a></li>
-			<li><a href="subject_create.jsp">成績参照</a></li>
+			<li><a href="subject_create.jsp">成績登録</a></li>
+			<li><a href="test_list.jsp">成績参照</a></li>
 		</ul>
 	</nav></li>
 
