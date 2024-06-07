@@ -4,11 +4,11 @@
 
 <Context reloadable="true">
 	<Resource
-		name="jdbc/kadai"
+		name="jdbc/team_db"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.h2.Driver"
-		url="jdbc:h2:tcp://localhost/~/kadai"
+		url="jdbc:h2:tcp://localhost/~/team_db"
 		username="sa"
 		password=""
 	/>
