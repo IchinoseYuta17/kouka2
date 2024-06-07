@@ -28,15 +28,15 @@ public class StudentDAO extends DAO {
         if (rs.next()) {
             student = new Student(); // 学生オブジェクトをインスタンス化
             student.setNo(rs.getString("NO")); // 学生番号を設定
-            student.setName(rs.getString("NAME")); // 学生名を設定
-            student.setEntYear(rs.getInt("ENT_YEAR")); // 入学年度を設定
-            student.setClassNum(rs.getString("CLASS_NUM")); // クラス番号を設定
-            student.setIsAttend(rs.getBoolean("IS_ATTEND")); // 在学中フラグを設定
+            student.setName(rs.getString("Name")); // 学生名を設定
+            student.setEntYear(rs.getString("ENT_YEAR")); // 入学年度を設定
+            student.setClassNum(rs.getString("CLASS_Num")); // クラス番号を設定
+            student.setIsAttend(rs.getString("IS_ATTEND")); // 在学中フラグを設定
 
             // 学校ビーンをインスタンス化して情報をセット
             School school = new School();
             school.setCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
-            // 仮に学校名のカラム名が "SCHOOL_NAME" だと仮定
+            // 仮に学校名のカラム名が "SCHOOL_Num" だと仮定
             school.setName(rs.getString("NAME"));
             student.setSchool(school); // 学校情報を学生オブジェクトに設定
         }
@@ -54,9 +54,9 @@ public class StudentDAO extends DAO {
             Student student = new Student();
             student.setNo(rSet.getString("NO"));
             student.setName(rSet.getString("NAME"));
-            student.setEntYear(rSet.getInt("ENT_YEAR"));
+            student.setEntYear(rSet.getString("ENT_YEAR"));
             student.setClassNum(rSet.getString("CLASS_NUM"));
-            student.setIsAttend(rSet.getBoolean("IS_ATTEND"));
+            student.setIsAttend(rSet.getString("IS_ATTEND"));
 
             studentList.add(student); // 学生リストに追加
         }
@@ -64,15 +64,15 @@ public class StudentDAO extends DAO {
     }
 
     // 複数の条件で学生リストをフィルタリングするメソッド
-    public List<Student> studentFilter4(int entYear, String classNum, boolean isAttend) throws Exception {
+    public List<Student> studentFilter4(String entYear, String classNum, String isAttend) throws Exception {
         Connection con = getConnection();
 
         // SQLクエリを準備
         String sql = baseSql + "ENT_YEAR = ? AND CLASS_NUM = ? AND IS_ATTEND = ?";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setInt(1, entYear);
+        st.setString(1, entYear);
         st.setString(2, classNum);
-        st.setBoolean(3, isAttend);
+        st.setString(3, isAttend);
         ResultSet rs = st.executeQuery();
 
         List<Student> studentList = studentPostfilter(rs);
@@ -142,9 +142,9 @@ public class StudentDAO extends DAO {
         }
         st.setString(1, student.getNo());
         st.setString(2, student.getName());
-        st.setInt(3, student.getEntYear());
+        st.setString(3, student.getEntYear());
         st.setString(4, student.getClassNum());
-        st.setBoolean(5, student.getIsAttend());
+        st.setString(5, student.getIsAttend());
         st.setString(6, student.getSchool().getCd()); // 学校コードをセット
 
         int line = st.executeUpdate(); // クエリを実行して更新された行数を取得
@@ -209,7 +209,7 @@ public class StudentDAO extends DAO {
 //            // 学校ビーンをインスタンス化して情報をセット
 //            School school = new School();
 //            school.setCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
-//            // 仮に学校名のカラム名が "SCHOOL_NAME" だと仮定
+//            // 仮に学校名のカラム名が "SCHOOL_Num" だと仮定
 //            school.setName(rs.getString("NAME"));
 //            student.setSchool(school); // 学校情報を学生オブジェクトに設定
 //        }
