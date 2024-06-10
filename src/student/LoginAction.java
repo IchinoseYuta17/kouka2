@@ -43,7 +43,7 @@ public class LoginAction {
         ResultSet rs = null;
         try {
             // データベースへの接続を確立
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_name", "username", "password");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/team_db", "username", "password");
 
             // 提供された認証情報が有効かどうかを確認するクエリ
             String sql = "SELECT * FROM users WHERE id = ? AND password = ?";
