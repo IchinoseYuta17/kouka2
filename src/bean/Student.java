@@ -6,9 +6,9 @@ public class Student implements java.io.Serializable {
     // DBの項目名と同じ名前のprivateなフィールドを定義
     private String no;           // 学生番号
     private String name;         // 学生名
-    private String entYear;        // 入学年度
+    private int entYear;        // 入学年度
     private String classNum;    // クラス番号
-    private String isAttend;   // 在学中フラグ
+    private Boolean isAttend;   // 在学中フラグ
     private School school;    // 学校コード
 
     // ゲッターメソッド
@@ -18,13 +18,13 @@ public class Student implements java.io.Serializable {
     public String getName() {
         return name;
     }
-    public String getEntYear() {
+    public int getEntYear() {
         return entYear;
     }
     public String getClassNum() {
         return classNum;
     }
-    public String getIsAttend() {
+    public Boolean getIsAttend() {
         return isAttend;
     }
     public School getSchool() {
@@ -38,13 +38,13 @@ public class Student implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public void setEntYear(String entYear) {
+    public void setEntYear(int entYear) {
         this.entYear = entYear;
     }
     public void setClassNum(String classNum) {
         this.classNum = classNum;
     }
-    public void setIsAttend(String isAttend) {
+    public void setIsAttend(Boolean isAttend) {
         this.isAttend = isAttend;
     }
     public void setSchool(School school) {
