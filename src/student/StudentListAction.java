@@ -1,6 +1,7 @@
 //教師ログインなしバージョン
 package student;
 
+import java.util.ArrayList;
 import java.util.List; // Listを使用するためのインポート
 
 import javax.servlet.http.HttpServletRequest; // HttpServletRequestを使用するためのインポート
@@ -16,32 +17,50 @@ public class StudentListAction extends Action{
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception {
-        // リクエストパラメータから必要な情報を取得
 
-      String entYear = request.getParameter("data1");
-      String className = request.getParameter("data2");
-      String isAttend = request.getParameter("data3");
-
-
+// リクエストパラメータから必要な情報を取得(テスト用：全てストリングで定義)
+//      String entYear = request.getParameter("year");
+//      String className = request.getParameter("class");
+//      String isAttend = request.getParameter("status");
 
 
+// 本番用コード
 //        int entYear = Integer.parseInt(req.getParameter("data1"));
 //        String classNum = req.getParameter("data2");
 //        boolean isAttend = Boolean.parseBoolean(req.getParameter("data3"));
 
 
-        // StudentDAOのインスタンスを作成
-        StudentDAO studentDAO = new StudentDAO();
 
-        // 条件に基づいて学生リストを取得
-        List<Student> studentList = studentDAO.studentFilter4(entYear, className, isAttend);
+		// リクエストパラメータから情報を取得
+		String entYearStr = request.getParameter("year");
+		String classNum = request.getParameter("class");
+		String isAttendStr = request.getParameter("status");
 
-        // リクエスト属性に学生リストを設定
-        request.setAttribute("studentList", studentList);
-        return "server2.jsp";
-    }
+		// パラメータのnullチェックとデフォルト値の設定
+		Integer entYear = (entYearStr != null && !entYearStr.equals("none")) ? Integer.parseInt(entYearStr) : null;
+		Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : null;
+
+		// StudentDAOのインスタンスを作成
+		StudentDAO studentDAO = new StudentDAO();
+		List<Student> studentList;
+
+		// フィルタ条件に応じてDAOメソッドを呼び出す
+		if (entYear != null && classNum != null && isAttend != null) {
+		    studentList = studentDAO.studentFilter(entYear, classNum, isAttend);
+		} else if (entYear != null && isAttend != null) {
+		    studentList = studentDAO.studentFilter(entYear, isAttend);
+		} else if (isAttend != null) {
+		    studentList = studentDAO.studentFilter(isAttend);
+		} else {
+		    // 全件取得など他の適切な処理を実装（例：entYearだけのフィルタなど）
+		    studentList = new ArrayList<>(); // 適宜修正
+		}
+
+		// リクエスト属性に学生リストを設定
+		request.setAttribute("studentList", studentList);
+		return "student_list.jsp";
+	}
 }
-
 
 
 
