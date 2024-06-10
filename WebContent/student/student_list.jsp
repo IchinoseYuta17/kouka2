@@ -104,7 +104,7 @@
 		</div>
 	<c:choose>
 		<c:when test="${not empty studentList}">
-			<label>検索結果:</label>
+			<label>検索結果：${resultCount}件</label>
 			<table class="tbl">
 				<tr>
 					<th>入学年度</th>

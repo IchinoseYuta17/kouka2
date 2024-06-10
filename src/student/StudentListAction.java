@@ -62,8 +62,12 @@ public class StudentListAction extends Action{
             studentList = new ArrayList<>(); // 適宜修正
         }
 
+        // 検索結果の数を数える
+        int resultCount = studentList.size();
+
         // リクエスト属性に学生リストを設定
         request.setAttribute("studentList", studentList);
+        request.setAttribute("resultCount", resultCount);
         return "student_list.jsp";
     }
 }
