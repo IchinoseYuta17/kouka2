@@ -5,6 +5,10 @@
 <%@ include file="menu.jsp" %>
 
 <style>
+	footer{
+	    position: absolute;/*←絶対位置*/
+	    bottom: 0; /*下に固定*/
+		}
     h2 {
         text-align: left;
         padding: 5px 20px;
