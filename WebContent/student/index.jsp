@@ -18,7 +18,7 @@
 
             <div style="margin-right: 10px; flex: 1;">
 
-                <a href="studentList.jsp" style="display: block; background-color: #f5b2ac ; padding: 40px; text-align: center;">学生管理</a>
+                <a href="StudentList.action" style="display: block; background-color: #f5b2ac ; padding: 40px; text-align: center;">学生管理</a>
 
                 <ul style="list-style: none; padding: 0;">
 
