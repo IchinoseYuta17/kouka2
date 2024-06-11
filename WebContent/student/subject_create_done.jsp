@@ -36,11 +36,11 @@
 </style>
 
 <div class="main-container">
-    <h2 class="form-title">学生情報登録</h2>
+    <h2 class="form-title">科目情報登録</h2>
     <p>登録が完了しました</p>
     <div class = "link-container">
 		<a href="subject_create.jsp">戻る</a>
-	   	<a href="student_list.jsp">学生一覧</a>
+	   	<a href="subject_list.jsp">科目一覧</a>
     </div>
     
 </div>
