@@ -4,10 +4,7 @@
 <%@ include file="header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.sql.*" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
+
     <title>得点管理システム</title>
     <style>
         body {
@@ -97,7 +94,13 @@
 	        top: 10px; /* 上からの距離 */
 	        left: 10px; /* 左からの距離 */
 	    }
-
+ 		h2 {
+            text-align: left;
+            padding: 10px 20px;
+            background-color: #f2f2f2; /* 背景色をグレーに変更 */
+            color: black; /* 文字色を黒に変更 */
+            align-items: center;
+            }
     </style>
 </head>
 <body>
@@ -109,7 +112,7 @@
             <form method="post" action="LoginExecute.action">
                 <div>
                     <!-- タグを青色に変更 -->
-                   <input type="text" id="username" name="username" placeholder="ID">
+                   <input type="text" id="id" name="id" placeholder="ID">
 
                 </div>
                 <div>
@@ -147,5 +150,4 @@
             }
         }
     </script>
-</body>
-</html>
+
