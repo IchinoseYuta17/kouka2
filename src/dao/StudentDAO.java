@@ -190,6 +190,8 @@ public class StudentDAO extends DAO {
 //    // ベースのSQLクエリを定義
     private String baseSql = "SELECT * FROM student WHERE SCHOOL_CD = ?";
     List<Student> studentList = new ArrayList<>();
+
+
     public List<Student> studentListGet(Teacher teacher)throws Exception{
         try (Connection con = getConnection();
                 PreparedStatement st = con.prepareStatement(baseSql)) {

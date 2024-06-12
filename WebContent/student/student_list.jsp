@@ -129,11 +129,13 @@
                 <div>
                     <button type="submit">絞込み</button>
                 </div>
+                <!-- 検索の条件式にflgが必要なので隠しフィールドで送る -->
+	            <input type="hidden" name="flg" value="1">
             </form>
         </div>
         <c:choose>
-            <c:when test="${not empty studentList}">
-                <label>検索結果:</label>
+            <c:when test="${flg == 0}">
+				<label>検索結果:</label>
                 <table class="tbl">
                     <tr>
                         <th>入学年度</th>
@@ -143,7 +145,42 @@
                         <th>在学中</th>
                         <th></th>
                     </tr>
-                    <c:forEach var="student" items="${studentList}">
+                    <c:forEach var="student" items="${allStudentList}">
+                        <tr>
+                            <td>${student.entYear}</td>
+                            <td>${student.no}</td>
+                            <td>${student.name}</td>
+                            <td>${student.classNum}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${student.isAttend == 'TRUE'}">
+                                        ○
+                                    </c:when>
+                                    <c:otherwise>
+                                        ×
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td><a href="#">変更</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+
+            </c:when>
+
+
+            <c:when  test="${flg == 1}">
+				<label>検索結果:</label>
+                <table class="tbl">
+                    <tr>
+                        <th>入学年度</th>
+                        <th>学生番号</th>
+                        <th>氏名</th>
+                        <th>クラス</th>
+                        <th>在学中</th>
+                        <th></th>
+                    </tr>
+                    <c:forEach var="student" items="${searchedStudentList}">
                         <tr>
                             <td>${student.entYear}</td>
                             <td>${student.no}</td>
@@ -164,6 +201,7 @@
                     </c:forEach>
                 </table>
             </c:when>
+
             <c:otherwise>
                 <div>学生情報が存在しませんでした</div>
             </c:otherwise>
