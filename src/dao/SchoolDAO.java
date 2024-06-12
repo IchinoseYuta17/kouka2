@@ -24,7 +24,7 @@ public class SchoolDAO extends DAO {
         if (rs.next()) {
             school = new School(); // 学校オブジェクトをインスタンス化
             school.setCd(rs.getString("CD")); // 学校コードを設定
-            school.setName(rs.getString("NAME")); // 学校名を設定
+            school.setName(rs.getString("SCHOOL_NAME")); // 学校名を設定
             // 他の学校情報の取得や設定があればここに追加
         }
 
