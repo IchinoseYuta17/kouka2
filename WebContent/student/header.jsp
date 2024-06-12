@@ -5,7 +5,7 @@
 <div id="header">
 	<h1>得点管理システム</h1>
 	<div class="head-elm">
-		<span>大原　太郎様　</span>
+		<span>${teacher.name}様　</span>
 		<a href="logout.jsp">ログアウト</a>
 	</div>
 </div>
