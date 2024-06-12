@@ -15,16 +15,17 @@ public class ClassNumDAO extends DAO {
     // ベースのSQLクエリを定義
     private String baseSql = "SELECT * FROM CLASS_NUM WHERE SCHOOL_CD = ?";
 
-    // 学校情報を学校コード（cd）で取得するメソッド
+    // クラス番号リストを学校オブジェクトで取得するメソッド
     public List<ClassNum> filter(School school) throws Exception {
 
     	String schoolCd = school.getCd();
     	ClassNum classNum = null; // ClassNumオブジェクトを初期化
-    	List<ClassNum> classNumList = new ArrayList<>();
+
+    	List<ClassNum> classNumList = new ArrayList<>(); // 返却する空のリストを作成
 
         Connection con = getConnection(); // データベース接続を取得
 
-        // 学校コードを条件にしてSQLクエリを準備
+        // SQLクエリを準備
         PreparedStatement st = con.prepareStatement(baseSql);
         st.setString(1, schoolCd); // パラメータに学校コードを設定
         ResultSet rs = st.executeQuery(); // クエリを実行して結果セットを取得
@@ -32,14 +33,14 @@ public class ClassNumDAO extends DAO {
         if (rs.next()) {
         	classNum = new ClassNum(); // クラス番号オブジェクトをインスタンス化
         	classNum.setSchoolCd(rs.getString("CD")); // 学校コードを設定
-        	classNum.setClassNum(rs.getString("NUM")); // 学校名を設定
+        	classNum.setClassNum(rs.getString("NUM")); // クラス番号を設定
         	classNumList.add(classNum);
         }
 
         st.close(); // ステートメントをクローズ
         con.close(); // 接続をクローズ
 
-        return classNumList; // 学校オブジェクトを返す
+        return classNumList; // クラス番号リストを返す
     }
 }
 
