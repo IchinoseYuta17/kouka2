@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.sql.*" %>
 
-    <title>得点管理システム</title>
+     <title>得点管理システム</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,11 +62,11 @@
         }
         .tbl th, .tbl td {
             padding: 10px;
-            border: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
             text-align: center;
         }
         .tbl th {
-            background-color: #f2f2f2;
+            background-color: #ffffff; /* 背景色を白に設定 */
         }
         .new-registration-container {
             display: flex;
@@ -84,23 +84,18 @@
         button:hover {
             background-color: #5a6268;
         }
-
-        /* 入学年度とクラスの間の空白を調整 */
         .form-container div {
-            margin-right: 20px; /* 例：20pxに設定 */
+            margin-right: 20px;
         }
-
-        /* 在学中と絞り込みの間の空白を調整 */
         .form-container div:last-child {
-            margin-left: 50px; /* 例：20pxに設定 */
+            margin-left: 50px;
         }
     </style>
 </head>
 <body>
     <div class="main-container">
         <h2>学生管理</h2>
-		<div>
-	      <div class="new-registration-container">
+        <div class="new-registration-container">
             <a href="new_student.jsp" class="new-registration">新規登録</a>
         </div>
         <div class="form-container">
@@ -129,13 +124,12 @@
                 <div>
                     <button type="submit">絞込み</button>
                 </div>
-                <!-- 検索の条件式にflgが必要なので隠しフィールドで送る -->
-	            <input type="hidden" name="flg" value="1">
+                <input type="hidden" name="flg" value="1">
             </form>
         </div>
         <c:choose>
             <c:when test="${flg == 0}">
-				<label>検索結果:</label>
+                <label>検索結果:</label>
                 <table class="tbl">
                     <tr>
                         <th>入学年度</th>
@@ -165,12 +159,9 @@
                         </tr>
                     </c:forEach>
                 </table>
-
             </c:when>
-
-
-            <c:when  test="${flg == 1}">
-				<label>検索結果:</label>
+            <c:when test="${flg == 1}">
+                <label>検索結果:</label>
                 <table class="tbl">
                     <tr>
                         <th>入学年度</th>
@@ -201,12 +192,11 @@
                     </c:forEach>
                 </table>
             </c:when>
-
             <c:otherwise>
                 <div>学生情報が存在しませんでした</div>
             </c:otherwise>
         </c:choose>
     </div>
-   	</div><!-- /main-container -->
-
-   <%@ include file="../footer.html" %>
+    <%@ include file="../footer.html" %>
+</body>
+</html>
