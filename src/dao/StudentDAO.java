@@ -64,12 +64,8 @@ public class StudentDAO extends DAO {
             student.setClassNum(rs.getString("CLASS_NUM")); // クラス番号を設定
             student.setIsAttend(rs.getBoolean("IS_ATTEND")); // 在学中フラグを設定
 
-            // 学校ビーンをインスタンス化して情報をセット
-            School school1= new School();
-            school1.setCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
-            // 仮に学校名のカラム名が "SCHOOL_Num" だと仮定
-            school1.setName(rs.getString("NAME"));
-            student.setSchool(school1); // 学校情報を学生オブジェクトに設定
+
+            student.setSchool(school); // 既存の学校情報をセット
         }
 
         st.close(); // ステートメントをクローズ
