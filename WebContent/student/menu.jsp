@@ -24,7 +24,7 @@
     <ul>
 
     <li><a href="Menu.action">メニュー</a></li>
-    <li><a href="student_list.jsp">学生管理</a></li>
+    <li><a href="StudentList.action">学生管理</a></li>
 
 	<li>
 		<nav>成績管理
