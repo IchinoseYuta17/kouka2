@@ -31,8 +31,8 @@ public class ClassNumDAO extends DAO {
 
         if (rs.next()) {
         	classNum = new ClassNum(); // クラス番号オブジェクトをインスタンス化
-        	classNum.setSchoolCd(rs.getString("CD")); // 学校コードを設定
-        	classNum.setClassNum(rs.getString("NUM")); // 学校名を設定
+        	classNum.setSchoolCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
+        	classNum.setClassNum(rs.getString("CLASS_NUM")); // 学校名を設定
         	classNumList.add(classNum);
         }
 

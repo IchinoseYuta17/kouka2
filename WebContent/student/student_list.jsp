@@ -96,7 +96,7 @@
     <div class="main-container">
         <h2>学生管理</h2>
         <div class="new-registration-container">
-            <a href="new_student.jsp" class="new-registration">新規登録</a>
+            <a href="StudentCreate.action" class="new-registration">新規登録</a>
         </div>
         <div class="form-container">
             <form method="post" action="StudentList.action">

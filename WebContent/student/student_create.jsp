@@ -35,9 +35,9 @@
         flex-direction: column;
         gap: 5px;
 		width:95%;
-        
+
     }
-    
+
     .form-group input,.form-group select {
         padding: 8px;
         border: 1px solid #ccc;
@@ -65,9 +65,9 @@
 
 <div class="main-container">
     <h2 class="form-title">学生情報登録</h2>
-    
+
     <div class="form-container">
-        <form action="student_create.action" method="post">
+        <form action="StudentCreateExecute.action" method="post">
             <div class="form-group">
                 <label for="admissionYear">入学年度:</label>
                 <select id="admissionYear" name="admissionYear">
@@ -93,32 +93,32 @@
 					<option value="2032">2032年</option>
 					<option value="2033">2033年</option>
 					<option value="2034">2034年</option>
-                    
-                    
+
+
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="studentNumber">学生番号:</label>
                 <input type="text" id="studentNumber" name="studentNumber" placeholder="学生番号を入力してください">
             </div>
-            
+
             <div class="form-group">
                 <label for="name">氏名:</label>
                 <input type="text" id="name" name="name" placeholder="氏名を入力してください">
             </div>
-            
+
             <div class="form-group">
                 <label for="class">クラス:</label>
                 <select id="class" name="class">
                     <option value="101">101</option>
-                    
+
                 </select>
             </div>
-                
+
             <div class="form-buttons">
                 <input type="submit" value="登録して終了">
-                
+
             </div>
             <a href="student_list.jsp">戻る</a>
         </form>
