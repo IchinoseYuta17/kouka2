@@ -6,7 +6,7 @@
 	<%@include file="menu.jsp" %>
 
     <div id="main-contents">
-    <h2>科目登録画面ページ</h2>
+    <h2>科目情報登録</h2>
         <form action="SubjectCreateExecute.action" method="post">
 			
 			<div class="form-group">

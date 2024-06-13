@@ -121,6 +121,19 @@ h2 {
     cursor: pointer;
     border-radius: 4px;
 }
+.red-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.red-buttons input[type="submit"] {
+    background-color: #DC143C		;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
 .return a {
     color: #007bff;
     text-decoration: none;
