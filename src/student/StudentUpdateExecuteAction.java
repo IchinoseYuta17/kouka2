@@ -15,12 +15,12 @@ public class StudentUpdateExecuteAction extends Action {
 
 		// ユーザーからの入力値を受け取る
 		//(このかたまりの受け取り名・受け取り方法などまだ確認が必要)
-		int entYear=Integer.parseInt(request.getParameter("admissionYear"));
-		String no=request.getParameter("studentNumber");
+		int entYear=Integer.parseInt(request.getParameter("entYear"));
+		String no=request.getParameter("student_no");
 		String name=request.getParameter("name");
-		String classNum=request.getParameter("class");
-		Boolean isAttend = true;
-
+		String classNum=request.getParameter("class_num");
+		String isAttendStr = request.getParameter("is_attend");
+		Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : false;
 
 		// セッションから教師情報を取得
 		Teacher teacher =(Teacher)request.getSession().getAttribute("teacher");
