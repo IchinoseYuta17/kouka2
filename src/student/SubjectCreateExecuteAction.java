@@ -27,7 +27,7 @@ public class SubjectCreateExecuteAction extends Action {
 		// SubjectDAOインスタンスを生成
 		SubjectDAO dao=new SubjectDAO();
 		// SubjectDAOのinsertメソッドを実行してデータベースに登録
-		boolean line = dao.insert(subject);
+		boolean line = dao.save(subject);
 
 		// lineが0でなければ登録成功
 		if (line != false) {
