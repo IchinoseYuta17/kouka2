@@ -1,14 +1,14 @@
-	<%@page contentType="text/html; charset=UTF-8" %>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<%@include file="../header.html" %>
-	<%@include file="header.jsp" %>
-	<%@include file="menu.jsp" %>
+<%@page contentType="text/html; charset=UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../header.html" %>
+<%@include file="header.jsp" %>
+<%@include file="menu.jsp" %>
 
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<!DOCTYPE html>
-	<html lang="ja">
-	<head>
-	  <meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
 	<style>
 			h2 {
 	        	text-align: left;
@@ -106,11 +106,11 @@
 	        }
 
 	</style>
-	</head>
+</head>
 	<body>
 	  <div class="main-container">
 	    <h2>学生情報変更</h2>
-	    <form id="myForm" action="student_update_done.jsp" method="post">
+	    <form id="myForm" action="StudentUpdateExecute.action" method="post">
 	    <div class="form-container">
 	      <div class="form-group">
 	        <label for="entranceYear">入学年度</label>
@@ -124,7 +124,7 @@
 
 	      <div class="form-input">
 	        <label for="name">氏名</label>
-	        <input type="text" id="name" name="name" placeholder="${student.name}" >
+	        <input type="text" id="name" name="name" value="${student.name}">
 	        <label for="grade">クラス</label>
 
 	        <select id="grade" name="class_num">
@@ -142,11 +142,11 @@
 	        <label for="is_attend">在学中</label>
 	        <input type="checkbox" id="is_attend" name="is_attend" value="1"></div>
 	        <input type="submit" value="変更">
-	 		<a href="student_list.jsp" >戻る</a>
+	 		<a href="StudentList.action" >戻る</a>
 		 </div>
 	 	</div>
 	   </form>
 	  </div>
 	</body>
 	</html>
-	<%@include file="../footer.html" %>
+<%@include file="../footer.html" %>
