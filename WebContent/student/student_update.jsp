@@ -114,21 +114,26 @@
 	    <div class="form-container">
 	      <div class="form-group">
 	        <label for="entranceYear">入学年度</label>
-	         <input class="readonly" type="number" id="entranceYear" name="entranceYear"  readonly>
+	         <input class="readonly" type="number" id="entranceYear" name="entYear" value="${student.entYear}" readonly>
 	      </div>
 
 	      <div class="form-group">
 	        <label for="studentNumber">学生番号</label>
-	        <input class="readonly" type="text" id="studentNumber" name="studentNumber" value="123456" readonly >
+	        <input class="readonly" type="text" id="studentNumber" name="student_no" value="${student.no}" readonly >
 	      </div>
 
 	      <div class="form-input">
 	        <label for="name">氏名</label>
-	        <input type="text" id="name" name="name" placeholder="大原 次郎" >
+	        <input type="text" id="name" name="name" placeholder="${student.name}" >
 	        <label for="grade">クラス</label>
-	        <select id="grade" name="grade">
-	        <option value="101">101</option>
+
+	        <select id="grade" name="class_num">
+				<c:forEach var="classNum" items="${classNumList}">
+	        		<option value="${classNum.num}">${classNum.num}</option>
+				</c:forEach>
 	        </select>
+
+
 	      </div>
 
 
