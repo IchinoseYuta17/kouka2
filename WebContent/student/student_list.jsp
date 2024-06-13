@@ -155,7 +155,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><a href="#">変更</a></td>
+                            <td><a href="StudentUpdate.action?student_no=${student.no}">変更</a></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -187,7 +187,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td><a href="#">変更</a></td>
+                            <td><a href="StudentUpdate.action?student_no=${student.no}">変更</a></td>
                         </tr>
                     </c:forEach>
                 </table>
