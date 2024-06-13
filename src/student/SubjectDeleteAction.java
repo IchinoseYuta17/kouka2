@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
+import tool.Action;
 
-public class SubjectDeleteAction {
+public class SubjectDeleteAction extends Action {
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception {

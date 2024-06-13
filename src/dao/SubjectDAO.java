@@ -93,7 +93,7 @@ public class SubjectDAO extends DAO {
         } else {
             // 新しい学生情報を挿入
             st = con.prepareStatement(
-                "INSERT INTO SUBJECT (NO, NAME,SCHOOL_CD) VALUES (?, ?, ?)");
+                "INSERT INTO SUBJECT (CD, NAME,SCHOOL_CD) VALUES (?, ?, ?)");
             st.setString(1, subject.getCd());
             st.setString(2, subject.getName());
             st.setString(3, subject.getSchool().getCd());
