@@ -57,7 +57,7 @@ public class Util {
         try {
             SubjectDAO subjectDAO = new SubjectDAO();
             Teacher teacher = getUser(request);
-            List<Subject> subjectSet = subjectDAO.getAll(teacher.getSchool().getCd());
+            List<Subject> subjectSet = subjectDAO.filter(teacher.getSchool());
             request.setAttribute("subjectSet", subjectSet);
         } catch (Exception e) {
             e.printStackTrace();
