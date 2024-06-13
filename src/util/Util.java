@@ -1,0 +1,83 @@
+package util;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+
+import bean.ClassNum;
+import bean.Student;
+import bean.Subject;
+import bean.Teacher;
+import dao.ClassNumDAO;
+import dao.StudentDAO;
+import dao.SubjectDAO;
+
+public class Util {
+
+    // セッションからTeacherオブジェクトを取得するメソッド
+    public static Teacher getUser(HttpServletRequest request) {
+        return (Teacher) request.getSession().getAttribute("teacher");
+    }
+
+    // リクエスト属性にクラス番号のセットを設定するメソッド
+    public static void setClassNumSet(HttpServletRequest request) {
+        try {
+            Teacher teacher = getUser(request);
+            if (teacher != null) {
+                ClassNumDAO classNumDAO = new ClassNumDAO();
+                List<ClassNum> classNumSet = classNumDAO.filter(teacher.getSchool());
+                request.setAttribute("classNumSet", classNumSet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // リクエスト属性に入学年度のセットを設定するメソッド
+    public static void setEntYearSet(HttpServletRequest request) {
+        try {
+            Teacher teacher = getUser(request);
+            if (teacher != null) {
+                StudentDAO studentDAO = new StudentDAO();
+                List<Student> students = studentDAO.studentListGet(teacher);
+                List<Integer> entYearSet = students.stream()
+                                                    .map(Student::getEntYear)
+                                                    .distinct()
+                                                    .collect(Collectors.toList());
+                request.setAttribute("entYearSet", entYearSet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // リクエスト属性に科目のセットを設定するメソッド
+    public static void setSubjects(HttpServletRequest request) {
+        try {
+            SubjectDAO subjectDAO = new SubjectDAO();
+            Teacher teacher = getUser(request);
+            List<Subject> subjectSet = subjectDAO.getAll(teacher.getSchool().getCd());
+            request.setAttribute("subjectSet", subjectSet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // リクエスト属性に番号のセットを設定するメソッド
+    public static void setNumSet(HttpServletRequest request) {
+        try {
+            Teacher teacher = getUser(request);
+            if (teacher != null) {
+                StudentDAO studentDAO = new StudentDAO();
+                List<Student> students = studentDAO.studentListGet(teacher);
+                List<String> numSet = students.stream()
+                                              .map(Student::getNo)
+                                              .collect(Collectors.toList());
+                request.setAttribute("numSet", numSet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
