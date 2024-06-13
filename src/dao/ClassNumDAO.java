@@ -30,10 +30,10 @@ public class ClassNumDAO extends DAO {
         st.setString(1, schoolCd); // パラメータに学校コードを設定
         ResultSet rs = st.executeQuery(); // クエリを実行して結果セットを取得
 
-        if (rs.next()) {
+        while (rs.next()) {
         	classNum = new ClassNum(); // クラス番号オブジェクトをインスタンス化
-        	classNum.setSchoolCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
-        	classNum.setClassNum(rs.getString("CLASS_NUM")); // 学校名を設定
+        	classNum.setCd(rs.getString("SCHOOL_CD")); // 学校コードを設定
+        	classNum.setNum(rs.getString("CLASS_NUM")); // 学校名を設定
         	classNumList.add(classNum);
         }
 
