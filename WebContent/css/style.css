@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/*インクルード用のjspに当てているcss*/
+#header {
+width: 100%;
+background-color: #f0f8ff;
+color: #333;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom:2rem;
+padding: 0 5px;
+}
+body {
+   margin: 0px;
+   -webkit-text-size-adjust: 100%;
+}
+h1{
+padding-left:10px;
+}
+.head-elm{
+	margin:2rem;
+}
+#footer{
+width: 100%;
+background-color: #f5f5f5;
+color: #333;
+bottom: 0; 
+position: absolute;
+text-align: center;
+margin-top:2rem;
+padding:2px 0 2px;
+}
+/*インクルード用のjspに当てているcssここまで*/
+
+
+	
+/*サイドバーのcss*/
+.global-navi ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.global-navi ul li {
+    margin-bottom: 15px;
+}
+
+.global-navi {
+width: 15%;
+padding: 8px 8px;      
+margin-left: 10px;
+}
+
+.global-navi nav li {
+    padding-left: 20px;
+}
+/*サイドバーのcssここまで*/
+
+
+
+/*各種jspファイル用の必須css*/
+#container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+h2 {
+    text-align: left;
+    padding: 5px 20px;
+    background-color: #f2f2f2;
+    }
+#main-contents {
+  width: 80%;
+  padding: 15px;
+  border-left:1px solid #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+/*各種jspファイル用の必須cssここまで*/
+
+
+
+/*登録ページ用css*/
+.form-container {
+    margin: 0px 30px;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    width:100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+	width: 95%;
+    
+}
+.form-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+.form-group input,.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-buttons input[type="submit"] {
+    background-color: #808080	;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.form-buttons a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+    
+/*登録ページ用cssここまで*/    
+    

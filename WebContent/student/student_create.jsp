@@ -2,72 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../header.html" %>
 <%@ include file="header.jsp" %>
+
+<div id="container">
 <%@ include file="menu.jsp" %>
 
-<style>
-	footer{
-
-	    bottom: 0; /*下に固定*/
-		}
-    h2 {
-        text-align: left;
-        padding: 5px 20px;
-        background-color: #f2f2f2;
-        }
-	.main-container{
-		margin:0 auto;
-		width: 80%;
-	}
-    .form-container {
-        width: 100%;
-        margin: 30px;
-        text-align: left;
-        background-color: #fff;
-        padding: 20px;
-    }
-    .form-container form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-		width:95%;
-
-    }
-
-    .form-group input,.form-group select {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    .form-buttons {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .form-buttons input[type="submit"] {
-        background-color: #808080	;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-    .form-buttons a {
-        color: #007bff;
-        text-decoration: none;
-        padding: 10px 20px;
-    }
-</style>
-
-<div class="main-container">
-    <h2 class="form-title">学生情報登録</h2>
-
-    <div class="form-container">
-        <form action="StudentCreateExecute.action" method="post">
+    
+    <div id="main-contents" class = "form-container">
+        <h2 class="form-title">学生情報登録</h2>
+    
+        <form action="student_create.action" method="post">
             <div class="form-group">
                 <label for="admissionYear">入学年度:</label>
                 <select id="admissionYear" name="admissionYear">
@@ -100,17 +43,17 @@
 
             <div class="form-group">
                 <label for="studentNumber">学生番号:</label>
-                <input type="text" id="studentNumber" name="studentNumber" placeholder="学生番号を入力してください">
+                <input type="text" name="studentNumber" placeholder="学生番号を入力してください">
             </div>
 
             <div class="form-group">
                 <label for="name">氏名:</label>
-                <input type="text" id="name" name="name" placeholder="氏名を入力してください">
+                <input type="text" name="name" placeholder="氏名を入力してください">
             </div>
 
             <div class="form-group">
                 <label for="class">クラス:</label>
-                <select id="class" name="class">
+                <select name="class">
                     <option value="101">101</option>
 
                 </select>

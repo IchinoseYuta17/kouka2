@@ -1,26 +1,8 @@
 <%@page pageEncoding="UTF-8" %>
 <head>
-	    <style>
 
-        .global-navi ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .global-navi ul li {
-            margin-bottom: 15px;
-        }
-
-        .global-navi {
-         margin-left:20px;
-        }
-
-        .global-navi nav li {
-            padding-left: 20px;
-        }
-    </style>
 </head>
-<div class="global-navi" style="border-right: 2px solid black; flex:0 0 15%">
+<div class="global-navi" style=" flex:0 0 15%">
     <ul>
 
     <li><a href="Menu.action">メニュー</a></li>
