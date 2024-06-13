@@ -107,24 +107,34 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 .form-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .form-buttons input[type="submit"] {
-    background-color: #808080	;
+    background-color: #0074e8	;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
 }
-.form-buttons a {
+.return a {
     color: #007bff;
     text-decoration: none;
-    padding: 10px 20px;
+    margin-right: 20px;
 }
     
 /*登録ページ用cssここまで*/    
+
+
+
+/*更新ページ用css*/
+
+
+
+/*更新ページ用cssここまで*/
+
     
