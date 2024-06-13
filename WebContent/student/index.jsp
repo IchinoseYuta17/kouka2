@@ -44,7 +44,7 @@
 
             <div style="flex: 1;">
 
-                <a href="#" style="display: block; background-color: #e2c6ff; padding: 40px; text-align: center;">科目管理</a>
+                <a href="SubjectList.action" style="display: block; background-color: #e2c6ff; padding: 40px; text-align: center;">科目管理</a>
 
                 <ul style="list-style: none; padding: 0;">
 
