@@ -14,7 +14,7 @@
 		margin:0 auto;
 		width: 80%;
 	}
-	.main-container a{ 
+	.main-container a{
 		margin-right: 60px;
 		margin-left: 20px;
 	}
@@ -31,7 +31,7 @@
     position: absolute;/*←絶対位置*/
     bottom: 0; /*下に固定*/
 	}
-	
+
 
 </style>
 
@@ -39,10 +39,10 @@
     <h2 class="form-title">学生情報登録</h2>
     <p>登録が完了しました</p>
     <div class = "link-container">
-		<a href="student_create.jsp">戻る</a>
-	   	<a href="student_list.jsp">学生一覧</a>
+		<a href="StudentList.action">戻る</a>
+	   	<a href="StudentList.action">学生一覧</a>
     </div>
-    
+
 </div>
 
 <%@include file="../footer.html" %>

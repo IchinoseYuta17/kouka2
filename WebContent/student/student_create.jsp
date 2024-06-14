@@ -6,11 +6,11 @@
 <div id="container">
 <%@ include file="menu.jsp" %>
 
-    
+
     <div id="main-contents" class = "form-container">
         <h2 class="form-title">学生情報登録</h2>
-    
-        <form action="student_create.action" method="post">
+
+        <form action="StudentCreateExecute.action" method="post">
             <div class="form-group">
                 <label for="admissionYear">入学年度:</label>
                 <select id="admissionYear" name="admissionYear">
@@ -65,7 +65,8 @@
             </div>
             <a href="student_list.jsp">戻る</a>
         </form>
+    <%@ include file="../footer.html" %>
+
     </div>
 </div>
 
-<%@ include file="../footer.html" %>
