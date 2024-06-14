@@ -4,21 +4,24 @@ package bean;
 public class Test implements java.io.Serializable {
 
     // DBの項目名と同じ名前のprivateなフィールドを定義
-    private Student student;   // 学生番号
-    private Subject subject;   // 科目コード
-    private School school;    // 学校コード
+    private Student student;   // 学生オブジェクト
+    private String classNum;	// クラス番号
+    private Subject subject;   // 科目オブジェクト
+    private School school;    // 学校オブジェクト
     private int no;             // 回数
     private int point;          // 得点
-    private String classNum;    // クラス番号
 
     // ゲッターメソッド
     public Student getStudent() {
         return student;
     }
-    public Subject getSubjectCd() {
+    public String getClassNum() {
+        return classNum;
+    }
+    public Subject getSubject() {
         return subject;
     }
-    public School getSchoolCd() {
+    public School getSchool() {
         return school;
     }
     public int getNo() {
@@ -27,14 +30,14 @@ public class Test implements java.io.Serializable {
     public int getPoint() {
         return point;
     }
-    public String getClassNum() {
-        return classNum;
-    }
 
 
     // セッターメソッド
     public void setStudent(Student student) {
         this.student = student;
+    }
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
     }
     public void setSubject(Subject subject) {
         this.subject = subject;
@@ -47,9 +50,6 @@ public class Test implements java.io.Serializable {
     }
     public void setPoint(int point) {
         this.point = point;
-    }
-    public void setClassNum(String classNum) {
-        this.classNum = classNum;
     }
 
 }
