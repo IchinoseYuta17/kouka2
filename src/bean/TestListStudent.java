@@ -6,7 +6,7 @@ public class TestListStudent implements java.io.Serializable {
     // DBの項目名と同じ名前のprivateなフィールドを定義
     private String subjectName;   //科目名
     private String subjectCd;    // 科目コード
-    private int num;        // 数？
+    private int no;        // 数？
     private int point;    // 点数
 
 
@@ -17,8 +17,8 @@ public class TestListStudent implements java.io.Serializable {
     public String getSubjectCd() {
         return subjectCd;
     }
-    public int getNum() {
-        return num;
+    public int getNo() {
+        return no;
     }
     public int getPoint() {
         return point;
@@ -32,11 +32,13 @@ public class TestListStudent implements java.io.Serializable {
     public void setSubjectCd(String subjectCd) {
         this.subjectCd = subjectCd;
     }
-    public void setNum(int num) {
-        this.num = num;
+    public void setNo(int no) {
+        this.no = no;
     }
     public void setPoint(int point) {
         this.point = point;
     }
 
 }
+
+
