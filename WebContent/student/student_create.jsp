@@ -65,8 +65,9 @@
             </div>
             <a href="student_list.jsp">戻る</a>
         </form>
-    <%@ include file="../footer.html" %>
 
     </div>
 </div>
+    <%@ include file="../footer.html" %>
+
 
