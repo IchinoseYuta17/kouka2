@@ -5,14 +5,20 @@
 <%@include file="../header.html" %>
 
 <%@include file="header.jsp" %>
+<style>
+#footer{
+margin-top:23%;
+}
+</style>
 
-<%@include file="menu.jsp" %>
+<div id="container">
+	<%@include file="menu.jsp" %>
 
-<div class="main-contents">
 
-    <p>メニュー</p>
 
-    <div class="main-menu" style="display: flex; flex-direction: column;">
+    <div id="main-contents">
+		<h2>メニュー</h2>
+    	
 
         <div style="display: flex; justify-content: space-around;">
 
