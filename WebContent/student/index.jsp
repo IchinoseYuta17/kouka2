@@ -18,7 +18,7 @@ margin-top:23%;
 
     <div id="main-contents">
 		<h2>メニュー</h2>
-    	
+
 
         <div style="display: flex; justify-content: space-around;">
 
@@ -38,7 +38,7 @@ margin-top:23%;
 
                     <ul style="list-style: none; padding: 0;">
 
-                        <li><a href="#" style="display: block;">成績登録</a></li>
+                        <li><a href="TestRegist.action" style="display: block;">成績登録</a></li>
 
                         <li><a href="#" style="display: block;">成績参照</a></li>
 
