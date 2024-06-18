@@ -24,7 +24,6 @@ public class SubjectListAction extends Action{
 
             // Teacherオブジェクトがnullの場合はログインページにリダイレクト
             if (teacher == null) {
-
                 return "login.jsp";
             }
 
@@ -41,7 +40,7 @@ public class SubjectListAction extends Action{
             req.setAttribute("subjectList", subjectList);
 
             // フォワード先のページを指定してリクエストをフォワード
-            return "subject_list.jsp";
+            return "test_list.jsp";
         } catch (Exception e) {
             // エラーハンドリング
             e.printStackTrace();
@@ -49,3 +48,4 @@ public class SubjectListAction extends Action{
         }
     }
 }
+
