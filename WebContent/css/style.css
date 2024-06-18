@@ -239,7 +239,7 @@ h2 {
 
 
 /*完了ページ用*/
-	.done-text p{
+	.done-text {
 		text-align: center;
 		padding: 5px;
 		background-color: #99CC66;
