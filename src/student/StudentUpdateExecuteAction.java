@@ -15,7 +15,7 @@ public class StudentUpdateExecuteAction extends Action {
 
 		// ユーザーからの入力値を受け取る
 		//(このかたまりの受け取り名・受け取り方法などまだ確認が必要)
-		int entYear=Integer.parseInt(request.getParameter("entYear"));
+		int entYear=Integer.parseInt(request.getParameter("ent_year"));
 		String no=request.getParameter("student_no");
 		String name=request.getParameter("name");
 		String classNum=request.getParameter("class_num");
