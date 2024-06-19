@@ -54,8 +54,9 @@
             <div class="form-group">
                 <label for="class">クラス:</label>
                 <select name="class">
-                    <option value="101">101</option>
-
+                	<c:forEach var="classNum" items="${classList}">
+                    	<option value="${classNum.num}">${classNum.num}</option>
+					</c:forEach>
                 </select>
             </div>
 
@@ -63,7 +64,7 @@
                 <input type="submit" value="登録して終了">
 
             </div>
-            <a href="student_list.jsp">戻る</a>
+            <a href="StudentList.action">戻る</a>
         </form>
 
     </div>

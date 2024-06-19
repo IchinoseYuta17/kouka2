@@ -28,14 +28,15 @@
 
             <div class="form-group">
                 <label for="name">氏名:</label>
-                <input type="text" name="name" placeholder="氏名を入力してください">
+                <input type="text" name="name" value="${student.name}">
             </div>
 
             <div class="form-group">
                 <label for="class">クラス:</label>
                 <select name="class_num">
-                    <option value="101">101</option>
-
+                    <c:forEach var="classNum" items="${classNumList}">
+                    	<option value="${classNum.num}">${classNum.num}</option>
+					</c:forEach>
                 </select>
             </div>
 
