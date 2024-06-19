@@ -198,10 +198,10 @@ h2 {
 	display: flex;
 	padding: 20px;
 	border: 1px solid #ddd;
-	border-radius: 5px
-	
+	border-radius: 5px;
+    justify-content: space-between;
 }
-.list-elm{
+.list-elm:not(:last-child){
 	margin-right: 20px;
 }
 .list-elm :last-child{
