@@ -5,7 +5,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.sql.*" %>
 
-
+<style>
+	select{
+	width:240px;
+	}
+</style>
 <body>
     <div id="container">
 		<%@ include file="menu.jsp" %>
@@ -15,8 +19,8 @@
 		<div class="new-registration-container">
 			<a href="StudentCreate.action" class="new-registration">新規登録</a>
 		</div>
-		<div class="list-container">
-			<form method="post" action="StudentList.action">
+		<div >
+			<form class="list-container" method="post" action="StudentList.action">
 				<div class="list-elm">
 					<label for="year">入学年度 </label><br>
 					<select name="year">

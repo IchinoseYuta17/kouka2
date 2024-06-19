@@ -20,7 +20,6 @@ body {
 	-webkit-text-size-adjust: 100%;
 	height:100%;
 }
-
 h1{
 padding-left:10px;
 }
@@ -36,7 +35,6 @@ padding-left:10px;
 	text-align: center;
 	margin-top:2rem;
 	padding:2px 0 2px;
-	
 }
 /*インクルード用のjspに当てているcssここまで*/
 
@@ -47,17 +45,14 @@ padding-left:10px;
 	list-style-type: none;
 	padding: 0;
 }
-
 .global-navi ul li {
 	margin-bottom: 15px;
 }
-
 .global-navi {
 	width: 15%;
 	padding: 8px 8px;
 	margin-left: 10px;
 }
-
 .global-navi nav li {
 	padding-left: 20px;
 }
@@ -201,24 +196,15 @@ h2 {
 
 .list-container {
 	display: flex;
-	justify-content: space-between;
 	padding: 20px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	margin-bottom: 20px;
-	flex-direction: row;
 }
 
 
 
-
-
-
-
-
-
 /*一覧表示用cssここまで*/
-
 
 
 
