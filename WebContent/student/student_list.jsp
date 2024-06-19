@@ -7,7 +7,7 @@
 
 <style>
 	select{
-	width:240px;
+	width:180px;
 	}
 </style>
 <body>
@@ -34,10 +34,12 @@
 					</select>
 				</div>
 				<div class="list-elm">
-					<input type="checkbox" id="status" name="status" value="1">在学中
+					<input type="checkbox" id="status" name="status" value="1" ">在学中
 				</div>
 				<div class="list-elm">
-					<input type="submit" value="絞り込み">
+					<div class="glay-buttons">
+						<input type="submit" value="絞り込み">
+					</div>
 				</div>
 			</form>
 		</div>

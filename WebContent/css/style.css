@@ -198,11 +198,15 @@ h2 {
 	display: flex;
 	padding: 20px;
 	border: 1px solid #ddd;
-	border-radius: 5px;
-	margin-bottom: 20px;
+	border-radius: 5px
+	
 }
-
-
+.list-elm{
+	margin-right: 20px;
+}
+.list-elm :last-child{
+	margin-left: 10px;
+}
 
 /*一覧表示用cssここまで*/
 
