@@ -93,7 +93,7 @@ import dao.SchoolDAO;
 import dao.StudentDAO; // StudentDAOを使用するためのインポート
 import tool.Action;
 
-public class TestListStudentExecuteAction extends Action{
+public class StudentListAction extends Action{
 
     // executeメソッドは、HTTPリクエストを処理し、レスポンスを生成する
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
