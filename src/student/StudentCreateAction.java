@@ -10,12 +10,14 @@ import bean.School;
 import bean.Teacher;
 import dao.ClassNumDAO;
 import tool.Action;
+import util.Util;
 
 public class StudentCreateAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
         // セッションから教師情報を取得
-        Teacher teacher = (Teacher) req.getSession().getAttribute("teacher");
+        Teacher teacher = Util.getUser(req);
+        Util.setEntYearSet(req);
 
         // 教師情報がセッションに存在しない場合、エラーページにリダイレクト
         if (teacher == null) {

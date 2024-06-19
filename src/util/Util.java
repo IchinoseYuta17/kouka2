@@ -1,5 +1,7 @@
 package util;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,19 +36,38 @@ public class Util {
         }
     }
 
-    // リクエスト属性に入学年度のセットを設定するメソッド
+//    // リクエスト属性に入学年度のセットを設定するメソッド
+//    public static void setEntYearSet(HttpServletRequest request) {
+//        try {
+//            Teacher teacher = getUser(request);
+//            if (teacher != null) {
+//                StudentDAO studentDAO = new StudentDAO();
+//                List<Student> students = studentDAO.studentListGet(teacher);
+//                List<Integer> entYearSet = students.stream()
+//                                                    .map(Student::getEntYear)
+//                                                    .distinct()
+//                                                    .collect(Collectors.toList());
+//                request.setAttribute("entYearSet", entYearSet);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void setEntYearSet(HttpServletRequest request) {
         try {
-            Teacher teacher = getUser(request);
-            if (teacher != null) {
-                StudentDAO studentDAO = new StudentDAO();
-                List<Student> students = studentDAO.studentListGet(teacher);
-                List<Integer> entYearSet = students.stream()
-                                                    .map(Student::getEntYear)
-                                                    .distinct()
-                                                    .collect(Collectors.toList());
-                request.setAttribute("entYearSet", entYearSet);
+            // 現在の年を取得
+            Calendar calendar = Calendar.getInstance();
+            int currentYear = calendar.get(Calendar.YEAR);
+
+            // 10年前から10年後までの年リストを生成
+            List<Integer> entYearSet = new ArrayList<>();
+            for (int i = currentYear - 10; i <= currentYear + 10; i++) {
+                entYearSet.add(i);
             }
+
+            // リクエストに年リストをセット
+            request.setAttribute("entYearSet", entYearSet);
         } catch (Exception e) {
             e.printStackTrace();
         }
