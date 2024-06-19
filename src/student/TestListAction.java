@@ -38,6 +38,9 @@ public class TestListAction extends Action {
             String classNum = req.getParameter("classNum");
             String subjectCd = req.getParameter("subjectCd");
 
+
+
+
             // 入力パラメータの検証
             if (studentNo == null || studentNo.isEmpty()) {
                 req.setAttribute("errorMsg", "学生番号を入力してください。");
@@ -58,6 +61,9 @@ public class TestListAction extends Action {
             List<TestListStudent> testListStudents = testListStudentDAO.filter(student);
 
             req.setAttribute("testListStudents", testListStudents);
+
+
+
 
             // 科目別の処理
             if (entYearParam != null && !entYearParam.isEmpty() &&

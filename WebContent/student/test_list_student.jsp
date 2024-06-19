@@ -26,27 +26,58 @@
 </table>
 
 <h2>科目別成績一覧画面ページ</h2>
-<table class="tbl">
-    <thead>
-        <tr>
+<c:if test="${not empty testListSubjects}">
+        <table>
+            <thead>
+                <tr>
+                    <th>入学年度</th>
+                    <th>クラス</th>
+                    <th>学生番号</th>
+                    <th>学生名</th>
+                    <th>科目名</th>
+                    <th>点数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="test" items="${testListSubjects}">
+                    <tr>
+                        <td>${test.entYear}</td>
+                        <td>${test.classNum}</td>
+                        <td>${test.studentNo}</td>
+                        <td>${test.studentName}</td>
+                        <td>${test.Num}</td> <!-- 科目名を表示 -->
+                        <td>${test.points[test.Num]}</td> <!-- 点数を表示 -->
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 
-            <th>入学年</th>
-            <th>クラス番号</th>
-            <th>学生番号</th>
-            <th>学生名</th>
-            <th>1回</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="testsubject" items="${testListSubjects}">
-            <tr>
-            	<td>${testsubject.entYear}</td>
-                <td>${testsubject.classNum}</td>
-                <td>${testsubject.studentNo}</td>
-                <td>${testsubject.studentName}</td>
-                <td>${testsubject.point}</td>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
+    <c:if test="${empty testListSubjects}">
+        <p>No data found.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>入学年度</th>
+                    <th>クラス</th>
+                    <th>学生番号</th>
+                    <th>学生名</th>
+                    <th>科目名</th>
+                    <th>点数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="test" items="${testListSubjects}">
+                    <tr>
+                        <td>${test.entYear}</td>
+                        <td>${test.classNum}</td>
+                        <td>${test.studentNo}</td>
+                        <td>${test.studentName}</td>
+                        <td>${test.Num}</td> <!-- 科目名を表示 -->
+                        <td>${test.points[test.Num]}</td> <!-- 点数を表示 -->
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 <%@ include file="../footer.html" %>

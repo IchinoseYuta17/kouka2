@@ -40,7 +40,7 @@ margin-top:23%;
 
                         <li><a href="TestRegist.action" style="display: block;">成績登録</a></li>
 
-                        <li><a href="#" style="display: block;">成績参照</a></li>
+                        <li><a href="TestList.action" style="display: block;">成績参照</a></li>
 
                     </ul>
 
