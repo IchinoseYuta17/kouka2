@@ -25,22 +25,47 @@
 					<label for="year">入学年度 </label><br>
 					<select name="year">
 						<option value="none" selected>---------</option>
+						<option value="2014">2014年</option>
+						<option value="2015">2015年</option>
+						<option value="2016">2016年</option>
+						<option value="2017">2017年</option>
+						<option value="2018">2018年</option>
+						<option value="2019">2019年</option>
+						<option value="2020">2020年</option>
+						<option value="2021">2021年</option>
+						<option value="2022">2022年</option>
+						<option value="2023">2023年</option>
+						<option value="2024">2024年</option>
+						<option value="2025">2025年</option>
+						<option value="2026">2026年</option>
+						<option value="2027">2027年</option>
+						<option value="2028">2028年</option>
+						<option value="2029">2029年</option>
+						<option value="2030">2030年</option>
+						<option value="2031">2031年</option>
+						<option value="2032">2032年</option>
+						<option value="2033">2033年</option>
+						<option value="2034">2034年</option>
 					</select>
 				</div>
 				<div class="list-elm">
 					<label for="class">クラス </label><br>
 					<select name="class">
 						<option value="none" selected>---------</option>
+                        <option value="131">131</option>
+                        <option value="132">132</option>
+                        <option value="133">133</option>
 					</select>
 				</div>
 				<div class="list-elm">
-					<input type="checkbox" id="status" name="status" value="1" ">在学中
+					<input type="checkbox" id="status" name="status" value="1">在学中
 				</div>
 				<div class="list-elm">
 					<div class="glay-buttons">
 						<input type="submit" value="絞り込み">
 					</div>
 				</div>
+			<input type="hidden" name="flg" value="1">
 			</form>
 		</div>
 	<c:choose>
