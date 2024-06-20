@@ -36,23 +36,23 @@ public class Util {
         }
     }
 
-//    // リクエスト属性に入学年度のセットを設定するメソッド
-//    public static void setEntYearSet(HttpServletRequest request) {
-//        try {
-//            Teacher teacher = getUser(request);
-//            if (teacher != null) {
-//                StudentDAO studentDAO = new StudentDAO();
-//                List<Student> students = studentDAO.studentListGet(teacher);
-//                List<Integer> entYearSet = students.stream()
-//                                                    .map(Student::getEntYear)
-//                                                    .distinct()
-//                                                    .collect(Collectors.toList());
-//                request.setAttribute("entYearSet", entYearSet);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    // リクエスト属性に入学年度のセットを設定するメソッド
+    public static void setStudentEntYearSet(HttpServletRequest request) {
+        try {
+            Teacher teacher = getUser(request);
+            if (teacher != null) {
+                StudentDAO studentDAO = new StudentDAO();
+                List<Student> students = studentDAO.studentListGet(teacher);
+                List<Integer> studentEntYearSet = students.stream()
+                                                    .map(Student::getEntYear)
+                                                    .distinct()
+                                                    .collect(Collectors.toList());
+                request.setAttribute("studentEntYearSet", studentEntYearSet);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void setEntYearSet(HttpServletRequest request) {
         try {
