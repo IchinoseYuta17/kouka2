@@ -22,7 +22,7 @@
 				    <input type="submit" value="登録" style="margin-top:20px; margin-bottom:20px;">
 				</div>
 				<div class="return">
-					<a href="subject_list.action" >戻る</a>
+					<a href="SubjectList.action" >戻る</a>
 				</div>
 		</form>
     </div>
