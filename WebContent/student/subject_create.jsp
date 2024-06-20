@@ -8,14 +8,14 @@
     <div id="main-contents">
     <h2>科目情報登録</h2>
         <form action="SubjectCreateExecute.action" method="post">
-			
+
 			<div class="form-group">
-			    <label for="name">科目コード:</label>
+			    <label for="name">科目コード</label>
 			    <input type="text" id="name" name="subject_cd" placeholder="科目コードを入力してください">
 			</div>
-			
+
 			<div class="form-group">
-			    <label for="class">科目名:</label>
+			    <label for="class">科目名</label>
 			    <input type="text" id="name" name="subject_name" placeholder="科目名を入力してください">
 			</div>
 				<div class="form-buttons">
@@ -23,7 +23,7 @@
 				</div>
 				<div class="return">
 					<a href="subject_list.action" >戻る</a>
-				</div>        
+				</div>
 		</form>
     </div>
 </div>
