@@ -1,21 +1,67 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../header.html" %>
-<!-- このページはhttp://localhost:8080/kouka2にアクセスしたさいに
-index.javaが実行され、フォワードされて表示する。 -->
 
-<!-- display:flexでmenu.jspとcontentを横並びにする -->
-<div class="container" style="display:flex; height:100vh;">
-	<!-- flexアイテム左側としてmuenu.jspを読み込む -->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@include file="../header.html" %>
+
+<%@include file="header.jsp" %>
+<style>
+#footer{
+margin-top:23%;
+}
+</style>
+
+<div id="container">
 	<%@include file="menu.jsp" %>
 
-	<!-- flexアイテム右側としてdiv class="content" -->
-	<div class="content" style="flex:0 0 85%; padding-left:20px">
-		<h2>トップページ</h2>
-		<p>学生とコースの管理をするシステムです。<br>
-			左のメニューから、各機能を選択してください。
-		</p>
-	</div>
+
+
+    <div id="main-contents">
+		<h2>メニュー</h2>
+
+
+        <div style="display: flex; justify-content: space-around;">
+
+            <div style="margin-right: 10px; flex: 1;">
+
+                <a href="StudentList.action" style="display: block; background-color: #f5b2ac ; padding: 40px; text-align: center;">学生管理</a>
+
+                <ul style="list-style: none; padding: 0;">
+
+                </ul>
+
+            </div>
+
+            <div style="margin-right: 10px; flex: 1;">
+
+                <span style="background-color: #ccffcc; padding: 3px; display: block; text-align: center;">成績管理
+
+                    <ul style="list-style: none; padding: 0;">
+
+                        <li><a href="TestRegist.action" style="display: block;">成績登録</a></li>
+
+                        <li><a href="TestList.action" style="display: block;">成績参照</a></li>
+
+                    </ul>
+
+                </span>
+
+            </div>
+
+            <div style="flex: 1;">
+
+                <a href="SubjectList.action" style="display: block; background-color: #e2c6ff; padding: 40px; text-align: center;">科目管理</a>
+
+                <ul style="list-style: none; padding: 0;">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 <%@include file="../footer.html" %>

@@ -3,39 +3,51 @@ package bean;
 // Serializableインターフェースを実装してBeanを作成する
 public class Student implements java.io.Serializable {
 
-	// DBの項目名と同じ名前のprivateなフィールドを定義
-	private int student_id;
-	private String student_name;
-	private int course_id;
-	// その学生に対応したコース名を取得したいためcourseビーンをもたせる
-	private Course course;
+    // DBの項目名と同じ名前のprivateなフィールドを定義
+    private String no;           // 学生番号
+    private String name;         // 学生名
+    private int entYear;        // 入学年度
+    private String classNum;    // クラス番号
+    private Boolean isAttend;   // 在学中フラグ
+    private School school;    // 学校コード
 
-	// ゲッターメソッド キャメルケースはプロパティ名の先頭のみ
-	// student_nameならばgetStudent_id()です。getStudent_Id()やgetStudentId()などではエラーになります。
-	public int getStudent_id() {
-		return student_id;
-	}
-	public String getStudent_name() {
-		return student_name;
-	}
-	public int getCourse_id() {
-		return course_id;
-	}
-	public Course getCourse() {
-		return course;
-	}
+    // ゲッターメソッド
+    public String getNo() {
+        return no;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getEntYear() {
+        return entYear;
+    }
+    public String getClassNum() {
+        return classNum;
+    }
+    public Boolean getIsAttend() {
+        return isAttend;
+    }
+    public School getSchool() {
+        return school;
+    }
 
-	// セッターメソッド
-	public void setStudent_id(int id) {
-		this.student_id=id;
-	}
-	public void setStudent_name(String student_name) {
-		this.student_name=student_name;
-	}
-	public void setCourse_id(int course_id) {
-		this.course_id=course_id;
-	}
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+    // セッターメソッド
+    public void setNo(String no) {
+        this.no = no;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setEntYear(int entYear) {
+        this.entYear = entYear;
+    }
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
+    }
+    public void setIsAttend(Boolean isAttend) {
+        this.isAttend = isAttend;
+    }
+    public void setSchool(School school) {
+        this.school = school;
+    }
 }

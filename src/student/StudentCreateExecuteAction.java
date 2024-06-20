@@ -4,34 +4,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Student;
+import bean.Teacher;
 import dao.StudentDAO;
 import tool.Action;
 
-public class StudentInsertAction extends Action {
+public class StudentCreateExecuteAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 		// ユーザーからの入力値を受け取る
-		int student_id=Integer.parseInt(request.getParameter("student_id"));
-		String name=request.getParameter("student_name");
-		int course_id=Integer.parseInt(request.getParameter("course_id"));
+		int entYear=Integer.parseInt(request.getParameter("admissionYear"));
+		String no=request.getParameter("studentNumber");
+		String name=request.getParameter("name");
+		String classNum=request.getParameter("class");
+
+		Boolean isAttend = true;
+
+		Teacher teacher =(Teacher)request.getSession().getAttribute("teacher");
 
 		// Studentビーンに設定
 		Student student=new Student();
-		student.setStudent_id(student_id);
-		student.setStudent_name(name);
-		student.setCourse_id(course_id);
+		student.setNo(no);
+		student.setName(name);
+		student.setEntYear(entYear);
+		student.setClassNum(classNum);
+		student.setIsAttend(isAttend);
+		student.setSchool(teacher.getSchool());
+
 		// StudentDAOインスタンスを生成
 		StudentDAO dao=new StudentDAO();
 		// StudentDAOのstudentInsertメソッドを実行してデータベースに登録
-		int line = dao.insertStudent(student);
-		
+		boolean line = dao.studentUpdate(student);
+
 		// lineが0でなければ登録成功
-		if (line != 0) {
+		if (line != false) {
 			request.setAttribute("message", "登録しました");
 		} else {
 			request.setAttribute("message", "登録に失敗しました");
 		}
-		return "result.jsp";
+		return "student_create_done.jsp";
 	}
 }
