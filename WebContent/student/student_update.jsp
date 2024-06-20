@@ -12,14 +12,14 @@
 
         <form action="StudentUpdateExecute.action" method="post">
 			<div class="form-group">
-			    <label for="admissionYear">入学年度:</label>
+			    <label for="admissionYear">入学年度</label>
 			    <input type="text" name="ent_year" value="${student.entYear}" readonly style="border: none; background-color:#fff;">
 
 			</div>
 
 
 			<div class="form-group">
-			    <label for="studentNumber">学生番号:</label>
+			    <label for="studentNumber">学生番号</label>
 			    <input type="text" name="student_no" value="${student.no}" readonly style="border: none; background-color:#fff;">
 
 			</div>
@@ -27,16 +27,24 @@
 
 
             <div class="form-group">
-                <label for="name">氏名:</label>
-                <input type="text" name="name" value="${student.name}">
+                <label for="name">氏名</label>
+                <input type="text" name="name" value="${student.name}" required>
             </div>
 
             <div class="form-group">
-                <label for="class">クラス:</label>
+                <label for="class">クラス</label>
                 <select name="class_num">
-                    <c:forEach var="classNum" items="${classNumSet}">
-                    	<option value="${classNum.num}">${classNum.num}</option>
-					</c:forEach>
+
+                <c:forEach var="classNum" items="${classNumSet}">
+                    <c:choose>
+                         <c:when test="${student.classNum == classNum.num}">
+                             <option value="${classNum.num}" selected>${classNum.num}</option>
+                         </c:when>
+                         <c:otherwise>
+                             <option value="${classNum.num}">${classNum.num}</option>
+                         </c:otherwise>
+                     </c:choose>
+                 </c:forEach>
                 </select>
             </div>
 
