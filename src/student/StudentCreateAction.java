@@ -1,14 +1,9 @@
 package student;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.ClassNum;
-import bean.School;
 import bean.Teacher;
-import dao.ClassNumDAO;
 import tool.Action;
 import util.Util;
 
@@ -18,6 +13,7 @@ public class StudentCreateAction extends Action {
         // セッションから教師情報を取得
         Teacher teacher = Util.getUser(req);
         Util.setEntYearSet(req);
+        Util.setClassNumSet(req);
 
         // 教師情報がセッションに存在しない場合、エラーページにリダイレクト
         if (teacher == null) {
@@ -26,14 +22,12 @@ public class StudentCreateAction extends Action {
         }
 
         // 教師の学校情報を取得
-        School school = teacher.getSchool();
-
+//        School school = teacher.getSchool();
         // DAOを使用してクラスデータを取得
-        ClassNumDAO classnum = new ClassNumDAO();
-        List<ClassNum> classList = classnum.filter(school);
-
-        // 取得したクラスデータをリクエストに設定
-        req.setAttribute("classList", classList);
+//        ClassNumDAO classnum = new ClassNumDAO();
+//        List<ClassNum> classList = classnum.filter(school);
+//        // 取得したクラスデータをリクエストに設定
+//        req.setAttribute("classList", classList);
 
         return "student_create.jsp"; // 遷移先のJSPページ
     }

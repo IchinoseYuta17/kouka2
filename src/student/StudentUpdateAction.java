@@ -11,17 +11,19 @@ import bean.Teacher;
 import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
+import util.Util;
 
 public class StudentUpdateAction extends Action {
 	public String execute(
-		HttpServletRequest request, HttpServletResponse response
+		HttpServletRequest req, HttpServletResponse res
 	) throws Exception {
 
         // セッションから教師情報を取得
-        Teacher teacher = (Teacher) request.getSession().getAttribute("teacher");
+        Teacher teacher = (Teacher) req.getSession().getAttribute("teacher");
+        Util.setClassNumSet(req);
 
 		// リクエストパラメータを受け取る
-		String no=request.getParameter("student_no");
+		String no=req.getParameter("student_no");
 
 
 		// StudentDAOの生成
@@ -32,9 +34,9 @@ public class StudentUpdateAction extends Action {
 		List<ClassNum> classNumList = classNumDAO.filter(teacher.getSchool());
 
         // 取得したクラスデータをリクエストに設定
-		request.setAttribute("student", student);
-		request.setAttribute("teacher", teacher);
-		request.setAttribute("classNumList", classNumList);
+		req.setAttribute("student", student);
+		req.setAttribute("teacher", teacher);
+		req.setAttribute("classNumList", classNumList);
 
 		return "student_update.jsp";
 	}

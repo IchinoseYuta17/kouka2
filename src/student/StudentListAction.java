@@ -92,6 +92,7 @@ import bean.Teacher; // Teacherクラスを使用するためのインポート
 import dao.SchoolDAO;
 import dao.StudentDAO; // StudentDAOを使用するためのインポート
 import tool.Action;
+import util.Util;
 
 public class StudentListAction extends Action{
 
@@ -101,27 +102,33 @@ public class StudentListAction extends Action{
         String flgParam = req.getParameter("flg");
         int listFlg = (flgParam != null) ? Integer.parseInt(flgParam) : 0;
 
+        // セッションに必要なリストを設定
+        Util.setStudentEntYearSet(req);
+        Util.setClassNumSet(req);
+
     	if (listFlg == 0){
+    		// 学生管理への画面遷移の最初に表示するリストの作成
+			Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
+			if (teacher == null){
+				return "login.jsp";
+			}
 
-		Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
-		if (teacher == null){
-			return "login.jsp";
-		}
+			StudentDAO student = new StudentDAO();
+			List<Student> allStudentList = student.studentListGet(teacher);
 
-		StudentDAO student = new StudentDAO();
-		List<Student> allStudentList = student.studentListGet(teacher);
+	        // 検索結果の数を数える
+	        int resultCount = allStudentList.size();
+	        int flg = 0;
 
-        // 検索結果の数を数える
-        int resultCount = allStudentList.size();
-        int flg = 0;
-
-         // リクエスト属性に全生徒リストと検索結果数、flg(0)を設定
-         req.setAttribute("allStudentList", allStudentList);
-         req.setAttribute("resultCount", resultCount);
-         req.setAttribute("flg", flg);
-         return "student_list.jsp";
+	         // リクエスト属性に全生徒リストと検索結果数、flg(0)を設定
+	         req.setAttribute("allStudentList", allStudentList);
+	         req.setAttribute("resultCount", resultCount);
+	         req.setAttribute("flg", flg);
+	         return "student_list.jsp";
     	}
     	else{
+    		// 検索後の画面に表示するリストの作成
+
         	// リクエストパラメータから検索条件を取得
     		Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
             School belongSchool = teacher.getSchool();
@@ -144,12 +151,6 @@ public class StudentListAction extends Action{
 
             // 返却するリストを空で定義
             List<Student> searchedStudentList = new ArrayList<>();
-
-            // 教師情報を取得（仮に、教師情報は特定の学校に紐づいているとする）
-//            Teacher teacher = new Teacher(); // 実際にはDAOから取得する
-//            teacher.setId("teacherId"); // 仮の教師ID
-//            teacher.setName("teacherName"); // 仮の教師名
-//            teacher.setSchool(school); // 学校情報を設定
 
             if (entYear != null && classNum != null && isAttend != null) {
 //              System.out.println("Calling: studentFilter(entYear, classNum, isAttend)");
@@ -176,9 +177,4 @@ public class StudentListAction extends Action{
             return "student_list.jsp";
         }
 	}
-
 }
-
-
-
-

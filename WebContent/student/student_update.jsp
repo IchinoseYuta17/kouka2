@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label for="class">クラス:</label>
                 <select name="class_num">
-                    <c:forEach var="classNum" items="${classNumList}">
+                    <c:forEach var="classNum" items="${classNumSet}">
                     	<option value="${classNum.num}">${classNum.num}</option>
 					</c:forEach>
                 </select>
