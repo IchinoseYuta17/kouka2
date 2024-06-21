@@ -61,7 +61,7 @@
 							<th>学生番号</th>
 							<th>氏名</th>
 							<th>クラス</th>
-							<th>在学中</th>
+							<th class="enrolled">在学中</th>
 							<th></th>
 						</tr>
 						<c:forEach var="student" items="${allStudentList}">
@@ -70,7 +70,7 @@
 								<td>${student.no}</td>
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
-								<td>
+								<td class="enrolled ">
 									<c:choose>
 										<c:when test="${student.isAttend == 'TRUE'}">
 											○

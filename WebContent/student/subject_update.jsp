@@ -16,7 +16,7 @@
 			</div>
 			<div class="form-group">
 				<label for="studentNumber">科目名</label>
-				<input type="text" name="subject_name" >
+				<input type="text" name="subject_name" value="${subject.name}" required>
 			</div>
 
 

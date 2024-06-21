@@ -11,13 +11,12 @@ import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import bean.TestListSubject;
-import dao.SchoolDAO;
 import dao.SubjectDAO;
 import dao.TestListSubjectDAO;
 import tool.Action;
 import util.Util;
 
-public class TestListSubjectExcuteAction extends Action {
+public class TestListSubjectExecuteAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         try {
@@ -29,15 +28,13 @@ public class TestListSubjectExcuteAction extends Action {
                 return "login.jsp";
             }
 
-            // 学校コードを取得
-            String schoolCd = teacher.getSchool().getCd();
-            SchoolDAO schoolDAO = new SchoolDAO();
-            School school = schoolDAO.get(schoolCd);
+            // 学校オブジェクトを取得
+            School school = teacher.getSchool();
 
             // リクエストから入学年度、クラス、および科目を取得
             int entYear = Integer.parseInt(req.getParameter("entYear"));
             String classNum = req.getParameter("classNum");
-            String subjectCd = req.getParameter("subject");
+            String subjectCd = req.getParameter("subjectCd");
 
             // Subjectオブジェクトを作成
             Subject subject = new Subject();

@@ -188,7 +188,7 @@ h2 {
 .tbl th, .tbl td {
 	padding: 10px;
 	border-bottom: 1px solid #ddd;
-	text-align: center;
+	text-align: left;
 }
 .tbl th {
 	background-color: #ffffff; /* 背景色を白に設定 */
@@ -206,6 +206,10 @@ h2 {
 }
 .list-elm :last-child{
 	margin-right: 10px;
+}
+ .enrolled {
+    text-align: center !important; /* 水平方向の中央揃え */
+    vertical-align: middle !important; /* 垂直方向の中央揃え */
 }
 
 /*一覧表示用cssここまで*/
