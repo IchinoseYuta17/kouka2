@@ -10,7 +10,6 @@ public class TestListSubject implements java.io.Serializable {
 	private String studentNo;
 	private String studentName;
 	private String classNum;
-	private String Num;
 	private Map<Integer, Integer> points;
 
     // コンストラクタ
@@ -37,9 +36,6 @@ public class TestListSubject implements java.io.Serializable {
 	public Integer getPoint(int key){
 		return points.get(key);
 	}
-	public String getNum() {
-		return Num;
-	}
 
 
 	// セッターメソッド
@@ -57,12 +53,8 @@ public class TestListSubject implements java.io.Serializable {
 	}
 	public void setPoints(Map<Integer,Integer> points){
 		this.points = points;
-
 	}
 	public void putPoint(int key, int value){
 		this.points.put(key, value);
-	}
-	public void setNum(String Num) {
-		this.Num = Num;
 	}
 }
