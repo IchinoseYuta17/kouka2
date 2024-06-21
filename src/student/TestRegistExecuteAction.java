@@ -82,7 +82,7 @@ public class TestRegistExecuteAction extends Action {
 
         boolean result = testDAO.save(testList);
 
-        if (result == true) {
+        if (result) {
             req.setAttribute("message", "テストの登録に成功しました。");
             return "test_regist_done.jsp";
         } else {
