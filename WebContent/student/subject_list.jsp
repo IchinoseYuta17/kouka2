@@ -6,9 +6,11 @@
 <div id="container">
 	<%@include file="menu.jsp" %>
 
-    <div id="main-contents">    
+    <div id="main-contents">
     	<h2>科目管理</h2>
-        <a href="SubjectCreate.action" class="new-registration">新規登録</a>
+    	<div class="new-registration-container">
+        	<a href="SubjectCreate.action">新規登録</a>
+        </div>
 	    <table class="tbl">
 	        <tr>
 	            <th>科目コード</th>
