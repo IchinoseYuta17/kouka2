@@ -12,14 +12,10 @@
 		  <h2 class="form-title">科目情報登録</h2>
 		  <p class="done-text">登録が完了しました</p>
 		  <div class = "link-container">
-			<a href="StudentList.action">戻る</a>
-		  	<a href="StudentList.action">科目一覧</a>
+			<a href="SubjectCreate.action">戻る</a>
+		  	<a href="SubjectList.action">科目一覧</a>
 	  	  </div>
 	    </div>
 	</div>
 </div>
 <%@include file="../footer.html" %>
-
-
-
-
