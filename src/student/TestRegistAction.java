@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Subject;
@@ -21,10 +20,10 @@ public class TestRegistAction extends Action {
 
     // executeメソッド：主要な処理を行う
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-    	HttpSession session = req.getSession();
+
 
         // セッションからユーザーデータを取得
-        Teacher teacher = (Teacher) session.getAttribute("teacher");
+        Teacher teacher = Util.getUser(req);;
         if (teacher == null) {
             req.setAttribute("message", "セッションが切れています。ログインし直してください。");
             return "login.jsp";
@@ -51,12 +50,11 @@ public class TestRegistAction extends Action {
 
 
 
-        // 入力値のチェック
+        // 入力値のチェック(entYear/noは一旦Strにて読み込み)
         String entYearStr = req.getParameter("f1");
         String classNum = req.getParameter("f2");
         // subjectの情報は表示は科目名で表示をし、こちらで受け取る情報は科目コードを受け取る
         String subjectCd = req.getParameter("f3");
-        // noは一旦Strにて読み込み
         String noStr = req.getParameter("f4");
 
 
