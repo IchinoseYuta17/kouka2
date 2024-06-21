@@ -82,6 +82,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+             white-space: nowrap;
         }
         /* タグの背景色を薄い青に設定 */
         h2, #username, #password {
