@@ -11,12 +11,12 @@
 	<li>
 		<nav>成績管理
 			<ul>
-				<li><a href="subject_create.jsp">成績登録</a></li>
-				<li><a href="test_list.jsp">成績参照</a></li>
+				<li><a href="TestRegist.action">成績登録</a></li>
+				<li><a href="TestList.action">成績参照</a></li>
 			</ul>
 		</nav>
 	</li>
-	<li><a href="subject_list.jsp">科目管理</a></li>
+	<li><a href="SubjectList.action">科目管理</a></li>
 
 	</ul>
 
