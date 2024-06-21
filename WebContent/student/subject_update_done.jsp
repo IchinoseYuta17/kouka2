@@ -12,7 +12,6 @@
 		  <h2 class="form-title">科目情報変更</h2>
 		  <p class="done-text">変更が完了しました</p>
 		  <div class = "link-container">
-		  <a href="SubjectCreate.action">戻る</a>
 		  	<a href="SubjectList.action">科目一覧</a>
 	  	  </div>
 	    </div>
