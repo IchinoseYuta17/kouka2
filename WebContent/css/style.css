@@ -197,9 +197,9 @@ h2 {
 .list-container {
 	display: flex;
 	padding: 20px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
     justify-content: space-between;
+    border: 1px solid #ddd;
+	border-radius: 5px;
 }
 .list-elm:not(:last-child){
 	margin-right: 20px;
@@ -210,6 +210,21 @@ h2 {
  .enrolled {
     text-align: center !important; /* 水平方向の中央揃え */
     vertical-align: middle !important; /* 垂直方向の中央揃え */
+}
+ .container-frame{
+     border: 1px solid #ddd;
+	border-radius: 5px;
+	}
+.list-arrange{
+	display: flex;
+	padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-elm select , input{
+	height:37px;
+	border-radius:5px
+
 }
 
 /*一覧表示用cssここまで*/
