@@ -8,8 +8,8 @@
 
 <div id="main-contents">
 	<h2>成績参照検索画面</h2>
-	<div>
-		<form class="list-container" method="post" action="TestListSubjectExecute.action">
+	<div class="container-frame">
+		<form class="list-arrange" method="post" action="TestListSubjectExecute.action" style="border-bottom: 1px solid #ddd;">
 			<div class="list-elm">
 				<label for="class">入学年度</label><br>
 				<select name="entYear">
@@ -46,9 +46,9 @@
 		        <p style="color:red;">${errorMsg}</p>
 		    </c:if>
 		</form>
-	</div>
 
-	<form action="TestListStudentExecute.action" method="post">
+
+	<form class="list-arrange" action="TestListStudentExecute.action" method="post">
 
 	    <div>
 	        <label for="studentNo">学生番号:</label>
@@ -61,6 +61,7 @@
 	        <p style="color:red;">${errorMsg}</p>
 	    </c:if>
 	</form>
+	</div>
 	</div>
 </div>
 <%@ include file="../footer.html" %>
