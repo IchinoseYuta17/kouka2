@@ -86,6 +86,9 @@ public class TestListSubjectExecuteAction extends Action {
             // 取得した統合済みテストリストをリクエスト属性に設定
             req.setAttribute("testListSubjects", mergedList);
             req.setAttribute("subject", subject);
+    		Util.setStudentEntYearSet(req);
+            Util.setClassNumSet(req);
+            Util.setSubjects(req);
 
             // フォワード先のページを指定してリクエストをフォワード
             return "test_list_student.jsp";
