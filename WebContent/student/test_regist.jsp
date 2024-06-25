@@ -9,44 +9,43 @@
 	<h2>成績管理一覧画面ページ</h2>
 	<div>
 		<form class="list-container" method="post" action="TestRegist.action">
-           	<div>
-                   <label for="year">入学年度 </label><br>
-                   <select name="f1">
-						<option value="none"  selected>---------</option>
+           		<div class="list-elm">
+                   <label for="year">入学年度 </label>
+                   <select name="f1" style="width: 120px;">
+						<option value="none" selected>---------</option>
 						<c:forEach var="studentEntYear" items="${studentEntYearSet}">
 							<option value="${studentEntYear}">${studentEntYear}</option>
 						</c:forEach>
 					</select>
                </div>
 
-               <div>
-                   <label for="class">クラス </label><br>
-                   <select id="class" name="f2" style="width: 150px;">
+               <div class="list-elm">
+                   <label for="class">クラス </label>
+                   <select id="class" name="f2" style="width: 120px;">
 	                   <option value="null" selected>---------</option>
 	                   <c:forEach var="classNum" items="${classNumSet}">
 	                       <option value="${classNum.num}">${classNum.num}</option>
 	                   </c:forEach>
                    </select>
                </div>
-               <div>
-                   <label for="class">科目 </label><br>
-                   <select id="class" name="f3" style="width: 240px;">
+               <div class="list-elm">
+                   <label for="class">科目 </label>
+                   <select id="class" name="f3" style="width: 250px;">
 	                   <option value="null" selected>---------</option>
 	                   <c:forEach var="subject" items="${subjectSet}">
 	                       <option value="${subject.cd}">${subject.name}</option>
 	                   </c:forEach>
                    </select>
-               </div>
-				<div>
-					<label for="class">回数 </label><br>
-					<select id="class" name="f4" style="width: 50px;">
+				</div>
+				<div class="list-elm">
+					<label for="class">回数 </label>
+					<select id="class" name="f4" style="width: 120px; margin-right:30px;">
 						<option value="null" selected>---------</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
-						<option value="3">3</option>
 					</select>
 				</div>
-			<div class="glay-buttons">
+			<div class="glay-buttons" style="margin-right:20px;">
 				<input type="submit" value="検索">
 			</div>
 		</form>

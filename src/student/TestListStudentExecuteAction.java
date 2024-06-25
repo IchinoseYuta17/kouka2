@@ -54,7 +54,7 @@ public class TestListStudentExecuteAction extends Action {
             List<TestListStudent> testListStudents = testListStudentDAO.filter(student);
 
             req.setAttribute("testListStudents", testListStudents);
-
+            req.setAttribute("student", student);
 
 
             // JSPページにフォワード
