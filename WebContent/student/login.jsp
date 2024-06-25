@@ -6,109 +6,13 @@
 <%@ page import="java.util.*, java.sql.*" %>
 
     <title>得点管理システム</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        h1 {
-            text-align: center;
-        }
-        h2 {
-            text-align: left;
-            padding: 10px 20px;
-            background-color: #f2f2f2;
-        }
-        .menu {
-            margin: 20px;
-        }
-        .menu a {
-            margin-right: 10px;
-        }
-        .form-container {
-            /* 横から縦に変更 */
-            display: block;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center; /* 中央揃え */
-        }
-        .form-container form {
-            /* 横から縦に変更 */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 中央揃え */
-        }
-        .form-container form > div {
-            margin-bottom: 10px; /* 各要素の間隔を調整 */
-        }
-        .form-container .new-registration {
-            margin-left: auto;
-            margin-bottom: 10px;
-        }
-        .main-container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        button {
-            background-color: #007bff; /* 青色に変更 */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            width: 100%; /* ボタンの幅を100%に設定 */
-        }
-        button:hover {
-            background-color: #0056b3; /* ホバー時の色を変更 */
-        }
-        input[type="text"], input[type="password"], input[type="checkbox"] {
-            width: 100%; /* 入力フィールドの幅を100%に設定 */
-            box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #99c3e6; /* 枠線を薄い青色に設定 */
-            border-radius: 5px; /* 角を丸める */
-            color: black; /* 文字色を黒に設定 */
-        }
-        .show-password {
-            display: none; /* 最初は非表示 */
-        }
-        .show-password-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        /* タグの背景色を薄い青に設定 */
-        h2, #username, #password {
-            background-color: #e6f0ff; /* 薄い青色 */
-        }
-		    #username::placeholder {
-			font-size: smaller;
-	        color: #999999; /* デフォルトの文字色 */
-	        position: absolute;
-	        top: 10px; /* 上からの距離 */
-	        left: 10px; /* 左からの距離 */
-	    }
- 		h2 {
-            text-align: left;
-            padding: 10px 20px;
-            background-color: #f2f2f2; /* 背景色をグレーに変更 */
-            color: black; /* 文字色を黒に変更 */
-            align-items: center;
-            }
-    </style>
-</head>
+
 <body>
-    <div class="main-container">
+    <div class="login-main-container">
 
         <h2>ログイン</h2>
         <!-- ログインフォーム -->
-        <div class="form-container">
+        <div class="login-container">
             <form method="post" action="LoginExecute.action">
                 <div>
                     <!-- タグを青色に変更 -->

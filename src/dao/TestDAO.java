@@ -101,7 +101,17 @@ public class TestDAO extends DAO {
 		Connection con = getConnection();){
 
             for (Test test : list) {
-            	save(test,con);
+//            	save(test,con);
+            	String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
+                try (PreparedStatement st = con.prepareStatement(sql)) {
+                    st.setString(1, test.getSubject().getCd());
+                    st.setString(2, test.getSchool().getCd());
+                    st.setInt(3, test.getNo());
+                    st.setInt(4, test.getPoint());
+                    st.setString(5, test.getClassNum());
+                    st.setString(6, test.getStudent().getNo());
+                    st.executeUpdate();
+                }
             }
             return true;
         } catch (SQLException e) {
@@ -112,14 +122,14 @@ public class TestDAO extends DAO {
 
     // メソッド: 単一のTestオブジェクトを保存する
     private boolean save(Test test, Connection connection) throws Exception {
-        String sql = "INSERT INTO test (student_no, subject_cd, school_cd, no, point, class_num) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
         try (PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, test.getStudent().getNo());
-            st.setString(2, test.getSubject().getCd());
-            st.setString(3, test.getSchool().getCd());
-            st.setInt(4, test.getNo());
-            st.setInt(5, test.getPoint());
-            st.setString(6, test.getClassNum());
+            st.setString(1, test.getSubject().getCd());
+            st.setString(2, test.getSchool().getCd());
+            st.setInt(3, test.getNo());
+            st.setInt(4, test.getPoint());
+            st.setString(5, test.getClassNum());
+            st.setString(6, test.getStudent().getNo());
             st.executeUpdate();
             return true;
         } catch (SQLException e) {
