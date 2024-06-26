@@ -94,49 +94,96 @@ public class TestDAO extends DAO {
     }
 
 
-
-    // メソッド: Testオブジェクトのリストを保存する(save())
+ // メソッド: Testオブジェクトのリストを保存する(save())
     public boolean save(List<Test> list) throws Exception {
-        try (
-		Connection con = getConnection();){
-
+        try (Connection con = getConnection()) {
             for (Test test : list) {
-//            	save(test,con);
-            	String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
-                try (PreparedStatement st = con.prepareStatement(sql)) {
-                    st.setString(1, test.getSubject().getCd());
-                    st.setString(2, test.getSchool().getCd());
-                    st.setInt(3, test.getNo());
-                    st.setInt(4, test.getPoint());
-                    st.setString(5, test.getClassNum());
-                    st.setString(6, test.getStudent().getNo());
-                    st.executeUpdate();
+                String selectSql = "SELECT COUNT(*) FROM test WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
+                try (PreparedStatement selectSt = con.prepareStatement(selectSql)) {
+                    selectSt.setString(1, test.getStudent().getNo());
+                    selectSt.setString(2, test.getSubject().getCd());
+                    selectSt.setString(3, test.getSchool().getCd());
+                    selectSt.setInt(4, test.getNo());
+
+                    ResultSet rs = selectSt.executeQuery();
+                    rs.next();
+                    int count = rs.getInt(1);
+
+                    if (count > 0) {
+                        // レコードが存在する場合は更新
+                        String updateSql = "UPDATE test SET class_num = ?, point = ? WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
+                        try (PreparedStatement updateSt = con.prepareStatement(updateSql)) {
+                            updateSt.setString(1, test.getClassNum());
+                            updateSt.setInt(2, test.getPoint());
+                            updateSt.setString(3, test.getStudent().getNo());
+                            updateSt.setString(4, test.getSubject().getCd());
+                            updateSt.setString(5, test.getSchool().getCd());
+                            updateSt.setInt(6, test.getNo());
+                            updateSt.executeUpdate();
+                        }
+                    } else {
+                        // レコードが存在しない場合は挿入
+                        String insertSql = "INSERT INTO test (student_no, class_num, subject_cd, school_cd, no, point) VALUES (?, ?, ?, ?, ?, ?)";
+                        try (PreparedStatement insertSt = con.prepareStatement(insertSql)) {
+                            insertSt.setString(1, test.getStudent().getNo());
+                            insertSt.setString(2, test.getClassNum());
+                            insertSt.setString(3, test.getSubject().getCd());
+                            insertSt.setString(4, test.getSchool().getCd());
+                            insertSt.setInt(5, test.getNo());
+                            insertSt.setInt(6, test.getPoint());
+                            insertSt.executeUpdate();
+                        }
+                    }
                 }
             }
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
+        return true;
     }
-
-    // メソッド: 単一のTestオブジェクトを保存する
-    private boolean save(Test test, Connection connection) throws Exception {
-        String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
-        try (PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, test.getSubject().getCd());
-            st.setString(2, test.getSchool().getCd());
-            st.setInt(3, test.getNo());
-            st.setInt(4, test.getPoint());
-            st.setString(5, test.getClassNum());
-            st.setString(6, test.getStudent().getNo());
-            st.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+    // メソッド: Testオブジェクトのリストを保存する(save())
+//    public boolean save(List<Test> list) throws Exception {
+//        try (
+//		Connection con = getConnection();){
+//
+//            for (Test test : list) {
+////            	save(test,con);
+//            	String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
+//                try (PreparedStatement st = con.prepareStatement(sql)) {
+//                    st.setString(1, test.getSubject().getCd());
+//                    st.setString(2, test.getSchool().getCd());
+//                    st.setInt(3, test.getNo());
+//                    st.setInt(4, test.getPoint());
+//                    st.setString(5, test.getClassNum());
+//                    st.setString(6, test.getStudent().getNo());
+//                    st.executeUpdate();
+//                }
+//            }
+//            return true;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
+//
+//    // メソッド: 単一のTestオブジェクトを保存する
+//    private boolean save(Test test, Connection connection) throws Exception {
+//        String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
+//        try (PreparedStatement st = connection.prepareStatement(sql)) {
+//            st.setString(1, test.getSubject().getCd());
+//            st.setString(2, test.getSchool().getCd());
+//            st.setInt(3, test.getNo());
+//            st.setInt(4, test.getPoint());
+//            st.setString(5, test.getClassNum());
+//            st.setString(6, test.getStudent().getNo());
+//            st.executeUpdate();
+//            return true;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
 
 
 
