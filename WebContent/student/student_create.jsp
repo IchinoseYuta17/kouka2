@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %> <!-- カスタムタグの宣言 -->
 <%@ include file="../header.html" %>
 <%@ include file="header.jsp" %>
 
@@ -19,16 +20,19 @@
                     	<option value="${entYear}">${entYear}年</option>
 					</c:forEach>
                 </select>
+                    <t:errorMessage fieldName="admissionYear" errorMessage="入学年度を選択してください" />
             </div>
 
             <div class="form-group">
                 <label for="studentNumber">学生番号:</label>
                 <input type="text" name="studentNumber" placeholder="学生番号を入力してください">
+				<t:errorMessage fieldName="studentNumber" errorMessage="学生番号を入力してください" />
             </div>
 
             <div class="form-group">
                 <label for="name">氏名:</label>
                 <input type="text" name="name" placeholder="氏名を入力してください">
+                <t:errorMessage fieldName="name" errorMessage="氏名を入力してください" />
             </div>
 
             <div class="form-group">

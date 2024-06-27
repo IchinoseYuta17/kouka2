@@ -7,20 +7,49 @@ import bean.Student;
 import bean.Teacher;
 import dao.StudentDAO;
 import tool.Action;
+import util.Util;
 
 public class StudentCreateExecuteAction extends Action {
 	public String execute(
-		HttpServletRequest request, HttpServletResponse response
+		HttpServletRequest req, HttpServletResponse res
 	) throws Exception {
 		// ユーザーからの入力値を受け取る
-		int entYear=Integer.parseInt(request.getParameter("admissionYear"));
-		String no=request.getParameter("studentNumber");
-		String name=request.getParameter("name");
-		String classNum=request.getParameter("class");
+		String entYearStr=req.getParameter("admissionYear");
+		String no=req.getParameter("studentNumber");
+		String name=req.getParameter("name");
+		String classNum=req.getParameter("class");
 
 		Boolean isAttend = true;
 
-		Teacher teacher =(Teacher)request.getSession().getAttribute("teacher");
+		Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
+
+
+
+
+		// 入力チェック
+        boolean hasError = false;
+
+        if (entYearStr == null || entYearStr.isEmpty()) {
+        	req.setAttribute("admissionYearError", "入学年度を選択してください");
+            hasError = true;
+        }
+        if (no == null || no.isEmpty()) {
+        	req.setAttribute("studentNumberError", "学生番号を入力してください");
+            hasError = true;
+        }
+        if (name == null || name.isEmpty()) {
+        	req.setAttribute("nameError", "氏名を入力してください");
+            hasError = true;
+        }
+
+        if (hasError) {
+            Util.setEntYearSet(req);
+            Util.setClassNumSet(req);
+            return "student_create.jsp";
+        }
+
+        // 以下、Studentオブジェクトを作成し、データベースに保存する処理を行う
+		int entYear = Integer.parseInt(entYearStr);
 
 		// Studentビーンに設定
 		Student student=new Student();
@@ -38,9 +67,9 @@ public class StudentCreateExecuteAction extends Action {
 
 		// lineが0でなければ登録成功
 		if (line != false) {
-			request.setAttribute("message", "登録しました");
+			req.setAttribute("message", "登録しました");
 		} else {
-			request.setAttribute("message", "登録に失敗しました");
+			req.setAttribute("message", "登録に失敗しました");
 		}
 		return "student_create_done.jsp";
 	}
