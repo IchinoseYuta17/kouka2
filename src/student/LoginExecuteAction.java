@@ -22,7 +22,7 @@ public class LoginExecuteAction extends Action {
             return "index.jsp"; // メニュー画面にリダイレクト
         } else {
             req.setAttribute("error", "Invalid ID or Password");
-            return "error.jsp";
+            return "login.jsp";
         }
     }
 }
