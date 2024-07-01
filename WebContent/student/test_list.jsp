@@ -53,7 +53,7 @@
 							        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${classNum}">${classNum}</option>
+							        <option value="${classNum.num}">${classNum.num}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -61,7 +61,7 @@
 	   				<c:otherwise>
 	   					<option value="">--------</option>
 						<c:forEach var="classNum" items="${classNumSet}">
-						 	<option value="${classNum}">${classNum}</option>
+						 	<option value="${classNum.num}">${classNum.num}</option>
 						</c:forEach>
 	   				</c:otherwise>
    				</c:choose>
@@ -79,7 +79,7 @@
 							        <option value="${beforesubjectCd}" selected>${beforesubjectCd}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${subjectCd}">${subjectCd}</option>
+							        <option value="${subjectCd.name}">${subjectCd.name}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -87,7 +87,7 @@
 	   				<c:otherwise>
 	   					<option value="">--------</option>
 						<c:forEach var="classNum" items="${subjectCdSet}">
-						 	<option value="${subjectCd}">${subjectCd}</option>
+						 	<option value="${subjectCd.name}">${subjectCd.name}</option>
 						</c:forEach>
 	   				</c:otherwise>
    				</c:choose>
