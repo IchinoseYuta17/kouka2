@@ -35,7 +35,7 @@ public class TestListSubjectExecuteAction extends Action {
             School school = teacher.getSchool();
 
             // リクエストから入学年度、クラス、および科目を取得
-            int entYear = Integer.parseInt(req.getParameter("entYear"));
+            String entYearStr = req.getParameter("entYearStr");
             String classNum = req.getParameter("classNum");
             String subjectCd = req.getParameter("subjectCd");
 
@@ -43,6 +43,46 @@ public class TestListSubjectExecuteAction extends Action {
             Subject subject = new Subject();
             SubjectDAO subjectDAO = new SubjectDAO();
             subject = subjectDAO.get(subjectCd, school);
+
+//            入力チェック
+            boolean hasError = false;
+
+            // entYear(入学年度)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
+            if (entYearStr == null || entYearStr.isEmpty()) {
+            	// 表示するエラー文の設定
+            	req.setAttribute("admissionYearError", "入学年度を選択してください");
+                hasError = true;
+            }
+
+            // class(クラス)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
+            if (classNum == null || classNum.isEmpty()) {
+            	// 表示するエラー文の設定
+            	req.setAttribute("admissionYearError", "入学年度を選択してください");
+                hasError = true;
+            }
+
+         // subjectCd(科目)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
+            if (subjectCd == null || subjectCd.isEmpty()) {
+            	// 表示するエラー文の設定
+            	req.setAttribute("admissionYearError", "入学年度を選択してください");
+                hasError = true;
+            }
+
+         // hasError = trueの場合は以下を実行
+            if (hasError) {
+            	// 送られてきた値を初期表示に使用するのでセットしておく
+            	req.setAttribute("beforeEntYear", entYearStr);
+            	req.setAttribute("beforeClassNum", classNum);
+            	req.setAttribute("beforesubjectCd", subjectCd);
+              // 必要な情報をセットしてstudent_create.jspに送り返す
+              Util.setEntYearSet(req);	// 入学年度の情報
+              Util.setClassNumSet(req);	// クラス番号の情報
+              Util.setSubjects(req);
+              return "student_create.jsp";
+            }
+        // ===== 入力チェック終了 ========================================================================== //
+
+            int entYear = Integer.parseInt(req.getParameter("entYear"));
 
             // TestListSubjectDAOを利用してテストリストを取得
             TestListSubjectDAO testListSubjectDAO = new TestListSubjectDAO();
