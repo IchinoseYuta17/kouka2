@@ -21,11 +21,11 @@
 
 						<c:forEach var="entYear" items="${entYearSet}">
 							<c:choose>
-							    <c:when test="${entYear == beforeEntYear}">
+							    <c:when test="${entYearStr == beforeEntYear}">
 							        <option value="${beforeEntYear}" selected>${beforeEntYear}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${entYear}">${entYear}</option>
+							        <option value="${entYearStr}">${entYearStr}</option>
 							    </c:otherwise>
 
 							</c:choose>
@@ -34,7 +34,7 @@
 					<c:otherwise>
 						<option value="">--------</option>
 						<c:forEach var="entYear" items="${entYearSet}">
-						 	<option value="${entYear}">${entYear}</option>
+						 	<option value="${entYearStr}">${entYearStr}</option>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -79,7 +79,7 @@
 							        <option value="${beforesubjectCd}" selected>${beforesubjectCd}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${subjectCd.name}">${subjectCd.name}</option>
+							        <option value="${subjectCd.cd}">${subjectCd.cd}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -87,7 +87,7 @@
 	   				<c:otherwise>
 	   					<option value="">--------</option>
 						<c:forEach var="classNum" items="${subjectCdSet}">
-						 	<option value="${subjectCd.name}">${subjectCd.name}</option>
+						 	<option value="${subjectCd.cd}">${subjectCd.cd}</option>
 						</c:forEach>
 	   				</c:otherwise>
    				</c:choose>
