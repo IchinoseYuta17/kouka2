@@ -7,6 +7,7 @@ import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
+import util.Util;
 
 public class SubjectCreateExecuteAction extends Action {
 	public String execute(
@@ -26,6 +27,29 @@ public class SubjectCreateExecuteAction extends Action {
 
 		// SubjectDAOインスタンスを生成
 		SubjectDAO dao=new SubjectDAO();
+
+		//科目登録のエラーチェック
+		boolean hasError = false;
+
+		Subject enrolledSubject = dao.get(subject_cd, teacher.getSchool());
+	    // enrolledStudent(在籍中の学生)が!=null(nullではない)の場合
+	    if (enrolledSubject != null) {
+	    	// 表示するエラー文の設定
+	    	request.setAttribute("enrolledSubjectCdError", "科目コードが重複しています");
+	        hasError = true;
+	    }
+
+	    if (hasError) {
+	    	// 送られてきた値を初期表示に使用するのでセットしておく
+	    	request.setAttribute("beforeSubjectCd", subject_cd);
+	    	request.setAttribute("beforeSubjectName", subject_name);
+	      // 必要な情報をセットしてSubject_create.jspに送り返す
+	      Util.setSubjects(request);	// 入学年度の情報
+	      return "subject_create.jsp";
+	    }
+
+
+
 		// SubjectDAOのinsertメソッドを実行してデータベースに登録
 		boolean line = dao.save(subject);
 
