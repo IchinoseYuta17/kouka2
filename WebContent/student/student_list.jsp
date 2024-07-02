@@ -9,6 +9,9 @@
 	select {
 		width: 180px;
 	}
+	a{
+		margin:5px;
+	}
 </style>
 <body>
 	<div id="container">
@@ -18,6 +21,7 @@
 			<h2>学生管理</h2>
 			<div class="new-registration-container">
 				<a href="StudentCreate.action" class="new-registration">新規登録</a>
+				<a href="StudentCreateCsv.action" class="new-registration">CSVで新規登録</a>
 			</div>
 			<div>
 				<form class="list-container" method="post" action="StudentList.action">
