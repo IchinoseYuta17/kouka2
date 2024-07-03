@@ -27,18 +27,14 @@ public class TestListStudentExecuteAction extends Action {
                 return "login.jsp";
             }
 
-
             // リクエストパラメータを取得
             String studentNo = req.getParameter("studentNo");
-
 
             // 入力パラメータの検証
             if (studentNo == null || studentNo.isEmpty()) {
                 req.setAttribute("errorMsg", "学生番号を入力してください。");
-                return "test_list_student.jsp";
+                return "test_list.jsp";
             }
-
-
 
             // 学生情報を取得
             StudentDAO studentDAO = new StudentDAO();
@@ -46,21 +42,30 @@ public class TestListStudentExecuteAction extends Action {
 
             if (student == null) {
                 req.setAttribute("errorMsg", "学生が見つかりません。");
-                return "test_list_student.jsp";
+                return "test_list.jsp";
             }
 
             // テストリストを取得
             TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
             List<TestListStudent> testListStudents = testListStudentDAO.filter(student);
 
+            // 該当データがない場合のエラーメッセージを設定
+            if (testListStudents.isEmpty()) {
+                req.setAttribute("noStudentDataError", "学生情報が存在しませんでした");
+                Util.setStudentEntYearSet(req);
+                Util.setClassNumSet(req);
+                Util.setSubjects(req);
+                return "test_list.jsp";
+            }
+
             req.setAttribute("testListStudents", testListStudents);
             req.setAttribute("student", student);
-    		Util.setStudentEntYearSet(req);
+            Util.setStudentEntYearSet(req);
             Util.setClassNumSet(req);
             Util.setSubjects(req);
 
             // JSPページにフォワード
-            return "test_list_student.jsp";
+            return "test_list.jsp";
 
         } catch (Exception e) {
             // エラーハンドリング

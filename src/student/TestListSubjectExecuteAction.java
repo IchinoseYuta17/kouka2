@@ -48,22 +48,7 @@ public class TestListSubjectExecuteAction extends Action {
             boolean hasError = false;
 
             // entYear(入学年度)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
-            if (entYearStr == null || entYearStr.isEmpty()) {
-                // 表示するエラー文の設定
-                req.setAttribute("admissionYearError", "入学年度とクラスと科目を選択してください");
-                hasError = true;
-            }
-
-            // class(クラス)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
-            if (classNum == null || classNum.isEmpty()) {
-                // 表示するエラー文の設定
-                req.setAttribute("admissionYearError", "入学年度とクラスと科目を選択してください");
-                hasError = true;
-            }
-
-            // subjectCd(科目)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
-            if (subjectCd == null || subjectCd.isEmpty()) {
-                // 表示するエラー文の設定
+            if (entYearStr == null || entYearStr.isEmpty() || classNum == null || classNum.isEmpty() || subjectCd == null || subjectCd.isEmpty()) {
                 req.setAttribute("admissionYearError", "入学年度とクラスと科目を選択してください");
                 hasError = true;
             }
@@ -122,6 +107,19 @@ public class TestListSubjectExecuteAction extends Action {
             }
 
             List<TestListSubject> mergedList = new ArrayList<>(mergedData.values());
+
+            // 該当データがない場合のエラーメッセージを設定
+            if (mergedList.isEmpty()) {
+                req.setAttribute("noStudentDataError", "学生情報が存在しませんでした");
+                // 送られてきた値を初期表示に使用するのでセットしておく
+                req.setAttribute("beforeEntYear", entYearStr);
+                req.setAttribute("beforeClassNum", classNum);
+                req.setAttribute("beforeSubjectCd", subjectCd);
+                Util.setEntYearSet(req);
+                Util.setClassNumSet(req);
+                Util.setSubjects(req);
+                return "test_list.jsp";
+            }
 
             // 取得した統合済みテストリストをリクエスト属性に設定
             req.setAttribute("testListSubjects", mergedList);

@@ -12,6 +12,7 @@
         <form class="list-arrange" method="post" action="TestListSubjectExecute.action" style="border-bottom: 1px solid #ddd;">
             <div class="list-elm">
                 <p>科目情報</p>
+
             </div>
             <div class="list-elm">
                 <label for="class">入学年度</label><br>
@@ -90,22 +91,19 @@
                     </c:choose>
                 </select>
             </div>
+
+
             <div class="list-elm">
                 <div class="glay-buttons">
                     <input type="submit" value="検索">
                 </div>
             </div>
-            <c:if test="${not empty admissionYearError}">
-                <p style="color:orange;">${admissionYearError}</p>
-            </c:if>
-            <c:if test="${not empty classNumError}">
-                <p style="color:orange;">${admissionYearError}</p>
-            </c:if>
-            <c:if test="${not empty subjectError}">
-                <p style="color:orange;">${admissionYearError}</p>
+			<c:if test="${not empty admissionYearError}">
+                <div class="error-message">
+                    <p>${admissionYearError}</p>
+                </div>
             </c:if>
         </form>
-
         <form class="list-arrange" action="TestListStudentExecute.action" method="post" style="width:66%">
             <div class="list-elm">
                 <p>学生情報</p>
@@ -123,7 +121,10 @@
             </div>
 
             <c:if test="${not empty errorMsg}">
-                <p style="color:red;">${errorMsg}</p>
+                <p class="error-message">${errorMsg}</p>
+            </c:if>
+            <c:if test="${not empty noStudentDataError}">
+                <p class="error-message">${noStudentDataError}</p>
             </c:if>
         </form>
     </div>
