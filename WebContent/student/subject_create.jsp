@@ -11,10 +11,15 @@
 			<div class="form-group">
 			    <label for="subject_cd">科目コード</label>
 			    <input type="text" id="subject_cd" name="subject_cd" placeholder="科目コードを入力してください" <c:if test="${not empty beforeSubjectCd}"> value= "${beforeSubjectCd}" </c:if> required>
-			    <span id="subject_cd_error" style="color:red;"></span>
-			    <c:if test="${not empty enrolledSubjectCdError}">
-        						<p " class="error-message" style="margin-bottom:10px;margin-top:-20px;">${enrolledSubjectCdError}</p>
-   				</c:if>
+
+				    <c:if test="${not empty enrolledSubjectCdError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${enrolledSubjectCdError}</p>
+				    </c:if >
+				    <c:if test="${not empty illegalCdError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalCdError}</p>
+				    </c:if>
+
+
 
 			</div>
 
@@ -24,7 +29,7 @@
 			    <span id="subject_name_error" style="color:red;"></span>
 			</div>
 
-			<div class="form-uttons">
+			<div class="form-buttons">
 			    <input type="submit" value="登録" style="margin-top:20px; margin-bottom:20px;">
 			</div>
 
@@ -38,17 +43,27 @@
 <%@include file="../footer.html" %>
 
 <script>
-function validateForm() {
-	  let isValid = true;
-	  const admissionYearInput = document.getElementById('admissionYear'); // selectの要素を取得
-	  const entError = document.getElementById('entError'); // エラーメッセージ用のdivタグを取得
 
-	  if (admissionYearInput.value.trim() === '') {
-	    entError.textContent = '入学年度を指定してください';
-	    isValid = false;
-	  } else {
-	    entError.textContent = '';
-	  }
-	  return isValid;
-	}
+
+function validateForm() {
+    let isValid = true;
+
+    // 科目コードの検証
+    if (!validateSubjectCd()) {
+        isValid = false;
+    }
+
+    // 他の検証
+    const admissionYearInput = document.getElementById('admissionYear'); // selectの要素を取得
+    const entError = document.getElementById('entError'); // エラーメッセージ用のdivタグを取得
+
+    if (admissionYearInput && admissionYearInput.value.trim() === '') {
+        entError.textContent = '入学年度を指定してください';
+        isValid = false;
+    } else if (entError) {
+        entError.textContent = '';
+    }
+
+    return isValid;
+}
 </script>
