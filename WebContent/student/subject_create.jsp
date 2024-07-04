@@ -19,14 +19,14 @@
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalCdError}</p>
 				    </c:if>
 
-
-
 			</div>
 
 			<div class="form-group">
 			    <label for="subject_name">科目名</label>
 			    <input type="text" id="subject_name" name="subject_name" placeholder="科目名を入力してください" <c:if test="${not empty beforeSubjectName}"> value= "${beforeSubjectName}" </c:if> required>
-			    <span id="subject_name_error" style="color:red;"></span>
+			    <c:if test="${not empty enrolledSubjectnameError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${enrolledSubjectnameError}</p>
+				    </c:if >
 			</div>
 
 			<div class="form-buttons">
