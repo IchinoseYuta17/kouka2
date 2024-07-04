@@ -22,6 +22,10 @@ public class TestListStudentExecuteAction extends Action {
             // セッションからTeacherオブジェクトを取得
             Teacher teacher = Util.getUser(req);
 
+            // タイトル表示の為のフラグを設定
+            String ttl_flg = "student";
+            req.setAttribute("ttl_flg", ttl_flg);
+
             // Teacherオブジェクトがnullの場合はログインページにリダイレクト
             if (teacher == null) {
                 return "login.jsp";
@@ -30,42 +34,49 @@ public class TestListStudentExecuteAction extends Action {
             // リクエストパラメータを取得
             String studentNo = req.getParameter("studentNo");
 
-            // 入力パラメータの検証
-            if (studentNo == null || studentNo.isEmpty()) {
-                req.setAttribute("errorMsg", "学生番号を入力してください。");
-                return "test_list.jsp";
-            }
 
             // 学生情報を取得
             StudentDAO studentDAO = new StudentDAO();
             Student student = studentDAO.studentGet(studentNo, teacher.getSchool());
 
-            if (student == null) {
-                req.setAttribute("errorMsg", "学生が見つかりません。");
-                return "test_list.jsp";
-            }
 
-            // テストリストを取得
-            TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
-            List<TestListStudent> testListStudents = testListStudentDAO.filter(student);
-
-            // 該当データがない場合のエラーメッセージを設定
-            if (testListStudents.isEmpty()) {
-                req.setAttribute("noStudentDataError", "学生情報が存在しませんでした");
-                Util.setStudentEntYearSet(req);
-                Util.setClassNumSet(req);
-                Util.setSubjects(req);
-                return "test_list.jsp";
-            }
-
-            req.setAttribute("testListStudents", testListStudents);
+            // 送られてきた値を初期表示に使用するのでセット
+            req.setAttribute("beforeStudentNo", studentNo);
             req.setAttribute("student", student);
+            // セレクトボックスに必要な情報をセット
             Util.setStudentEntYearSet(req);
             Util.setClassNumSet(req);
             Util.setSubjects(req);
 
+
+            // 入力パラメータの検証
+            if (studentNo == null || studentNo.isEmpty()) {
+                req.setAttribute("errorMsg", "学生番号を入力してください。");
+                return "test_list_student.jsp";
+            }
+
+            if (student == null) {
+                req.setAttribute("errorMsg", "学生が見つかりません。");
+                return "test_list_student.jsp";
+            }
+
+            // 学生別のテストリストを取得
+            TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
+            List<TestListStudent> testListStudents = testListStudentDAO.filter(student);
+
+
+            // 該当データがない場合のエラーメッセージを設定
+            if (testListStudents.isEmpty()) {
+                req.setAttribute("errorMsg", "成績情報が存在しませんでした");
+                return "test_list_student.jsp";
+            }
+
+
+            // 取得した学生別のリスト・学生情報を設定
+            req.setAttribute("testListStudents", testListStudents);
+
             // JSPページにフォワード
-            return "test_list.jsp";
+            return "test_list_student.jsp";
 
         } catch (Exception e) {
             // エラーハンドリング

@@ -10,100 +10,106 @@
     <h2>成績参照</h2>
     <div class="container-frame">
         <form class="list-arrange" method="post" action="TestListSubjectExecute.action" style="border-bottom: 1px solid #ddd;">
-            <div class="list-elm">
-                <p>科目情報</p>
+	            <div class="list-elm">
+	                <p>科目情報</p>
+	            </div>
+	            <div class="list-elm">
+	                <label for="class">入学年度</label><br>
+	                <select name="entYear" style="width:100px">
+	                <c:choose>
+						<c:when test="${not empty beforeEntYear}">
+							<c:forEach var="entYear" items="${studentEntYearSet}">
+								<c:choose>
+								    <c:when test="${entYear == beforeEntYear}">
+								        <option value="${entYear}" selected>${entYear}</option>
+								    </c:when>
+								    <c:otherwise>
+								        <option value="${entYear}">${entYear}</option>
+								    </c:otherwise>
 
-            </div>
-            <div class="list-elm">
-                <label for="class">入学年度</label><br>
-                <select name="entYear" style="width:100px">
-                    <c:choose>
-                        <c:when test="${not empty beforeEntYear}">
-                            <c:forEach var="entYear" items="${studentEntYearSet}">
-                                <c:choose>
-                                    <c:when test="${entYear == beforeEntYear}">
-                                        <option value="${entYear}" selected>${entYear}</option>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <option value="${entYear}">${entYear}</option>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <option value="">--------</option>
-                            <c:forEach var="entYear" items="${studentEntYearSet}">
-                                <option value="${entYear}">${entYear}</option>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </select>
-            </div>
+								</c:choose>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<option value="">--------</option>
+							<c:forEach var="entYear" items="${studentEntYearSet}">
+							 	<option value="${entYear}">${entYear}</option>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+	                </select>
+	            </div>
 
-            <div class="list-elm">
-                <label for="class">クラス</label><br>
-                <select name="classNum" style="width:100px">
-                    <c:choose>
-                        <c:when test="${not empty beforeClassNum}">
-                            <c:forEach var="classNum" items="${classNumSet}">
-                                <c:choose>
-                                    <c:when test="${classNum.num == beforeClassNum}">
-                                        <option value="${classNum.num}" selected>${classNum.num}</option>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <option value="${classNum.num}">${classNum.num}</option>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <option value="">--------</option>
-                            <c:forEach var="classNum" items="${classNumSet}">
-                                <option value="${classNum.num}">${classNum.num}</option>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </select>
-            </div>
+	            <div class="list-elm">
+	                <label for="class">クラス</label><br>
+	                <select name="classNum" style="width:100px">
+	                    <c:choose>
+	                        <c:when test="${not empty beforeClassNum}">
+	                            <c:forEach var="classNum" items="${classNumSet}">
+	                                <c:choose>
+	                                    <c:when test="${classNum.num == beforeClassNum}">
+	                                        <option value="${classNum.num}" selected>${classNum.num}</option>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                        <option value="${classNum.num}">${classNum.num}</option>
+	                                    </c:otherwise>
+	                                </c:choose>
+	                            </c:forEach>
+	                        </c:when>
+	                        <c:otherwise>
+	                            <option value="">--------</option>
+	                            <c:forEach var="classNum" items="${classNumSet}">
+	                                <option value="${classNum.num}">${classNum.num}</option>
+	                            </c:forEach>
+	                        </c:otherwise>
+	                    </c:choose>
+	                </select>
+	            </div>
 
-            <div class="list-elm">
-                <label for="class">科目</label><br>
-                <select name="subjectCd" style="width:180px">
-                    <c:choose>
-                        <c:when test="${not empty beforeSubjectCd}">
-                            <c:forEach var="subject" items="${subjectSet}">
-                                <c:choose>
-                                    <c:when test="${subject.cd == beforeSubjectCd}">
-                                        <option value="${subject.cd}" selected>${subject.name}</option>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <option value="${subject.cd}">${subject.name}</option>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </c:when>
-                        <c:otherwise>
-                            <option value="">--------</option>
-                            <c:forEach var="subject" items="${subjectSet}">
-                                <option value="${subject.cd}">${subject.name}</option>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </select>
-            </div>
+	            <div class="list-elm">
+	                <label for="class">科目</label><br>
+	                <select name="subjectCd" style="width:180px">
+	                    <c:choose>
+	                        <c:when test="${not empty beforeSubjectCd}">
+	                            <c:forEach var="subject" items="${subjectSet}">
+	                                <c:choose>
+	                                    <c:when test="${subject.cd == beforeSubjectCd}">
+	                                        <option value="${subject.cd}" selected>${subject.name}</option>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                        <option value="${subject.cd}">${subject.name}</option>
+	                                    </c:otherwise>
+	                                </c:choose>
+	                            </c:forEach>
+	                        </c:when>
+	                        <c:otherwise>
+	                            <option value="">--------</option>
+	                            <c:forEach var="subject" items="${subjectSet}">
+	                                <option value="${subject.cd}">${subject.name}</option>
+	                            </c:forEach>
+	                        </c:otherwise>
+	                    </c:choose>
+	                </select>
+	            </div>
 
 
-            <div class="list-elm">
-                <div class="glay-buttons">
-                    <input type="submit" value="検索">
-                </div>
-            </div>
-			<c:if test="${not empty admissionYearError}">
-                <div class="error-message">
-                    <p>${admissionYearError}</p>
-                </div>
-            </c:if>
+	            <div class="list-elm">
+	                <div class="glay-buttons">
+	                    <input type="submit" value="検索">
+	                </div>
+	            </div>
+
+
+		<c:if test="${not empty nullError}">
+			<div class="error-message">
+			    <p>${nullError}</p>
+			</div>
+		</c:if>
         </form>
+
+
+
+
         <form class="list-arrange" action="TestListStudentExecute.action" method="post" style="width:66%">
             <div class="list-elm">
                 <p>学生情報</p>
@@ -111,7 +117,7 @@
 
             <div class="list-elm">
                 <label for="studentNo">学生番号</label><br>
-                <input type="text" id="studentNo" name="studentNo" style="width:260px; border-width:thin;" placeholder="学生番号を入力してください">
+                <input type="text" id="studentNo" name="studentNo" style="width:260px; border-width:thin;" placeholder="学生番号を入力してください" required>
             </div>
 
             <div class="list-elm">

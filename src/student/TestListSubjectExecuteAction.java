@@ -26,6 +26,11 @@ public class TestListSubjectExecuteAction extends Action {
             // セッションからTeacherオブジェクトを取得
             Teacher teacher = Util.getUser(req);
 
+            // タイトル表示の為のフラグを設定
+            String ttl_flg = "subject";
+            req.setAttribute("ttl_flg", ttl_flg);
+
+
             // Teacherオブジェクトがnullの場合はログインページにリダイレクト
             if (teacher == null) {
                 return "login.jsp";
@@ -34,44 +39,58 @@ public class TestListSubjectExecuteAction extends Action {
             // 学校オブジェクトを取得
             School school = teacher.getSchool();
 
+
             // リクエストから入学年度、クラス、および科目を取得
             String entYearStr = req.getParameter("entYear");
             String classNum = req.getParameter("classNum");
             String subjectCd = req.getParameter("subjectCd");
 
-            // Subjectオブジェクトを作成
+            // SubjectDAOを使用し、subjectCdをもとにSubjectオブジェクトを取得
             Subject subject = new Subject();
             SubjectDAO subjectDAO = new SubjectDAO();
             subject = subjectDAO.get(subjectCd, school);
 
-            // --------------入力チェック----------------------------------------
+
+            // 送られてきた値を初期表示に使用するのでセット
+            req.setAttribute("beforeEntYear", entYearStr);
+            req.setAttribute("beforeClassNum", classNum);
+            req.setAttribute("beforeSubjectCd", subjectCd);
+            req.setAttribute("beforeSubject", subject);
+            // セレクトボックスに必要な情報をセット
+            Util.setStudentEntYearSet(req); // 入学年度の情報
+            Util.setClassNumSet(req); // クラス番号の情報
+            Util.setSubjects(req);
+
+
+
+            // ===== 入力チェック ============================================================== //
             boolean hasError = false;
 
-            // entYear(入学年度)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
+            // 値が未入力かどうかのチェック
             if (entYearStr == null || entYearStr.isEmpty() || classNum == null || classNum.isEmpty() || subjectCd == null || subjectCd.isEmpty()) {
-                req.setAttribute("admissionYearError", "入学年度とクラスと科目を選択してください");
+                // エラー文の設定
+            	req.setAttribute("nullError", "入学年度とクラスと科目を選択してください");
                 hasError = true;
             }
 
             // hasError = trueの場合は以下を実行
             if (hasError) {
-                // 送られてきた値を初期表示に使用するのでセットしておく
-                req.setAttribute("beforeEntYear", entYearStr);
-                req.setAttribute("beforeClassNum", classNum);
-                req.setAttribute("beforeSubjectCd", subjectCd);
-                // 必要な情報をセットしてtest_list.jspに送り返す
-                Util.setEntYearSet(req); // 入学年度の情報
-                Util.setClassNumSet(req); // クラス番号の情報
-                Util.setSubjects(req);
                 return "test_list.jsp";
             }
-            // ===== 入力チェック終了 ========================================================================== //
 
+            // ===== 入力チェック終了 ======================================================== //
+
+
+
+
+            // 入学年度をStrからintに変換
             int entYear = Integer.parseInt(entYearStr);
 
-            // TestListSubjectDAOを利用してテストリストを取得
+            // TestListSubjectDAOを利用して科目別のテストリストを取得
             TestListSubjectDAO testListSubjectDAO = new TestListSubjectDAO();
             List<TestListSubject> testListSubjects = testListSubjectDAO.filter(entYear, classNum, subject, school);
+
+
 
             // 学生番号ごとにデータを統合
             Map<String, TestListSubject> mergedData = new HashMap<>();
@@ -110,23 +129,13 @@ public class TestListSubjectExecuteAction extends Action {
 
             // 該当データがない場合のエラーメッセージを設定
             if (mergedList.isEmpty()) {
-                req.setAttribute("noStudentDataError", "学生情報が存在しませんでした");
-                // 送られてきた値を初期表示に使用するのでセットしておく
-                req.setAttribute("beforeEntYear", entYearStr);
-                req.setAttribute("beforeClassNum", classNum);
-                req.setAttribute("beforeSubjectCd", subjectCd);
-                Util.setEntYearSet(req);
-                Util.setClassNumSet(req);
-                Util.setSubjects(req);
-                return "test_list.jsp";
+                req.setAttribute("errorMsg", "学生情報が存在しませんでした");
+                return "test_list_student.jsp";
             }
 
             // 取得した統合済みテストリストをリクエスト属性に設定
             req.setAttribute("testListSubjects", mergedList);
             req.setAttribute("subject", subject);
-            Util.setStudentEntYearSet(req);
-            Util.setClassNumSet(req);
-            Util.setSubjects(req);
 
             // フォワード先のページを指定してリクエストをフォワード
             return "test_list_student.jsp";
