@@ -69,14 +69,14 @@
 
 			 <c:choose>
 				 <c:when test="${student.isAttend == 'TRUE'}">
-					 <div>
+					 <div class="student-update-checkbox">
 					    <input type="checkbox" id="scales" name="is_attend" value="1" checked>
 					    <label for="scales">在学中</label>
 					  </div>
 				  </c:when>
 				  <c:otherwise>
 
-  					 <div>
+  					 <div class="student-update-checkbox">
 					    <input type="checkbox" id="scales" name="is_attend" value="1">
 					    <label for="scales">在学中</label>
 					 </div>
@@ -84,7 +84,6 @@
 			</c:choose>
             <div class="form-buttons" style="margin-top:10px; margin-bottom:10px">
                 <input type="submit" value="変更">
-
             </div>
             <a href="StudentList.action">戻る</a>
         </form>
