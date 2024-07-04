@@ -106,19 +106,21 @@ public class StudentListAction extends Action{
         Util.setStudentEntYearSet(req);
         Util.setClassNumSet(req);
 
+     // 学生管理への画面遷移の最初に表示するリストの作成
+		Teacher teacher =Util.getUser(req);
+		if (teacher == null){
+			return "login.jsp";
+		}
+
+
+		StudentDAO student = new StudentDAO();
+		List<Student> allStudentList = student.studentListGet(teacher);
+
+
     	if (listFlg == 0){
-    		// 学生管理への画面遷移の最初に表示するリストの作成
-			Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
-			if (teacher == null){
-				return "login.jsp";
-			}
-
-			StudentDAO student = new StudentDAO();
-			List<Student> allStudentList = student.studentListGet(teacher);
-
-	        // 検索結果の数を数える
-	        int resultCount = allStudentList.size();
 	        int flg = 0;
+	     // 検索結果の数を数える
+	        int resultCount = allStudentList.size();
 
 	         // リクエスト属性に全生徒リストと検索結果数、flg(0)を設定
 	         req.setAttribute("allStudentList", allStudentList);
@@ -130,16 +132,13 @@ public class StudentListAction extends Action{
     		// 検索後の画面に表示するリストの作成
 
         	// リクエストパラメータから検索条件を取得
-    		Teacher teacher =(Teacher)req.getSession().getAttribute("teacher");
             School belongSchool = teacher.getSchool();
             String schoolCd = belongSchool.getCd();
             String entYearStr = req.getParameter("year");
             String classNum = req.getParameter("class");
             String isAttendStr = req.getParameter("status");
 
-            Integer entYear = (entYearStr != null && !entYearStr.equals("none")) ? Integer.parseInt(entYearStr) : null;
-            Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : null;
-          	classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
+
 
             // 学校オブジェクトを作成し、学校コードを設定
           	SchoolDAO schoolDAO = new SchoolDAO();
@@ -148,6 +147,39 @@ public class StudentListAction extends Action{
 
             // StudentDAOのインスタンスを作成
             StudentDAO studentDAO = new StudentDAO();
+
+            boolean hasError = false;
+
+         // 全てのフィールドが未入力かどうかのチェック
+         if (entYearStr == null || entYearStr.isEmpty() ||
+             classNum == null || classNum.isEmpty() ||
+             isAttendStr == null || isAttendStr.isEmpty()) {
+             // 表示するエラー文の設定
+             req.setAttribute("allFieldsError", "入学年度、クラス、および在学中のステータスをすべて入力してください");
+             hasError = true;
+             int flg = 0;
+          // 検索結果の数を数える
+             int resultCount = allStudentList.size();
+
+             req.setAttribute("flg", flg);
+             req.setAttribute("allStudentList", allStudentList);
+	         req.setAttribute("resultCount", resultCount);
+         }
+
+         if (hasError) {
+             // 送られてきた値を初期表示に使用するのでセットしておく
+             req.setAttribute("beforeEntYear", entYearStr);
+             req.setAttribute("beforeClassNum", classNum);
+             req.setAttribute("beforeIsAttend", isAttendStr);
+             // 必要な情報をセットしてstudent_list.jspに送り返す
+             Util.setEntYearSet(req);    // 入学年度の情報
+             Util.setClassNumSet(req);   // クラス番号の情報
+             return "student_list.jsp";
+         }
+
+         Integer entYear = (entYearStr != null && !entYearStr.equals("none")) ? Integer.parseInt(entYearStr) : null;
+         Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : null;
+       	classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
 
             // 返却するリストを空で定義
             List<Student> searchedStudentList = new ArrayList<>();
