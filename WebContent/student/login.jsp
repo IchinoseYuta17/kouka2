@@ -15,27 +15,16 @@
         <div class="login-container">
             <form method="post" action="LoginExecute.action">
                 <div>
-					<c:choose>
-						<c:when test="${not empty beforeid}">
-			                 <input type="text" id="id" name="id" <c:if test="${not empty beforeid}">value="${beforeid}"</c:if> placeholder="ID">
-						</c:when>
-						<c:otherwise>
-							<input type="text" id="id" name="id" placeholder="ID">
-						</c:otherwise>
-					</c:choose>
+                    <!-- タグを青色に変更 -->
+                   <input type="text" id="id" name="id" placeholder="ID">
+
                 </div>
 
                 <div>
-                    <c:choose>
-						<c:when test="${not empty beforepasswprd}">
-							<input type="password" id="password" name="password" value="${beforepasswprd}" placeholder="パスワード">
-                    		<input type="text" id="showPassword" class="show-password" readonly>
-						</c:when>
-						<c:otherwise>
-							<input type="password" id="password" name="password" placeholder="パスワード">
-                    		<input type="text" id="showPassword" class="show-password" readonly>
-						</c:otherwise>
-					</c:choose>
+                    <!-- タグを青色に変更 -->
+                    <a>PASSWORD</a>
+                    <input type="password" id="password" name="password" placeholder="パスワード">
+                    <input type="text" id="showPassword" class="show-password" readonly>
                 </div>
 
                 <div class="show-password-label">

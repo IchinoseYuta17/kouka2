@@ -130,16 +130,6 @@ button:hover {
             background-color: #0056b3; /* ホバー時の色を変更 */
         }
 
-input[type="text"], input[type="password"], input[type="checkbox"] {
-            width: 100%; /* 入力フィールドの幅を100%に設定 */
-            box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #99c3e6; /* 枠線を薄い青色に設定 */
-            border-radius: 5px; /* 角を丸める */
-            color: black; /* 文字色を黒に設定 */
-        }
-
 .show-password {
             display: none; /* 最初は非表示 */
         }
@@ -149,6 +139,20 @@ input[type="text"], input[type="password"], input[type="checkbox"] {
             margin-bottom: 10px;
              white-space: nowrap;
         }
+
+input[type="text"], input[type="password"], input[type="checkbox"] ,#showPassword {
+            width: 100%; /* 入力フィールドの幅を100%に設定 */
+            box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #99c3e6; /* 枠線を薄い青色に設定 */
+            border-radius: 5px; /* 角を丸める */
+            color: black; /* 文字色を黒に設定 */
+             margin: 10px 0; /* 上下の外側の余白を設定 */
+       		 box-sizing: border-box; /* パディングとボーダーを含めて要素の幅と高さを計算 */
+        }
+
+
 
 #username::placeholder {
 	font-size: smaller;
@@ -163,10 +167,6 @@ input[type="text"], input[type="password"], input[type="checkbox"] {
      background-color: #e6f0ff; /* 薄い青色 */
         }
 
-	    /* タグの背景色を薄い青に設定 */
- #username, #password {
-      background-color: #e6f0ff; /* 薄い青色 */
-        }
 
 /*登録ページ用css*/
 .form-container {
