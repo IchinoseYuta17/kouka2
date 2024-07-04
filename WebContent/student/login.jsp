@@ -16,13 +16,12 @@
             <form method="post" action="LoginExecute.action">
                 <div>
                     <!-- タグを青色に変更 -->
-                   <input type="text" id="id" name="id" placeholder="ID">
+                   <input type="text" id="id" name="id" placeholder="ID" required>
 
                 </div>
                 <div>
                     <!-- タグを青色に変更 -->
-                    <a>PASSWORD</a>
-                    <input type="password" id="password" name="password" placeholder="パスワード">
+                    <input type="password" id="password" name="password" placeholder="パスワード" required>
                     <input type="text" id="showPassword" class="show-password" readonly>
                 </div>
                 <div class="show-password-label">
