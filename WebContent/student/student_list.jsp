@@ -9,6 +9,9 @@
 	select {
 		width: 180px;
 	}
+	.error {
+		color: red;
+	}
 </style>
 <body>
 	<div id="container">
@@ -24,23 +27,57 @@
 					<div class="list-elm">
 						<label for="year">入学年度 </label><br>
 						<select name="year">
-							<option value="none" <c:if test="${param.year == null || param.year == 'none'}">selected</c:if> selected>---------</option>
-							<c:forEach var="entYear" items="${studentEntYearSet}">
-								<option value="${entYear}" <c:if test="${param.year == entYear}">selected</c:if>>${entYear}年</option>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${not empty beforeEntYear}">
+									<c:forEach var="entYear" items="${studentEntYearSet}">
+										<c:choose>
+										    <c:when test="${entYear == beforeEntYear}">
+										        <option value="${beforeEntYear}" selected>${beforeEntYear}</option>
+										    </c:when>
+										    <c:otherwise>
+										        <option value="${entYear}">${entYear}</option>
+										    </c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<option value="">--------</option>
+									<c:forEach var="entYear" items="${studentEntYearSet}">
+									 	<option value="${entYear}">${entYear}</option>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</select>
 					</div>
+
 					<div class="list-elm">
 						<label for="class">クラス </label><br>
 						<select name="class">
-							<option value="none"  selected>---------</option>
-							<c:forEach var="classNum" items="${classNumSet}">
-								<option value="${classNum.num}">${classNum.num}</option>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${not empty beforeClassNum}">
+									<c:forEach var="classNum" items="${classNumSet}">
+										<c:choose>
+										    <c:when test="${classNum.num == beforeClassNum}">
+										        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
+										    </c:when>
+										    <c:otherwise>
+										        <option value="${classNum.num}">${classNum.num}</option>
+										    </c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<option value="">--------</option>
+									<c:forEach var="classNum" items="${classNumSet}">
+									 	<option value="${classNum.num}">${classNum.num}</option>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</select>
 					</div>
+
 					<div class="list-elm">
-						<input type="checkbox" id="status" name="status" value="1">在学中
+						<input type="checkbox" id="status" name="status" value="1" <c:if test="${param.status == '1'}">checked</c:if>>在学中
 					</div>
 					<div class="list-elm">
 						<div class="glay-buttons">
@@ -49,6 +86,9 @@
 					</div>
 					<input type="hidden" name="flg" value="1">
 				</form>
+				<c:if test="${not empty allFieldsError}">
+					<div class="error-message">${allFieldsError}</div>
+				</c:if>
 			</div>
 			<c:choose>
 				<c:when test="${flg == 0}">
@@ -70,7 +110,7 @@
 								<td>${student.no}</td>
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
-								<td class="enrolled ">
+								<td class="enrolled">
 									<c:choose>
 										<c:when test="${student.isAttend == 'TRUE'}">
 											○
