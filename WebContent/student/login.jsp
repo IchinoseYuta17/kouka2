@@ -22,7 +22,6 @@
 
                 <div>
                     <!-- タグを青色に変更 -->
-                    <a>PASSWORD</a>
                     <input type="password" id="password" name="password" placeholder="パスワード">
                     <input type="text" id="showPassword" class="show-password" readonly>
                 </div>
