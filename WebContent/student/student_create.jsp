@@ -48,12 +48,14 @@
             <div class="form-group">
                 <label for="studentNumber">学生番号:</label>
                 <input type="text" name="studentNumber" placeholder="学生番号を入力してください" <c:if test="${not empty beforeNo}"> value= "${beforeNo}" </c:if> required>
+				<div class="error-message">
 				<c:if test="${not empty studentNumberError}">
         				${studentNumberError}
    				</c:if>
 				<c:if test="${not empty enrolledStudentNumberError}">
         				${enrolledStudentNumberError}
    				</c:if>
+   				</div>
             </div>
 
 

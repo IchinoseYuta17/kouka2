@@ -58,7 +58,7 @@ public class TestDAO extends DAO {
 
         while (rs.next()) {
         	Test test = new Test();
-            test.setStudent(studentDAO.studentGet(rs.getString("STUDENT_NO"),school)); // 学生オブジェクトを設定
+            test.setStudent(studentDAO.studentGet(rs.getString("NO"),school)); // 学生オブジェクトを設定
             test.setClassNum(rs.getString("CLASS_NUM")); // クラス番号を設定
             test.setSubject(subjectDAO.get(rs.getString("SUBJECT_CD"), school)); // 科目オブジェクトを設定
             test.setSchool(school); // 学校オブジェクトを設定
@@ -72,15 +72,15 @@ public class TestDAO extends DAO {
 
     // メソッド: フィルタしてTestオブジェクトのリストを返す(postFilterメソッドを使用)
     public List<Test> filter(int entYear, String classNum, Subject subject, int num, School school) throws Exception {
-        String sql = "SELECT test.* FROM test JOIN student ON test.student_no = student.no WHERE student.ent_year = ? AND test.class_num = ? AND test.subject_cd = ? AND test.no = ? AND test.school_cd = ?";
+        String sql = "SELECT student.NO, student.NAME, student.ENT_YEAR, student.CLASS_NUM,  student.SCHOOL_CD, test.SUBJECT_CD, test.NO, test.POINT FROM student LEFT JOIN ( SELECT student_no, SUBJECT_CD, NO, POINT FROM test WHERE no = ? AND subject_cd = ? ) AS test ON student.no = test.student_no where student.school_cd = ? and student.ent_year = ? and student.class_num = ?";
         Connection con = getConnection();
      	PreparedStatement st = con.prepareStatement(sql);
 
-    	st.setInt(1, entYear);
-    	st.setString(2, classNum);
-    	st.setString(3, subject.getCd());
-    	st.setInt(4, num);
-    	st.setString(5, school.getCd());
+     	st.setInt(1, num);
+     	st.setString(2, subject.getCd());
+     	st.setString(3, school.getCd());
+    	st.setInt(4, entYear);
+    	st.setString(5, classNum);
 
         ResultSet rs = st.executeQuery();
 
@@ -97,45 +97,51 @@ public class TestDAO extends DAO {
 
     // メソッド: Testオブジェクトのリストを保存する(save())
     public boolean save(List<Test> list) throws Exception {
-        try (
-		Connection con = getConnection();){
-
+        try (Connection con = getConnection()) {
             for (Test test : list) {
-//            	save(test,con);
-            	String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
-                try (PreparedStatement st = con.prepareStatement(sql)) {
-                    st.setString(1, test.getSubject().getCd());
-                    st.setString(2, test.getSchool().getCd());
-                    st.setInt(3, test.getNo());
-                    st.setInt(4, test.getPoint());
-                    st.setString(5, test.getClassNum());
-                    st.setString(6, test.getStudent().getNo());
-                    st.executeUpdate();
+                String selectSql = "SELECT COUNT(*) FROM test WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
+                try (PreparedStatement selectSt = con.prepareStatement(selectSql)) {
+                    selectSt.setString(1, test.getStudent().getNo());
+                    selectSt.setString(2, test.getSubject().getCd());
+                    selectSt.setString(3, test.getSchool().getCd());
+                    selectSt.setInt(4, test.getNo());
+
+                    ResultSet rs = selectSt.executeQuery();
+                    rs.next();
+                    int count = rs.getInt(1);
+
+                    if (count > 0) {
+                        // レコードが存在する場合は更新
+                        String updateSql = "UPDATE test SET class_num = ?, point = ? WHERE student_no = ? AND subject_cd = ? AND school_cd = ? AND no = ?";
+                        try (PreparedStatement updateSt = con.prepareStatement(updateSql)) {
+                            updateSt.setString(1, test.getClassNum());
+                            updateSt.setInt(2, test.getPoint());
+                            updateSt.setString(3, test.getStudent().getNo());
+                            updateSt.setString(4, test.getSubject().getCd());
+                            updateSt.setString(5, test.getSchool().getCd());
+                            updateSt.setInt(6, test.getNo());
+                            updateSt.executeUpdate();
+                        }
+                    } else {
+                        // レコードが存在しない場合は挿入
+                        String insertSql = "INSERT INTO test (student_no, class_num, subject_cd, school_cd, no, point) VALUES (?, ?, ?, ?, ?, ?)";
+                        try (PreparedStatement insertSt = con.prepareStatement(insertSql)) {
+                            insertSt.setString(1, test.getStudent().getNo());
+                            insertSt.setString(2, test.getClassNum());
+                            insertSt.setString(3, test.getSubject().getCd());
+                            insertSt.setString(4, test.getSchool().getCd());
+                            insertSt.setInt(5, test.getNo());
+                            insertSt.setInt(6, test.getPoint());
+                            insertSt.executeUpdate();
+                        }
+                    }
                 }
             }
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
-    }
-
-    // メソッド: 単一のTestオブジェクトを保存する
-    private boolean save(Test test, Connection connection) throws Exception {
-        String sql = "UPDATE test SET subject_cd = ?, school_cd = ?, no = ?, point = ?, class_num = ? WHERE student_no = ?";
-        try (PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, test.getSubject().getCd());
-            st.setString(2, test.getSchool().getCd());
-            st.setInt(3, test.getNo());
-            st.setInt(4, test.getPoint());
-            st.setString(5, test.getClassNum());
-            st.setString(6, test.getStudent().getNo());
-            st.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return true;
     }
 
 
