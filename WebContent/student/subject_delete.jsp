@@ -10,10 +10,10 @@
         <form action="SubjectDeleteExecute.action" method="post">
 
 			<div class="form-group">
-			    <p>${subject.name}(${subject.cd})を削除してもよろしいですか？</p>
+			    <p>科目コード:${subject.cd}     (${subject.name})     を削除してもよろしいですか？</p>
 			</div>
 
-				<div class="form-buttons">
+				<div class="red-buttons">
 				    <input type="submit" value="削除" style="margin-top:20px; margin-bottom:20px;">
 				</div>
 				<div class="return">
