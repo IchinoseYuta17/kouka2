@@ -1,7 +1,9 @@
 package student;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
+import util.Util;
 
 public class TestRegistExecuteAction extends Action {
 
@@ -33,14 +36,38 @@ public class TestRegistExecuteAction extends Action {
         SubjectDAO subjectDAO = new SubjectDAO();
         TestDAO testDAO = new TestDAO();
 
+
+        // テストの回数を表示するためのリストを生成
+        List<Integer> testNoList = new ArrayList<>();
+        testNoList.add(1);
+        testNoList.add(2);
+
+
+
+        // セレクトボックスに必要な情報をセット
+		Util.setStudentEntYearSet(req);
+        Util.setClassNumSet(req);
+        Util.setSubjects(req);
+        req.setAttribute("testNoList", testNoList);
+
+
+
         // 登録する学生の空リストを作成
         List<Test> testList = new ArrayList<>();
-        int testCount = Integer.parseInt(req.getParameter("testCount"));
+
+
 
         // jspからパラメーターの受け取り
+        int testCount = Integer.parseInt(req.getParameter("testCount"));
         String subjectCd = req.getParameter("subjectCd");
         int num = Integer.parseInt(req.getParameter("num"));
 
+
+        // 得点のエラー箇所を判別するためのマップを定義
+        Map<Integer, String> errorMessages = new HashMap<>();
+
+
+        // iの値をインクリメントしながらjspからの値を取得する
         for (int i = 0; i < testCount; i++) {
             int entYear = Integer.parseInt(req.getParameter("entYear_" + i));
             String classNum = req.getParameter("classNum_" + i);
@@ -53,33 +80,45 @@ public class TestRegistExecuteAction extends Action {
                 return "test_regist.jsp";
             }
 
-            int point;
-            try {
-                point = Integer.parseInt(pointStr);
-                if (point < 0 || point > 100) {
-                    throw new NumberFormatException();
-                }
-            } catch (NumberFormatException e) {
-                req.setAttribute("message", "得点は0〜100範囲内の正しい値を入力してください。");
-                return "test_regist.jsp";
+
+            // 得点のエラー判定
+            int point = Integer.parseInt(pointStr);
+            if (point < 0 || point > 100) {
+            	errorMessages.put(i, "得点は0〜100範囲内の正しい値を入力してください。");
             }
 
+
+
+            // 必要なオブジェクトを作成
             School school = teacher.getSchool();
             Student student = studentDAO.studentGet(studentNo, school);
             Subject subject = subjectDAO.get(subjectCd, school);
 
             Test test = new Test();
+
             student.setEntYear(entYear);
             student.setName(studentName);
+
             test.setStudent(student);
             test.setClassNum(classNum);
             test.setSubject(subject);
             test.setSchool(school);
-            test.setNo(num);  // 回数を適切に設定
+            test.setNo(num);  // 回数を設定
             test.setPoint(point);
+
+            // 送り返すリストに追加する
             testList.add(test);
         }
 
+
+        // errorMessagesに値が格納されていた場合はここからtest_regist.jspに画面遷移しエラーを表示
+        if (!errorMessages.isEmpty()) {
+        	req.setAttribute("testList", testList);
+            req.setAttribute("errorMessages", errorMessages);
+            return "test_regist.jsp";
+        }
+
+        // エラーがない場合にはDBに保存する
         boolean result = testDAO.save(testList);
 
         if (result) {
