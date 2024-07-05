@@ -151,9 +151,9 @@ public class StudentListAction extends Action{
             boolean hasError = false;
 
          // 全てのフィールドが未入力かどうかのチェック
-         if (entYearStr == null || entYearStr.isEmpty() ||
-             classNum == null || classNum.isEmpty() ||
-             isAttendStr == null || isAttendStr.isEmpty()) {
+         if ((entYearStr == null || entYearStr.isEmpty()) &&
+             (classNum == null || classNum.isEmpty()) &&
+             (isAttendStr == null || isAttendStr.isEmpty())) {
              // 表示するエラー文の設定
              req.setAttribute("allFieldsError", "入学年度、クラス、および在学中のステータスをすべて入力してください");
              hasError = true;
@@ -177,17 +177,17 @@ public class StudentListAction extends Action{
              return "student_list.jsp";
          }
 
-         Integer entYear = (entYearStr != null && !entYearStr.equals("none")) ? Integer.parseInt(entYearStr) : null;
+         Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : 0;
          Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : null;
        	classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
 
             // 返却するリストを空で定義
             List<Student> searchedStudentList = new ArrayList<>();
 
-            if (entYear != null && classNum != null && isAttend != null) {
+            if (entYear > 0 && classNum != null && isAttend != null) {
 //              System.out.println("Calling: studentFilter(entYear, classNum, isAttend)");
               searchedStudentList = studentDAO.studentFilter(school, entYear, classNum, isAttend);
-          } else if (entYear != null && isAttend != null) {
+          } else if (entYear > 0 && isAttend != null) {
 //              System.out.println("Calling: studentFilter(entYear, isAttend)");
               searchedStudentList = studentDAO.studentFilter(school,entYear, isAttend);
           } else if (isAttend != null) {
