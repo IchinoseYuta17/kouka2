@@ -150,7 +150,7 @@ input[type="text"], input[type="password"] {
              white-space: nowrap;
         }
 
-input[type="text"], input[type="password"], input[type="checkbox"] ,#showPassword {
+input[type="text"], input[type="password"] ,#showPassword {
             width: 100%; /* 入力フィールドの幅を100%に設定 */
             box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
             padding: 10px;
@@ -206,10 +206,11 @@ input[type="text"], input[type="password"], input[type="checkbox"] ,#showPasswor
 }
 
 
-.form-group input[type="checkbox"] {
+/* .form-group input[type="checkbox"] {
     width: auto; /* チェックボックスの幅を自動に設定 */
     margin-left: 0; /* 左マージンを0に設定 */
 }
+*/
 
 .glay-buttons {
     display: flex;
@@ -567,11 +568,6 @@ input[type="text"], input[type="password"] {
     border-radius: 4px;
 }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* チェックボックスとラベルの間のスペース */
-}
 
 .glay-buttons {
     display: flex;

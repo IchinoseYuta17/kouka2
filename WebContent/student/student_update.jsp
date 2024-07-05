@@ -69,14 +69,14 @@
 
 			 <c:choose>
 				 <c:when test="${student.isAttend == 'TRUE'}">
-					 <div class="student-update-checkbox">
+					 <div class="checkbox-align">
 					    <input type="checkbox" id="scales" name="is_attend" value="1" checked>
 					    <label for="scales">在学中</label>
 					  </div>
 				  </c:when>
 				  <c:otherwise>
 
-  					 <div class="student-update-checkbox">
+  					 <div class="checkbox-align">
 					    <input type="checkbox" id="scales" name="is_attend" value="1">
 					    <label for="scales">在学中</label>
 					 </div>
