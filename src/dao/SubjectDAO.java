@@ -46,6 +46,40 @@ public class SubjectDAO extends DAO {
 
 
     // 特定のIDに対応する科目を取得するメソッド
+    public Subject getByName(String name, School school) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Subject subject = null;
+
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM subject WHERE name = ? AND school_cd = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, school.getCd());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                subject = new Subject();
+                subject.setCd(rs.getString("cd"));
+                subject.setName(rs.getString("name"));
+                subject.setSchool(school);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            rs.close();
+            ps.close();
+            con.close();
+        }
+
+        return subject;
+    }
+
+
+
+    // 特定のIDに対応する科目を取得するメソッド
     public Subject get(String cd, School school) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
@@ -76,6 +110,9 @@ public class SubjectDAO extends DAO {
 
         return subject;
     }
+
+
+
 
 
     // 学生情報を保存(更新)するメソッド
