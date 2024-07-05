@@ -208,9 +208,9 @@ input[type="text"], input[type="password"] ,#showPassword {
 
 /* .form-group input[type="checkbox"] {
     width: auto; /* チェックボックスの幅を自動に設定 */
-    margin-left: 0; /* 左マージンを0に設定 */
-}
-*/
+    /* margin-left: 0; /* 左マージンを0に設定 */
+
+
 
 .glay-buttons {
     display: flex;
@@ -640,6 +640,11 @@ input[type="text"], input[type="password"] {
 	justify-content: flex-end;
 	margin-bottom: 20px;
 }
+
+.new-registration{
+	margin-left:10px;
+}
+
 .tbl {
     width: 100%;
     border-collapse: collapse;
