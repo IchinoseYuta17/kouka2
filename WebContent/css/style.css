@@ -260,7 +260,9 @@ input[type="text"], input[type="password"], input[type="checkbox"] ,#showPasswor
 .error-message {
 	color:orange;
 }
-
+.null-message {
+	color:#333;
+}
 /*登録ページ用cssここまで*/
 
 
