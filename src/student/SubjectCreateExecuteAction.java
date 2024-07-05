@@ -31,6 +31,14 @@ public class SubjectCreateExecuteAction extends Action {
 		//科目登録のエラーチェック
 		boolean hasError = false;
 
+		Subject enrolledSubject2 = dao.getByName(subject_name, teacher.getSchool());
+	    // enrolledStudent(在籍中の学生)が!=null(nullではない)の場合
+	    if (enrolledSubject2 != null) {
+	    	// 表示するエラー文の設定
+	    	request.setAttribute("enrolledSubjectnameError", "科目名が重複しています");
+	        hasError = true;
+	    }
+
 		Subject enrolledSubject = dao.get(subject_cd, teacher.getSchool());
 	    // enrolledStudent(在籍中の学生)が!=null(nullではない)の場合
 	    if (enrolledSubject != null) {

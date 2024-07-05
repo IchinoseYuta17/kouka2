@@ -19,12 +19,13 @@
                    <input type="text" id="id" name="id" placeholder="ID">
 
                 </div>
+
                 <div>
                     <!-- タグを青色に変更 -->
-                    <a>PASSWORD</a>
                     <input type="password" id="password" name="password" placeholder="パスワード">
                     <input type="text" id="showPassword" class="show-password" readonly>
                 </div>
+
                 <div class="show-password-label">
                     <input type="checkbox" id="showPasswordCheckbox" onclick="togglePassword()">
                     <!-- タグを青色に変更 -->
@@ -35,6 +36,9 @@
                     <button type="submit">ログイン</button>
                 </div>
             </form>
+            <c:if test="${not empty notIdorPsError}">
+					<div class="error-message">${notIdorPsError}</div>
+			</c:if>
         </div>
     </div>
     <%@ include file="../footer.html" %>
