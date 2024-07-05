@@ -334,6 +334,10 @@ input[type="text"], input[type="password"], input[type="checkbox"] ,#showPasswor
 
 }
 
+ .checkbox-align label {
+ 		white-space: nowrap;
+        margin-left: 5px; /* チェックボックスとテキストの間のスペース */
+    }
 /*一覧表示用cssここまで*/
 
 

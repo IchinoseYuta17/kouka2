@@ -78,7 +78,10 @@
 					</div>
 
 					<div class="list-elm">
-						<input type="checkbox" id="status" name="status" value="1" <c:if test="${param.status == '1'}">checked</c:if>>在学中
+						<div class="checkbox-align">
+							<input type="checkbox" id="status" name="status" value="1" <c:if test="${param.status == '1'}">checked</c:if>>
+							 <label for="status">在学中</label>
+						</div>
 					</div>
 					<div class="list-elm">
 						<div class="glay-buttons">
