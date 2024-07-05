@@ -7,6 +7,7 @@ import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
+import util.Util;
 
 public class SubjectUpdateExecuteAction extends Action {
 	public String execute(
@@ -18,16 +19,41 @@ public class SubjectUpdateExecuteAction extends Action {
 
 		Teacher teacher =(Teacher)request.getSession().getAttribute("teacher");
 
+
+		// SubjectDAOインスタンスを生成
+		SubjectDAO dao=new SubjectDAO();
+
+
+		//科目変更のエラーチェック
+		boolean hasError = false;
+
+		Subject enrolledSubject = dao.getByName(subject_name, teacher.getSchool());
+	    // enrolledStudent(在籍中の学生)が!=null(nullではない)の場合
+	    if (enrolledSubject != null) {
+	    	// 表示するエラー文の設定
+	    	request.setAttribute("enrolledSubjectnameError", "科目名が重複しています");
+	        hasError = true;
+	    }
+
+	    if (hasError) {
+	    	// 送られてきた値を初期表示に使用するのでセットしておく
+	    	request.setAttribute("beforeSubjectCd", subject_cd);
+	    	request.setAttribute("beforeSubjectName", subject_name);
+	      // 必要な情報をセットしてSubject_create.jspに送り返す
+	      Util.setSubjects(request);
+	      return "subject_update.jsp";
+	    }
+
 		// Subjectビーンに設定
 		Subject subject=new Subject();
 		subject.setCd(subject_cd);
 		subject.setName(subject_name);
 		subject.setSchool(teacher.getSchool());
 
-		// SubjectDAOインスタンスを生成
-		SubjectDAO dao=new SubjectDAO();
 		// SubjectDAOのinsertメソッドを実行してデータベースに登録
 		boolean line = dao.save(subject);
+
+
 
 		// lineが0でなければ登録成功
 		if (line != false) {
