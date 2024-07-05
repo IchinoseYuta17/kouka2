@@ -624,7 +624,7 @@ input[type="text"], input[type="password"] {
 
 
 /*更新ページ用css*/
-.student-update-checkbox {
+.checkbox-align {
 	display:flex;
 	align-items: center;
 }
