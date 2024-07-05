@@ -63,6 +63,12 @@ public class TestRegistExecuteAction extends Action {
         int num = Integer.parseInt(req.getParameter("num"));
 
 
+
+        // 必要なオブジェクトを作成
+        School school = teacher.getSchool();
+        Subject subject = subjectDAO.get(subjectCd, school);
+
+
         // 得点のエラー箇所を判別するためのマップを定義
         Map<Integer, String> errorMessages = new HashMap<>();
 
@@ -90,9 +96,8 @@ public class TestRegistExecuteAction extends Action {
 
 
             // 必要なオブジェクトを作成
-            School school = teacher.getSchool();
             Student student = studentDAO.studentGet(studentNo, school);
-            Subject subject = subjectDAO.get(subjectCd, school);
+
 
             Test test = new Test();
 
@@ -111,9 +116,12 @@ public class TestRegistExecuteAction extends Action {
         }
 
 
+
         // errorMessagesに値が格納されていた場合はここからtest_regist.jspに画面遷移しエラーを表示
         if (!errorMessages.isEmpty()) {
         	req.setAttribute("testList", testList);
+        	req.setAttribute("num", num);
+        	req.setAttribute("subject", subject);
             req.setAttribute("errorMessages", errorMessages);
             return "test_regist.jsp";
         }
