@@ -319,7 +319,8 @@ input[type="text"], input[type="password"], input[type="checkbox"] ,#showPasswor
     vertical-align: middle !important; /* 垂直方向の中央揃え */
 }
  .container-frame{
-     border: 1px solid #ddd;
+	padding: 0 20px;
+	border: 1px solid #ddd;
 	border-radius: 5px;
 	}
 .list-arrange{
@@ -615,11 +616,20 @@ input[type="text"], input[type="password"] {
     margin-right: 20px;
 }
 
+/*登録ページ用cssここまで*/
+
+
+/*エラー用css*/
+
 .error-message {
 	color:orange;
 }
 
-/*登録ページ用cssここまで*/
+.test-list-error {
+	margin:5px 0;
+}
+
+/*エラー用cssここまで*/
 
 
 
@@ -718,4 +728,5 @@ input[type="text"], input[type="password"] {
 	text-align: center;
 	padding: 5
 }
+
 
