@@ -53,6 +53,11 @@ public class StudentCreateExecuteAction extends Action {
             hasError = true;
         }
 
+        if (classNum == null || classNum.isEmpty()) {
+        	req.setAttribute("studentClassError", "クラスを選択してください");
+        	hasError = true;
+        }
+
         // 学生番号の重複があるかのチェック
 		/* no:学生番号
 		 * teacher.getSchool():学校情報

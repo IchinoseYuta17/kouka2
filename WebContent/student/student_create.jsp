@@ -94,6 +94,9 @@
 	   				</c:otherwise>
    				</c:choose>
                 </select>
+               <c:if test="${not empty studentClassError}">
+					<div class="error-message">${studentClassError}</div>
+				</c:if>
             </div>
 
 
