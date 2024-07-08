@@ -77,11 +77,11 @@
 	                <c:when test="${not empty beforeClassNum}">
 						<c:forEach var="classNum" items="${classNumSet}">
 							<c:choose>
-							    <c:when test="${classNum == beforClassNum}">
+							    <c:when test="${classNum.num == beforClassNum}">
 							        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${classNum}">${classNum}</option>
+							        <option value="${classNum.num}">${classNum.num}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -89,7 +89,7 @@
 	   				<c:otherwise>
 	   					<option value="">--------</option>
 						<c:forEach var="classNum" items="${classNumSet}">
-						 	<option value="${classNum}">${classNum}</option>
+						 	<option value="${classNum.num}">${classNum.num}</option>
 						</c:forEach>
 	   				</c:otherwise>
    				</c:choose>
