@@ -49,16 +49,26 @@ public class TestListStudentExecuteAction extends Action {
             Util.setSubjects(req);
 
 
+            // ===== 入力チェック ========================================================================== //
+
             // 入力パラメータの検証
             if (studentNo == null || studentNo.isEmpty()) {
                 req.setAttribute("errorMsg", "学生番号を入力してください。");
                 return "test_list_student.jsp";
             }
-
+            int count = studentNo.length();
+            if (count > 10 || !isNumeric(studentNo)) {
+                req.setAttribute("errorMsg", "学生番号は数字10文字以内で入力してください。");
+                return "test_list_student.jsp";
+            }
             if (student == null) {
                 req.setAttribute("errorMsg", "学生が見つかりません。");
                 return "test_list_student.jsp";
             }
+
+            // ===== 入力チェック終了 ========================================================================== //
+
+
 
             // 学生別のテストリストを取得
             TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
@@ -83,5 +93,11 @@ public class TestListStudentExecuteAction extends Action {
             e.printStackTrace();
             throw new ServletException(e);
         }
+
+    }
+
+    // 学生番号が数字のみで構成されているかどうかをチェックするメソッド
+    private boolean isNumeric(String str) {
+        return str != null && str.matches("\\d+");
     }
 }
