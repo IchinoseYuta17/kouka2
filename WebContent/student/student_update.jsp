@@ -13,14 +13,14 @@
         <form action="StudentUpdateExecute.action" method="post">
 			<div class="form-group">
 			    <label for="admissionYear">入学年度</label>
-			    <input type="text" name="ent_year" value="${student.entYear}" readonly style="border: none; background-color:#fff;">
+			    <input type="text" name="ent_year" value="${student.entYear}" style="border:none; outline:none;" readonly>
 
 			</div>
 
 
 			<div class="form-group">
 			    <label for="studentNumber">学生番号</label>
-			    <input type="text" name="student_no" value="${student.no}" readonly style="border: none; background-color:#fff;">
+			    <input type="text" name="student_no" value="${student.no}" style="border:none; outline:none;" readonly>
 
 			</div>
 
