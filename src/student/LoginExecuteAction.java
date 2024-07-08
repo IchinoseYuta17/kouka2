@@ -18,11 +18,10 @@ public class LoginExecuteAction extends Action {
 
         boolean hasError = false;
 
-        try {
-            Teacher teacherId = teacherDao.get(id); // 指定されたidの教師を取得
-            if (teacherId == null) {
+        try {// 指定されたidの教師を取得
+            if (teacher == null) {
                 // 教師が見つからない場合、エラーメッセージを設定
-                req.setAttribute("notIdorPsError", "登録されている教師ではありません");
+                req.setAttribute("notIdorPsError", "IDまたはパスワードが確認できませんでした");
                 hasError = true;
             }
         } catch (Exception e) {
