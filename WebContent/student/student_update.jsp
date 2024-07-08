@@ -21,7 +21,6 @@
 			<div class="form-group">
 			    <label for="studentNumber">学生番号</label>
 			    <input type="text" name="student_no" value="${student.no}" style="border:none; outline:none;" readonly>
-
 			</div>
 
 
@@ -32,6 +31,9 @@
                 <c:if test="${not empty nameError}">
         				${nameError}
    				</c:if>
+   				<c:if test="${not empty illegalnameError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalnameError}</p>
+				</c:if >
             </div>
 
             <div class="form-group">

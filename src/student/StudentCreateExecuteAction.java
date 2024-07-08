@@ -79,6 +79,19 @@ public class StudentCreateExecuteAction extends Action {
             hasError = true;
         }
 
+        // 10文字以内であるかを確認するコード
+	    if (name.length() > 10) {
+	        // 表示するエラー文の設定
+	        req.setAttribute("illegalnameError", "入力値が10文字以内である必要があります");
+	        hasError = true;
+	    }
+
+	    if (no.length() > 10) {
+	        // 表示するエラー文の設定
+	        req.setAttribute("illegalnoError", "入力値が10文字以内である必要があります");
+	        hasError = true;
+	    }
+
         // hasError = trueの場合は以下を実行
         if (hasError) {
         	// 送られてきた値を初期表示に使用するのでセットしておく

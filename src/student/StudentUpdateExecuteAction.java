@@ -47,6 +47,13 @@ public class StudentUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
+	 // 10文字以内であるかを確認するコード
+	    if (name.length() > 10) {
+	        // 表示するエラー文の設定
+	    	request.setAttribute("illegalnameError", "入力値が10文字以内である必要があります");
+	        hasError = true;
+	    }
+
 	    // hasError = trueの場合は以下を実行
 	    if (hasError) {
 	    	Student beforeStudent = dao.studentGet(no, teacher.getSchool());
