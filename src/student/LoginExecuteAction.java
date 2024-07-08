@@ -18,10 +18,16 @@ public class LoginExecuteAction extends Action {
 
         boolean hasError = false;
 
-        // entYearStr(入学年度)の値が未入力かどうかのチェック(null, isEmpty()のチェックをする時にはチェックしたい値はstr型にする)
-        if (id == null || id.isEmpty() || password == null || password.isEmpty()){
-        	// 表示するエラー文の設定
-        	req.setAttribute("notIdorPsError", "IDまたはパスワードが確認できませんでした");
+        try {
+            Teacher teacherId = teacherDao.get(id); // 指定されたidの教師を取得
+            if (teacherId == null) {
+                // 教師が見つからない場合、エラーメッセージを設定
+                req.setAttribute("notIdorPsError", "登録されている教師ではありません");
+                hasError = true;
+            }
+        } catch (Exception e) {
+            // データベースアクセス中に例外が発生した場合
+            req.setAttribute("notIdorPsError", "教師情報の確認中にエラーが発生しました");
             hasError = true;
         }
         if (hasError) {
