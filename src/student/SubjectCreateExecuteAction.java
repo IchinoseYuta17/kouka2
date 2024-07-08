@@ -53,6 +53,13 @@ public class SubjectCreateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
+	 // 20文字以内であるかを確認する追加コード
+	    if (subject_name.length() > 20) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalnameError", "入力値が20文字以内である必要があります");
+	        hasError = true;
+	    }
+
 
 
 	    if (hasError) {

@@ -10,7 +10,7 @@
         <form action="SubjectDeleteExecute.action" method="post">
 
 			<div class="form-group">
-			    <p>科目コード:${subject.cd}     (${subject.name})     を削除してもよろしいですか？</p>
+			    <p>「${subject.name}(${subject.cd})」を削除してもよろしいですか</p>
 			</div>
 
 				<div class="red-buttons">
