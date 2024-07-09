@@ -22,7 +22,9 @@ public class SubjectUpdateAction extends Action {
 		// StudentDAOの生成
 		SubjectDAO dao=new SubjectDAO();
 		Subject subject = dao.get(subjectCd, teacher.getSchool());
-
+		if(subject == null){
+			return "error.jsp";
+		}
 
         // 取得したクラスデータをリクエストに設定
 		request.setAttribute("subject", subject);
