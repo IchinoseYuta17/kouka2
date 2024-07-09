@@ -83,13 +83,13 @@ public class StudentCreateExecuteAction extends Action {
 
 	    int count = no.length();
         if (count > 10 || !isNumeric(no)) {
-            req.setAttribute("errorMsg", "学生番号は数字10文字以内で入力してください。");
+            req.setAttribute("errorNumMsg", "学生番号は数字10文字以内で入力してください。");
             hasError = true;
         }
 
         int count2 = name.length();
-        if (count2 > 10 || !isAlphabetic(name)) {
-            req.setAttribute("errorMsg", "学生番号は文字10文字以内で入力してください。");
+        if (count2 > 10 || isAlphabetic(name)) {
+            req.setAttribute("errorNameMsg", "学生氏名は文字10文字以内で入力してください。");
             hasError = true;
         }
         // hasError = trueの場合は以下を実行
