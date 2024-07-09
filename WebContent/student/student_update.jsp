@@ -31,8 +31,8 @@
                 <c:if test="${not empty nameError}">
         				${nameError}
    				</c:if>
-   				<c:if test="${not empty illegalnameError}">
-						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalnameError}</p>
+   				<c:if test="${not empty errorMsg}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorMsg}</p>
 				</c:if >
             </div>
 
@@ -44,11 +44,11 @@
 	                <c:when test="${not empty beforeClassNum}">
 						<c:forEach var="classNum" items="${classNumSet}">
 							<c:choose>
-							    <c:when test="${classNum == beforClassNum}">
+							    <c:when test="${classNum.num == beforClassNum}">
 							        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${classNum}">${classNum}</option>
+							        <option value="${classNum.num}">${classNum.num}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
