@@ -59,5 +59,24 @@
                 showPasswordInput.style.display = "none";
             }
         }
+        document.getElementById("password").addEventListener("input", function() {
+            var passwordInput = document.getElementById("password");
+            var showPasswordInput = document.getElementById("showPassword");
+            var checkbox = document.getElementById("showPasswordCheckbox");
+
+            if (checkbox.checked) {
+                showPasswordInput.value = passwordInput.value;
+            }
+        });
+
+        document.getElementById("showPassword").addEventListener("input", function() {
+            var passwordInput = document.getElementById("password");
+            var showPasswordInput = document.getElementById("showPassword");
+            var checkbox = document.getElementById("showPasswordCheckbox");
+
+            if (checkbox.checked) {
+                passwordInput.value = showPasswordInput.value;
+            }
+        });
     </script>
 
