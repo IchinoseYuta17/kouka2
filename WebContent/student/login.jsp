@@ -25,7 +25,7 @@
                 <div>
                     <!-- タグを青色に変更 -->
                     <input type="password" id="password" name="password" placeholder="パスワード" required>
-                    <input type="text" id="showPassword" class="show-password" readonly>
+                    <input type="text" id="showPassword" class="show-password" >
                 </div>
 
                 <div class="show-password-label">
