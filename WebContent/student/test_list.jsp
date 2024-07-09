@@ -9,7 +9,7 @@
 <div id="main-contents">
     <h2>成績参照</h2>
     <div class="container-frame">
-        <form class="list-arrange" method="post" action="TestListSubjectExecute.action" style="border-bottom: 1px solid #ddd;">
+        <form class="list-arrange" method="post" action="TestListSubjectExecute.action" <c:if test="${empty nullError}"> style="border-bottom: 1px solid #ddd;"</c:if>>
 	            <div class="list-elm">
 	                <p>科目情報</p>
 	            </div>
@@ -100,13 +100,12 @@
 	            </div>
 
 
+        </form>
 		<c:if test="${not empty nullError}">
-			<div class="error-message">
-			    <p>${nullError}</p>
+			<div class="error-message" style="border-bottom: 1px solid #ddd;">
+			    <p class="test-list-error">${nullError}</p>
 			</div>
 		</c:if>
-        </form>
-
 
 
 

@@ -158,7 +158,7 @@
 			                    ${test.student.name}
 			                </td>
 			                <td>
-			                    <input type="text" name="point_${status.index}" value="${test.point}">
+			                    <input type="number" class="input_num" name="point_${status.index}" value="${test.point}">
 								<c:if test="${not empty errorMessages[status.index]}">
 									<p class="error-message" >${errorMessages[status.index]}</p>
 								</c:if>
