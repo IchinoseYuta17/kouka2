@@ -84,71 +84,70 @@ h2 {
 /*ログインページ用css*/
 
 .login-container {
-            /* 横から縦に変更 */
-            display: block;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center; /* 中央揃え */
+	/* 変更点: 横から縦に変更 */
+	display: block;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	text-align: center; /* 中央揃え */
 
-            width: 80%;
-            margin: 0 auto;
-        }
-        .login-container form {
-            /* 横から縦に変更 */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 中央揃え */
-        }
-        .login-container form > div {
-            margin-bottom: 10px; /* 各要素の間隔を調整 */
-        }
-        .login-container .new-registration {
-            margin-left: auto;
-            margin-bottom: 10px;
-        }
+	width: 80%;
+	margin: 0 auto;
+}
+.login-container form {
+	/* 変更点: 横から縦に変更 */
+	display: flex;
+	flex-direction: column;
+	align-items: center; /* 中央揃え */
+}
+.login-container form > div {
+	margin-bottom: 10px; /* 各要素の間隔を調整 */
+}
+.login-container .new-registration {
+	margin-left: auto;
+	margin-bottom: 10px;
+}
 
 .login-main-container {
-            width: 70%;
-            margin: 0 auto;
+	width: 70%;
+	margin: 0 auto;
+}
 
-        }
-
-        button {
-            background-color: #007bff; /* 青色に変更 */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            width: 100%; /* ボタンの幅を100%に設定 */
-        }
+button {
+	background-color: #007bff; /* 変更点: 青色に変更 */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	width: 100%; /* ボタンの幅を100%に設定 */
+}
 
 button:hover {
-            background-color: #0056b3; /* ホバー時の色を変更 */
-        }
+	background-color: #0056b3; /* 変更点: ホバー時の色を変更 */
+}
 
 input[type="text"], input[type="password"] {
-            width: 100%; /* 入力フィールドの幅を100%に設定 */
-            box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #99c3e6; /* 枠線を薄い青色に設定 */
-            border-radius: 5px; /* 角を丸める */
-            color: black; /* 文字色を黒に設定 */
-        }
+	width: 100%; /* 入力フィールドの幅を100%に設定 */
+	box-sizing: border-box; /* 幅の指定にpaddingとborderを含める */
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #99c3e6; /* 変更点: 枠線を薄い青色に設定 */
+	border-radius: 5px; /* 角を丸める */
+	color: black; /* 文字色を黒に設定 */
+}
 
 .show-password {
-            display: none; /* 最初は非表示 */
-        }
-        .show-password-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-             white-space: nowrap;
-        }
+	display: none; /* 最初は非表示 */
+}
+.show-password-label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	white-space: nowrap;
+}
 
 input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#showPassword {
             width: 100%; /* 入力フィールドの幅を100%に設定 */
@@ -162,21 +161,18 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
        		 box-sizing: border-box; /* パディングとボーダーを含めて要素の幅と高さを計算 */
         }
 
-
-
 #username::placeholder {
 	font-size: smaller;
-	 color: #999999; /* デフォルトの文字色 */
-	 position: absolute;
-	 top: 10px; /* 上からの距離 */
-	 left: 10px; /* 左からの距離 */
+	color: #999999; /* デフォルトの文字色 */
+	position: absolute;
+	top: 10px; /* 上からの距離 */
+	left: 10px; /* 左からの距離 */
 }
 
 /* タグの背景色を薄い青に設定 */
- #username, #password {
-     background-color: #e6f0ff; /* 薄い青色 */
-        }
-
+#username, #password {
+	background-color: #e6f0ff; /* 変更点: 薄い青色 */
+}
 
 /*登録ページ用css*/
 .form-container {
@@ -200,61 +196,59 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
 }
 
 .form-group input,.form-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
-
-.form-group input[type="checkbox"] {
+/* .form-group input[type="checkbox"] {
     width: auto; /* チェックボックスの幅を自動に設定 */
-    margin-left: 0; /* 左マージンを0に設定 */
-}
+    /* margin-left: 0; /* 左マージンを0に設定 */
 
 .glay-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .glay-buttons input[type="submit"] {
-    background-color:#808080;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
+	background-color:#808080;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
 .form-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .form-buttons input[type="submit"] {
-    background-color: #0074e8	;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
+	background-color: #0074e8;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 4px;
 }
 .red-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .red-buttons input[type="submit"] {
-    background-color: #DC143C		;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
+	background-color: #DC143C;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 4px;
 }
 .return a {
-    color: #007bff;
-    text-decoration: none;
-    margin-right: 20px;
+	color: #007bff;
+	text-decoration: none;
+	margin-right: 20px;
 }
 
 .error-message {
@@ -268,8 +262,10 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
 
 
 /*更新ページ用css*/
-
-
+.checkbox-align {
+	display:flex;
+	align-items: center;
+}
 
 /*更新ページ用cssここまで*/
 
@@ -281,16 +277,20 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
 	justify-content: flex-end;
 	margin-bottom: 20px;
 }
-.tbl {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+.new-registration{
+	margin-left: 20px;
 }
 
- .list-container .new-registration {
-            margin-left: auto;
-            margin-bottom: 10px;
- }
+.tbl {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.list-container .new-registration {
+	margin-left: auto;
+	margin-bottom: 10px;
+}
 
 .tbl th, .tbl td {
 	padding: 10px;
@@ -304,8 +304,8 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
 .list-container {
 	display: flex;
 	padding: 20px;
-    justify-content: space-between;
-    border: 1px solid #ddd;
+	justify-content: space-between;
+	border: 1px solid #ddd;
 	border-radius: 5px;
 }
 .list-elm:not(:last-child){
@@ -314,25 +314,32 @@ input[type="text"], input[type="password"], input[type="checkbox"],.input_num ,#
 .list-elm :last-child{
 	margin-right: 10px;
 }
- .enrolled {
-    text-align: center !important; /* 水平方向の中央揃え */
-    vertical-align: middle !important; /* 垂直方向の中央揃え */
+.enrolled {
+	text-align: center !important; /* 水平方向の中央揃え */
+	vertical-align: middle !important; /* 垂直方向の中央揃え */
 }
- .container-frame{
-	padding: 0 20px;
+.container-frame{
 	border: 1px solid #ddd;
 	border-radius: 5px;
-	}
+}
 .list-arrange{
 	display: flex;
 	padding: 20px;
-    justify-content: space-between;
-    align-items: center;
+	justify-content: space-between;
+	align-items: center;
 }
 .list-elm select , input{
 	height:37px;
 	border-radius:5px
+}
 
+.checkbox-align  {
+    margin-top: 10px; /* 上のマージンを追加 */
+}
+
+.list-elm select,
+.list-elm input[type="submit"] {
+    margin-top: 10px; /* 上のマージンを追加 */
 }
 
 /*一覧表示用cssここまで*/

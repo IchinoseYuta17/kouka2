@@ -13,15 +13,14 @@
         <form action="StudentUpdateExecute.action" method="post">
 			<div class="form-group">
 			    <label for="admissionYear">入学年度</label>
-			    <input type="text" name="ent_year" value="${student.entYear}" readonly style="border: none; background-color:#fff;">
+			    <input type="text" name="ent_year" value="${student.entYear}" style="border:none; outline:none;" readonly>
 
 			</div>
 
 
 			<div class="form-group">
 			    <label for="studentNumber">学生番号</label>
-			    <input type="text" name="student_no" value="${student.no}" readonly style="border: none; background-color:#fff;">
-
+			    <input type="text" name="student_no" value="${student.no}" style="border:none; outline:none;" readonly>
 			</div>
 
 
@@ -32,6 +31,9 @@
                 <c:if test="${not empty nameError}">
         				${nameError}
    				</c:if>
+   				<c:if test="${not empty errorMsg}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorMsg}</p>
+				</c:if >
             </div>
 
             <div class="form-group">
@@ -42,11 +44,11 @@
 	                <c:when test="${not empty beforeClassNum}">
 						<c:forEach var="classNum" items="${classNumSet}">
 							<c:choose>
-							    <c:when test="${classNum == beforClassNum}">
+							    <c:when test="${classNum.num == beforClassNum}">
 							        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${classNum}">${classNum}</option>
+							        <option value="${classNum.num}">${classNum.num}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -69,14 +71,14 @@
 
 			 <c:choose>
 				 <c:when test="${student.isAttend == 'TRUE'}">
-					 <div class="student-update-checkbox">
+					 <div class="checkbox-align">
 					    <input type="checkbox" id="scales" name="is_attend" value="1" checked>
 					    <label for="scales">在学中</label>
 					  </div>
 				  </c:when>
 				  <c:otherwise>
 
-  					 <div class="student-update-checkbox">
+  					 <div class="checkbox-align">
 					    <input type="checkbox" id="scales" name="is_attend" value="1">
 					    <label for="scales">在学中</label>
 					 </div>

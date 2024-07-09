@@ -47,6 +47,12 @@ public class StudentUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
+	    int count2 = name.length();
+        if (count2 > 10 || !isAlphabetic(name)) {
+            request.setAttribute("errorMsg", "学生番号は文字10文字以内で入力してください。");
+            hasError = true;
+        }
+
 	    // hasError = trueの場合は以下を実行
 	    if (hasError) {
 	    	Student beforeStudent = dao.studentGet(no, teacher.getSchool());
@@ -84,4 +90,7 @@ public class StudentUpdateExecuteAction extends Action {
 		}
 		return "student_update_done.jsp";
 	}
+    private boolean isAlphabetic(String str) {
+        return str != null && str.matches("[\\p{L}]+");
+    }
 }

@@ -53,6 +53,11 @@ public class StudentCreateExecuteAction extends Action {
             hasError = true;
         }
 
+        if (classNum == null || classNum.isEmpty()) {
+        	req.setAttribute("studentClassError", "クラスを選択してください");
+        	hasError = true;
+        }
+
         // 学生番号の重複があるかのチェック
 		/* no:学生番号
 		 * teacher.getSchool():学校情報
@@ -74,6 +79,19 @@ public class StudentCreateExecuteAction extends Action {
             hasError = true;
         }
 
+
+
+	    int count = no.length();
+        if (count > 10 || !isNumeric(no)) {
+            req.setAttribute("errorMsg", "学生番号は数字10文字以内で入力してください。");
+            hasError = true;
+        }
+
+        int count2 = name.length();
+        if (count2 > 10 || !isAlphabetic(name)) {
+            req.setAttribute("errorMsg", "学生番号は文字10文字以内で入力してください。");
+            hasError = true;
+        }
         // hasError = trueの場合は以下を実行
         if (hasError) {
         	// 送られてきた値を初期表示に使用するのでセットしておく
@@ -105,6 +123,7 @@ public class StudentCreateExecuteAction extends Action {
 
 		// StudentDAOのstudentInsertメソッドを実行してデータベースに登録
 		boolean line = dao.studentUpdate(student);
+		// 学生番号が数字のみで構成されているかどうかをチェックするメソッド
 
 		// lineが0でなければ登録成功
 		if (line != false) {
@@ -114,4 +133,12 @@ public class StudentCreateExecuteAction extends Action {
 		}
 		return "student_create_done.jsp";
 	}
+
+    private boolean isNumeric(String str) {
+        return str != null && str.matches("\\d+");
+    }
+    private boolean isAlphabetic(String str) {
+        return str != null && str.matches("[\\p{L}]+");
+    }
+
 }

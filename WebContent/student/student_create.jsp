@@ -48,12 +48,17 @@
             <div class="form-group">
                 <label for="studentNumber">学生番号:</label>
                 <input type="text" name="studentNumber" placeholder="学生番号を入力してください" <c:if test="${not empty beforeNo}"> value= "${beforeNo}" </c:if> required>
+				<div class="error-message">
 				<c:if test="${not empty studentNumberError}">
         				${studentNumberError}
    				</c:if>
 				<c:if test="${not empty enrolledStudentNumberError}">
         				${enrolledStudentNumberError}
    				</c:if>
+   				<c:if test="${not empty errorMsg}">
+						${errorMsg}
+				</c:if >
+   				</div>
             </div>
 
 
@@ -64,6 +69,9 @@
                 <c:if test="${not empty nameError}">
         				${nameError}
    				</c:if>
+   				<c:if test="${not empty errorMsg}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorMsg}</p>
+				</c:if >
             </div>
 
 
@@ -75,11 +83,11 @@
 	                <c:when test="${not empty beforeClassNum}">
 						<c:forEach var="classNum" items="${classNumSet}">
 							<c:choose>
-							    <c:when test="${classNum == beforClassNum}">
+							    <c:when test="${classNum.num == beforClassNum}">
 							        <option value="${beforeClassNum}" selected>${beforeClassNum}</option>
 							    </c:when>
 							    <c:otherwise>
-							        <option value="${classNum}">${classNum}</option>
+							        <option value="${classNum.num}">${classNum.num}</option>
 							    </c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -87,11 +95,14 @@
 	   				<c:otherwise>
 	   					<option value="">--------</option>
 						<c:forEach var="classNum" items="${classNumSet}">
-						 	<option value="${classNum}">${classNum}</option>
+						 	<option value="${classNum.num}">${classNum.num}</option>
 						</c:forEach>
 	   				</c:otherwise>
    				</c:choose>
                 </select>
+               <c:if test="${not empty studentClassError}">
+					<div class="error-message">${studentClassError}</div>
+				</c:if>
             </div>
 
 
