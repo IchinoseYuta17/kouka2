@@ -81,40 +81,56 @@ public class TestRegistExecuteAction extends Action {
             String studentName = req.getParameter("studentName_" + i);
             String pointStr = req.getParameter("point_" + i);
 
-            if (studentNo == null || classNum == null || pointStr == null) {
-                req.setAttribute("message", "全ての項目を入力してください。");
-                return "test_regist.jsp";
+            // 得点の入力が空の場合のエラー
+            if (pointStr == "") {
+            	errorMessages.put(i, "項目に値を入力してください。");
+
+                // 必要なオブジェクトを作成
+                Student student = studentDAO.studentGet(studentNo, school);
+
+                Test test = new Test();
+
+                student.setEntYear(entYear);
+                student.setName(studentName);
+
+                test.setStudent(student);
+                test.setClassNum(classNum);
+                test.setSubject(subject);
+                test.setSchool(school);
+                test.setNo(num);  // 回数
+                test.setPoint(0); // 初期値の0に戻す
+
+                // 送り返すリストに追加する
+                testList.add(test);
             }
+            else {
+            	// 得点のエラー判定
+            	int point = Integer.parseInt(pointStr);
 
+            	// 入力値範囲のチェック
+                if (point < 0 || point > 100) {
+                	errorMessages.put(i, "得点は0〜100範囲内の正しい値を入力してください。");
+                }
 
-            // 得点のエラー判定
-            int point = Integer.parseInt(pointStr);
-            if (point < 0 || point > 100) {
-            	errorMessages.put(i, "得点は0〜100範囲内の正しい値を入力してください。");
+                // 必要なオブジェクトを作成
+                Student student = studentDAO.studentGet(studentNo, school);
+
+                Test test = new Test();
+
+                student.setEntYear(entYear);
+                student.setName(studentName);
+
+                test.setStudent(student);
+                test.setClassNum(classNum);
+                test.setSubject(subject);
+                test.setSchool(school);
+                test.setNo(num);  // 回数を設定
+                test.setPoint(point);
+
+                // 送り返すリストに追加する
+                testList.add(test);
             }
-
-
-
-            // 必要なオブジェクトを作成
-            Student student = studentDAO.studentGet(studentNo, school);
-
-
-            Test test = new Test();
-
-            student.setEntYear(entYear);
-            student.setName(studentName);
-
-            test.setStudent(student);
-            test.setClassNum(classNum);
-            test.setSubject(subject);
-            test.setSchool(school);
-            test.setNo(num);  // 回数を設定
-            test.setPoint(point);
-
-            // 送り返すリストに追加する
-            testList.add(test);
         }
-
 
 
         // errorMessagesに値が格納されていた場合はここからtest_regist.jspに画面遷移しエラーを表示
