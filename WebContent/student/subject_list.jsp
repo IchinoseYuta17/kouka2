@@ -24,6 +24,16 @@
 	                <td>${subject.name}</td>
 	                <td><a href="SubjectUpdate.action?subject_cd=${subject.cd}">変更</a></td>
 	                <td><a href="SubjectDelete.action?subject_cd=${subject.cd}">削除</a></td>
+
+<c:choose>
+    <c:when test="${subject.cd != null}">
+        <a href="SubjectUpdate.action?subject_cd=${subject.cd}">変更</a>
+    </c:when>
+    <c:otherwise>
+        <a href="phantom.jsp">変更</a>
+    </c:otherwise>
+</c:choose>
+
 	            </tr>
 	        </c:forEach>
 	    </table>

@@ -35,6 +35,13 @@ public class SubjectUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
+		 // 20文字以内であるかを確認する追加コード
+	    if (subject_name.length() > 20) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalnameError", "入力値が20文字以内である必要があります");
+	        hasError = true;
+	    }
+
 	    if (hasError) {
 	    	// 送られてきた値を初期表示に使用するのでセットしておく
 	    	request.setAttribute("beforeSubjectCd", subject_cd);
@@ -42,6 +49,15 @@ public class SubjectUpdateExecuteAction extends Action {
 	      // 必要な情報をセットしてSubject_create.jspに送り返す
 	      Util.setSubjects(request);
 	      return "subject_update.jsp";
+	    }
+
+	    if (hasError) {
+	    	// 送られてきた値を初期表示に使用するのでセットしておく
+	    	request.setAttribute("beforeSubjectCd", subject_cd);
+	    	request.setAttribute("beforeSubjectName", subject_name);
+	      // 必要な情報をセットしてSubject_create.jspに送り返す
+	      Util.setSubjects(request);	// 入学年度の情報
+	      return "subject_create.jsp";
 	    }
 
 		// Subjectビーンに設定

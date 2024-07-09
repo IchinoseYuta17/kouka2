@@ -47,9 +47,16 @@ public class SubjectCreateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
-	    if (subject_cd == null || !subject_cd.matches("^[A-Za-z]\\d{2}$")) {
+	    if (subject_cd == null || !subject_cd.matches("^[A-Z]\\d{2}$")) {
 	        // 表示するエラー文の設定
-	        request.setAttribute("illegalCdError", "入力値が英字一文字と数字二文字で構成されていません");
+	        request.setAttribute("illegalCdError", "入力値が大英字一文字と数字二文字で構成されていません");
+	        hasError = true;
+	    }
+
+	 // 20文字以内であるかを確認する追加コード
+	    if (subject_name.length() > 20) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalnameError", "入力値が20文字以内である必要があります");
 	        hasError = true;
 	    }
 
