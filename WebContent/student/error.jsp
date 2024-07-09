@@ -10,7 +10,7 @@
     <div id="main-contents">
 		<div class="done-container">
 		  <h2 class="form-title">エラー</h2>
-		  <p class="done-text">選択されたレコードは存在しません</p>
+		  <p class="done-text" style="background-color: #DC143C; color:#fff;">選択されたレコードは存在しません</p>
 		  <div class = "link-container">
 		  	<a href="SubjectList.action">科目一覧</a>
 	  	  </div>
