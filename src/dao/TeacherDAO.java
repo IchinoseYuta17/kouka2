@@ -15,7 +15,7 @@ public class TeacherDAO extends DAO {
         Connection con = getConnection(); // データベース接続を取得
 
         // 教師IDとパスワードを条件にしてSQLクエリを準備
-        PreparedStatement st = con.prepareStatement("SELECT * FROM teacher AS T JOIN SCHOOL AS S ON T.SCHOOL_CD = S.CD WHERE ID = ? AND PASSWORD = ?");
+        PreparedStatement st = con.prepareStatement("SELECT t.id, t.password, t.name, t.school_cd, s.name as school_name FROM teacher AS T JOIN SCHOOL AS S ON T.SCHOOL_CD = S.CD WHERE ID = ? AND PASSWORD = ?");
         st.setString(1, id); // パラメータに教師IDを設定
         st.setString(2, password); // パラメータにパスワードを設定
         ResultSet rs = st.executeQuery(); // クエリを実行して結果セットを取得
@@ -44,7 +44,7 @@ public class TeacherDAO extends DAO {
         Connection con = getConnection(); // データベース接続を取得
 
         // 教師IDを条件にしてSQLクエリを準備
-        PreparedStatement st = con.prepareStatement("SELECT * FROM TEACHER AS t JOIN SCHOOL AS s ON t.SCHOOL_CD = s.CD WHERE t.id= ?");
+        PreparedStatement st = con.prepareStatement("SELECT t.id, t.password, t.name, t.school_cd, s.name as school_name FROM teacher AS T JOIN SCHOOL AS S ON T.SCHOOL_CD = S.CD WHERE ID = ?");
         st.setString(1, id); // パラメータに教師IDを設定
         ResultSet rs = st.executeQuery(); // クエリを実行して結果セットを取得
 

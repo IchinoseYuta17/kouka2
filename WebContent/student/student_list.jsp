@@ -9,8 +9,8 @@
 	select {
 		width: 180px;
 	}
-	.error {
-		color: red;
+	a{
+		margin:5px;
 	}
 </style>
 <body>

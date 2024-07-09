@@ -10,10 +10,12 @@
 <body>
     <div class="login-main-container">
 
-        <h2>ログイン</h2>
+
         <!-- ログインフォーム -->
         <div class="login-container">
+          <h2>ログイン</h2>
             <form method="post" action="LoginExecute.action">
+
                 <div>
                     <!-- タグを青色に変更 -->
                    <input type="text" id="id" name="id" placeholder="ID" required>
