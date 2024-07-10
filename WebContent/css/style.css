@@ -430,7 +430,21 @@ input[type="text"], input[type="password"],.input_num ,#showPassword {
 	border-radius: 5px;
 	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .1);
 }
-
+.index-test-ul{
+	list-style: none;
+	padding: 0;
+	margin:0;
+}
+.index-test-li{
+	list-style: none;
+	margin:0;
+}
+.index-test-a-1{
+	padding:10px 40px 0 40px;
+}
+.index-test-a-2{
+	padding:0 40px 10px 40px;
+}
 /*index.jspページ用cssここまで*/
 
 

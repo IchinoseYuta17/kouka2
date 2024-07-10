@@ -18,9 +18,9 @@
 
                 <div style="text-align: center;">
                 	<div style="margin: 20px 0 5px 0;">成績管理</div>
-					<ul style="list-style: none; padding: 0;">
-						<li><a href="TestRegist.action" style="display: block;">成績登録</a></li>
-                    	<li><a href="TestList.action" style="display: block;">成績参照</a></li>
+					<ul class="index-test-ul">
+						<li class="index-test-li"><a class="index-test-a-1" href="TestRegist.action" style="display: block;">成績登録</a></li>
+                    	<li class="index-test-li"><a class="index-test-a-2" href="TestList.action" style="display: block;">成績参照</a></li>
 					</ul>
                 </div>
             </div>
