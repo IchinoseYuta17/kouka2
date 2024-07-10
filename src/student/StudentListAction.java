@@ -48,7 +48,7 @@ public class StudentListAction extends Action{
 	         req.setAttribute("flg", flg);
 	         return "student_list.jsp";
     	}
-    	else{
+    	else {
     		// 検索後の画面に表示するリストの作成
 
         	// リクエストパラメータから検索条件を取得
@@ -75,7 +75,7 @@ public class StudentListAction extends Action{
              (classNum == null || classNum.isEmpty()) &&
              (isAttendStr == null || isAttendStr.isEmpty())) {
              // 表示するエラー文の設定
-             req.setAttribute("allFieldsError", "入学年度、クラス、および在学中のステータスをすべて入力してください");
+             req.setAttribute("allFieldsError", "入学年度、クラス、および在学中のステータスを選択してください");
              int flg = 0;
           // 検索結果の数を数える
              int resultCount = allStudentList.size();
@@ -98,23 +98,32 @@ public class StudentListAction extends Action{
          }
 
          Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : 0;
-         Boolean isAttend = (isAttendStr != null || isAttendStr.isEmpty()) ? true : false;
-         classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
+         Boolean isAttend = (isAttendStr != null) ? true : false;
+         classNum = (classNum != null && !classNum.isEmpty()) ? classNum : null;
 
             // 返却するリストを空で定義
             List<Student> searchedStudentList = new ArrayList<>();
-
-            if (entYear > 0 && classNum != null && isAttend != null) {
+            // 3項目での検索
+            if (entYear > 0 && classNum != null && isAttend == true) {
               searchedStudentList = studentDAO.studentFilter(school, entYear, classNum, isAttend);
-          } else if (entYear > 0 && isAttend != null) {
-              searchedStudentList = studentDAO.studentFilter(school,entYear, isAttend);
-          } else if (classNum != null && isAttend != null) {
-            searchedStudentList = studentDAO.studentFilterClassNumAndIsAttend(school,classNum, isAttend);
-          } else if (isAttend != null) {
+          } // 2項目での検索
+            else if ((entYear > 0 && isAttend == true) && classNum == null) {
+              searchedStudentList = studentDAO.studentFilter(school,entYear,isAttend);
+          }
+            else if ((classNum != null && isAttend == true) && entYear == 0) {
+            searchedStudentList = studentDAO.studentFilterClassNumAndIsAttend(school,classNum,isAttend);
+          }
+            else if ((classNum != null && entYear > 0) && isAttend == false) {
+              searchedStudentList = studentDAO.studentFilterClassNumAndEntYear(school,classNum,entYear);
+          } // 1項目での検索
+          	else if (isAttend == true && (entYear == 0 && classNum == null)) {
               searchedStudentList = studentDAO.studentFilter(school,isAttend);
-          } else {
-              // 全件取得など他の適切な処理を実装（例：entYearだけのフィルタなど）
-        	  searchedStudentList = new ArrayList<>(); // 適宜修正
+          }
+          	else if (classNum != null && (entYear == 0 && isAttend == false)) {
+              searchedStudentList = studentDAO.studentFilterClassNum(school,classNum);
+          }
+          	else if (entYear > 0 && (classNum == null && isAttend == false)) {
+              searchedStudentList = studentDAO.studentFilterEntYear(school,entYear);
           }
 
             // 検索結果の数を数える
@@ -125,8 +134,9 @@ public class StudentListAction extends Action{
             req.setAttribute("searchedStudentList", searchedStudentList);
             req.setAttribute("resultCount", resultCount);
             req.setAttribute("flg", flg);
+            req.setAttribute("isAttend", isAttend);
 
-         // 送られてきた値を初期表示に使用するのでセットしておく
+            // 送られてきた値を初期表示に使用するのでセットしておく
             req.setAttribute("beforeEntYear", entYearStr);
             req.setAttribute("beforeClassNum", classNum);
             req.setAttribute("beforeIsAttend", isAttendStr);

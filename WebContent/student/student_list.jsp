@@ -30,6 +30,7 @@
 						<select name="year">
 							<c:choose>
 								<c:when test="${not empty beforeEntYear}">
+									<option value="">--------</option>
 									<c:forEach var="entYear" items="${studentEntYearSet}">
 										<c:choose>
 										    <c:when test="${entYear == beforeEntYear}">
@@ -56,6 +57,7 @@
 						<select name="class">
 							<c:choose>
 								<c:when test="${not empty beforeClassNum}">
+									<option value="">--------</option>
 									<c:forEach var="classNum" items="${classNumSet}">
 										<c:choose>
 										    <c:when test="${classNum.num == beforeClassNum}">
@@ -66,6 +68,7 @@
 										    </c:otherwise>
 										</c:choose>
 									</c:forEach>
+
 								</c:when>
 								<c:otherwise>
 									<option value="">--------</option>
@@ -130,7 +133,6 @@
 					</table>
 				</c:when>
 				<c:when test="${flg == 1}">
-					<p>${beforeEntYear} ${beforeClassNum} ${beforeIsAttend}</p>
 					<c:if test="${resultCount > 0}">
 						<label>検索結果:${resultCount}件</label>
 					</c:if>
