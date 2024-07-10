@@ -98,27 +98,26 @@ public class StudentListAction extends Action{
          }
 
          Integer entYear = (entYearStr != null && !entYearStr.isEmpty()) ? Integer.parseInt(entYearStr) : 0;
-         Boolean isAttend = (isAttendStr != null && isAttendStr.equals("1")) ? true : null;
-       	classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
+         Boolean isAttend = (isAttendStr != null || isAttendStr.isEmpty()) ? true : false;
+         classNum = (classNum != null && !classNum.equals("none")) ? classNum : null;
 
             // 返却するリストを空で定義
             List<Student> searchedStudentList = new ArrayList<>();
 
             if (entYear > 0 && classNum != null && isAttend != null) {
-//              System.out.println("Calling: studentFilter(entYear, classNum, isAttend)");
               searchedStudentList = studentDAO.studentFilter(school, entYear, classNum, isAttend);
           } else if (entYear > 0 && isAttend != null) {
-//              System.out.println("Calling: studentFilter(entYear, isAttend)");
               searchedStudentList = studentDAO.studentFilter(school,entYear, isAttend);
+          } else if (classNum != null && isAttend != null) {
+            searchedStudentList = studentDAO.studentFilterClassNumAndIsAttend(school,classNum, isAttend);
           } else if (isAttend != null) {
-//              System.out.println("Calling: studentFilter(isAttend)");
               searchedStudentList = studentDAO.studentFilter(school,isAttend);
           } else {
               // 全件取得など他の適切な処理を実装（例：entYearだけのフィルタなど）
         	  searchedStudentList = new ArrayList<>(); // 適宜修正
           }
 
-//             検索結果の数を数える
+            // 検索結果の数を数える
             int resultCount = searchedStudentList.size();
             int flg = 1;
 

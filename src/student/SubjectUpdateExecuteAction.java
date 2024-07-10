@@ -23,9 +23,21 @@ public class SubjectUpdateExecuteAction extends Action {
 		// SubjectDAOインスタンスを生成
 		SubjectDAO dao=new SubjectDAO();
 
+    	// 送られてきた値を初期表示に使用するのでセットしておく
+    	request.setAttribute("beforeSubjectCd", subject_cd);
+    	request.setAttribute("beforeSubjectName", subject_name);
+		// 必要な情報をセットしてSubject_create.jspに送り返す
+		Util.setSubjects(request);	// 入学年度の情報
 
 		//科目変更のエラーチェック
 		boolean hasError = false;
+
+		// 入力値がnullの場合
+	    if (subject_name == "") {
+	    	// 表示するエラー文の設定
+	    	request.setAttribute("nullError", "科目名を入力してください");
+	        return "subject_update.jsp";
+	    }
 
 		Subject enrolledSubject = dao.getByName(subject_name, teacher.getSchool());
 	    // enrolledStudent(在籍中の学生)が!=null(nullではない)の場合
@@ -35,7 +47,7 @@ public class SubjectUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
-		 // 20文字以内であるかを確認する追加コード
+		// 20文字以内であるかを確認する追加コード
 	    if (subject_name.length() > 20) {
 	        // 表示するエラー文の設定
 	        request.setAttribute("illegalnameError", "入力値が20文字以内である必要があります");
@@ -43,20 +55,6 @@ public class SubjectUpdateExecuteAction extends Action {
 	    }
 
 	    if (hasError) {
-	    	// 送られてきた値を初期表示に使用するのでセットしておく
-	    	request.setAttribute("beforeSubjectCd", subject_cd);
-	    	request.setAttribute("beforeSubjectName", subject_name);
-	      // 必要な情報をセットしてSubject_create.jspに送り返す
-	      Util.setSubjects(request);
-	      return "subject_update.jsp";
-	    }
-
-	    if (hasError) {
-	    	// 送られてきた値を初期表示に使用するのでセットしておく
-	    	request.setAttribute("beforeSubjectCd", subject_cd);
-	    	request.setAttribute("beforeSubjectName", subject_name);
-	      // 必要な情報をセットしてSubject_create.jspに送り返す
-	      Util.setSubjects(request);	// 入学年度の情報
 	      return "subject_create.jsp";
 	    }
 

@@ -137,6 +137,30 @@ public class StudentDAO extends DAO {
   return studentList;
 }
 
+// クラス番号と在学状況で学生リストをフィルタリングするメソッド
+public List<Student> studentFilterClassNumAndIsAttend(School school, String classNum, Boolean isAttend) throws Exception {
+// データベース接続を取得
+Connection con = getConnection();
+
+// SQLクエリを準備
+String sql = baseSql + "AND CLASS_NUM = ? AND IS_ATTEND = ?";
+PreparedStatement st = con.prepareStatement(sql);
+st.setString(1,school.getCd());
+st.setString(2, classNum); // クラス番号を設定
+st.setBoolean(3, isAttend); // 在学中フラグを設定
+ResultSet rs = st.executeQuery(); // クエリを実行し、結果を取得
+
+// 取得した結果をフィルタリング
+List<Student> studentList = studentPostfilter(rs,school);
+
+// リソースを解放して接続をクローズ
+st.close();
+con.close();
+
+// フィルタリングされた学生リストを返す
+return studentList;
+}
+
 // 在学中フラグで学生リストをフィルタリングするメソッド
 public List<Student> studentFilter(School school, boolean isAttend) throws Exception {
   Connection con = getConnection();
