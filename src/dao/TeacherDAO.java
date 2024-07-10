@@ -62,4 +62,22 @@ public class TeacherDAO extends DAO {
         }
         return teacher; // 教師オブジェクトを返す
     }
+    // サインアップメソッド
+    public boolean create(Teacher teacher) throws Exception {
+        Connection con = getConnection(); // データベース接続を取得
+
+        // 教師情報を挿入するためのSQLクエリを準備
+        PreparedStatement st = con.prepareStatement("INSERT INTO teacher (id, password, name, school_cd) VALUES (?, ?, ?, ?)");
+        st.setString(1, teacher.getId()); // パラメータに教師IDを設定
+        st.setString(2, teacher.getPassword()); // パラメータにパスワードを設定
+        st.setString(3, teacher.getName()); // パラメータに教師名を設定
+        st.setString(4, teacher.getSchool().getCd()); // パラメータに学校コードを設定
+
+        int result = st.executeUpdate(); // クエリを実行して更新結果を取得
+
+        st.close(); // ステートメントをクローズ
+        con.close(); // 接続をクローズ
+
+        return result > 0; // 挿入が成功したかどうかを返す
+    }
 }
