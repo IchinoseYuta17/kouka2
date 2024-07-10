@@ -54,8 +54,16 @@ public class SubjectUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
+	    if (subject_name == null || subject_name.matches("^\\d+$")) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalCdError", "科目名が文字で構成されていません");
+	        hasError = true;
+	    }
+
+
+
 	    if (hasError) {
-	      return "subject_create.jsp";
+	      return "subject_update.jsp";
 	    }
 
 		// Subjectビーンに設定
