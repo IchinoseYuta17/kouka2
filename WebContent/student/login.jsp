@@ -13,7 +13,7 @@
 
         <!-- ログインフォーム -->
         <div class="login-container">
-          <h2>ログイン</h2>
+          <h2 class="login-ttl">ログイン</h2>
             <form method="post" action="LoginExecute.action">
 
                 <div>
