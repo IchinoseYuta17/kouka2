@@ -15,7 +15,7 @@
 
 
             <div class="form-group">
-                <label for="admissionYear">入学年度:</label>
+                <label for="admissionYear">入学年度</label>
                 <select id="admissionYear" name="admissionYear">
                 <c:choose>
 					<c:when test="${not empty beforeEntYear}">
@@ -46,7 +46,7 @@
 
 
             <div class="form-group">
-                <label for="studentNumber">学生番号:</label>
+                <label for="studentNumber">学生番号</label>
                 <input type="text" name="studentNumber" placeholder="学生番号を入力してください" <c:if test="${not empty beforeNo}"> value= "${beforeNo}" </c:if> required>
 				<div class="error-message">
 				<c:if test="${not empty studentNumberError}">
@@ -64,7 +64,7 @@
 
 
             <div class="form-group">
-                <label for="name">氏名:</label>
+                <label for="name">氏名</label>
                 <input type="text" name="name" placeholder="氏名を入力してください" <c:if test="${not empty beforeName}"> value= "${beforeName}" </c:if> required>
                 <c:if test="${not empty nameError}">
         				${nameError}
@@ -77,7 +77,7 @@
 
 
             <div class="form-group">
-                <label for="class">クラス:</label>
+                <label for="class">クラス</label>
                 <select name="class">
 				<c:choose>
 	                <c:when test="${not empty beforeClassNum}">
