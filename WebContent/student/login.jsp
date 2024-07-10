@@ -8,8 +8,11 @@
     <title>得点管理システム</title>
 
 <body>
-    <div class="login-main-container">
+	<div class="SingUp-container">
+		<a href="SignUp.action">サインアップ</a>
+	</div>
 
+    <div class="login-main-container">
 
         <!-- ログインフォーム -->
         <div class="login-container">
