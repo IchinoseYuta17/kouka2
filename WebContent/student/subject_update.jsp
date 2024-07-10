@@ -22,6 +22,7 @@
 							<input  type="text" name="subject_cd" value="${beforeSubjectCd}" style="border:none; outline:none;" readonly>
 					</c:otherwise>
 				</c:choose>
+
 			</div>
 			<div class="form-group">
 				<label for="studentNumber">科目名</label>
@@ -44,6 +45,10 @@
 				<c:if test="${not empty nullError}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${nullError}</p>
 				</c:if >
+				<c:if test="${not empty illegalCdError}">
+						<p  class="error-message" >${illegalCdError}</p>
+				</c:if >
+
 			</div>
 
 
