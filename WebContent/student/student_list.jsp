@@ -130,6 +130,7 @@
 					</table>
 				</c:when>
 				<c:when test="${flg == 1}">
+					<p>${beforeEntYear} ${beforeClassNum} ${beforeIsAttend}</p>
 					<c:if test="${resultCount > 0}">
 						<label>検索結果:${resultCount}件</label>
 					</c:if>
