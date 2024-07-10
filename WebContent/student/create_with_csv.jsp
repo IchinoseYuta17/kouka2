@@ -22,8 +22,9 @@
 			<div class="form-buttons">
 			    <input type="submit" value="登録して終了">
 			</div>
-
-            <a href="StudentList.action">戻る</a>
+			<div class="return">
+            	<a href="StudentList.action">戻る</a>
+            </div>
         </form>
 
     </div>
