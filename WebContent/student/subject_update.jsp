@@ -27,10 +27,10 @@
 				<label for="studentNumber">科目名</label>
 				<c:choose>
 					<c:when test="${empty beforeSubjectName}">
-						<input  type="text" name="subject_name" value="${subject.name}" >
+						<input  type="text" name="subject_name" value="${subject.name}" required>
 					</c:when>
 					<c:otherwise>
-							<input  type="text" name="subject_name" value="${beforeSubjectName}" >
+							<input  type="text" name="subject_name" value="${beforeSubjectName}" required>
 					</c:otherwise>
 				</c:choose>
 
@@ -40,6 +40,9 @@
 
 				<c:if test="${not empty illegalnameError}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalnameError}</p>
+				</c:if >
+				<c:if test="${not empty nullError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${nullError}</p>
 				</c:if >
 			</div>
 
