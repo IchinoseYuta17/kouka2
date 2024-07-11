@@ -31,6 +31,9 @@
 				    <c:if test="${not empty illegalnameError}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${illegalnameError}</p>
 				    </c:if >
+				    <c:if test="${not empty illegalnoError}">
+						<p  class="error-message" >${illegalnoError}</p>
+					</c:if >
 				    <c:if test="${not empty subjectNameNullError}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${subjectNameNullError}</p>
 				    </c:if >

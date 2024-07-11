@@ -60,7 +60,11 @@ public class SubjectCreateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
-		// 値が未入力かどうかのチェック+入力値が空白の場合のエラー
+	    if (subject_name == null || subject_name.matches("^\\d+$")) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalnoError", "科目名が文字で構成されていません");
+	        hasError = true;
+	    }		// 値が未入力かどうかのチェック+入力値が空白の場合のエラー
 	    if (subject_name == null || subject_name.isEmpty() || subject_name.trim().isEmpty()) {
 	    	// 表示するエラー文の設定
 	    	request.setAttribute("subjectNameNullError", "科目名を入力してください");
