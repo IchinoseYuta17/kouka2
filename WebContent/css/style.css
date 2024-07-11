@@ -196,16 +196,24 @@ input[type="text"], input[type="password"],.input_num ,#showPassword {
 
 /*ログインページ用cssここまで*/
 
+
+
+
+
 /*サインアップ用css*/
 .SingUp-container {
-  position: relative;
-  top: 10px; /* より大きな値に変更 */
-  left: 700px; /* より大きな値に変更 */
-  margin-bottom: 30px;
+  text-align: center;
+	margin: 2% 20% 1% 60%;
+}
+.signup-div{
+	width:60%
 }
 
-
 /*サインアップ用cssここまで*/
+
+
+
+
 
 /*登録ページ用css*/
 .form-container {
