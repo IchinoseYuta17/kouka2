@@ -79,12 +79,6 @@ public class StudentCreateExecuteAction extends Action {
             hasError = true;
         }
 
-        // 入力値が空白の場合のエラー
-        if (name.trim().isEmpty()) {
-            req.setAttribute("nameBlankSpaceError", "氏名が空白です");
-            hasError = true;
-        }
-
 	    int count = no.length();
         if (count > 10 || !isNumeric(no)) {
             req.setAttribute("errorNumMsg", "学生番号は数字10文字以内で入力してください。");

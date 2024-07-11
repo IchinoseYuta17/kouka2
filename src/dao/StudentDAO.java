@@ -16,12 +16,13 @@ public class StudentDAO extends DAO {
 // ==================== 以下、ログイン機能実装時のメソッド =========================
 //    // ベースのSQLクエリを定義
     private String baseSql = "SELECT * FROM student WHERE SCHOOL_CD = ?";
+    private String endSql = " order by ent_year, no";
     List<Student> studentList = new ArrayList<>();
 
 
     public List<Student> studentListGet(Teacher teacher)throws Exception{
         try (Connection con = getConnection();
-                PreparedStatement st = con.prepareStatement(baseSql)) {
+                PreparedStatement st = con.prepareStatement(baseSql + endSql)) {
 
                School school = teacher.getSchool();
                st.setString(1, school.getCd());
@@ -51,7 +52,7 @@ public class StudentDAO extends DAO {
         Connection con = getConnection(); // データベース接続を取得
 
         // 学生番号を条件にしてSQLクエリを準備
-        PreparedStatement st = con.prepareStatement(baseSql + " AND NO = ?");
+        PreparedStatement st = con.prepareStatement(baseSql + " AND NO = ?" + endSql);
         st.setString(1,school.getCd());
         st.setString(2, no); // パラメータに学生番号を設定
         ResultSet rs = st.executeQuery(); // クエリを実行して結果セットを取得
@@ -96,7 +97,7 @@ public class StudentDAO extends DAO {
       Connection con = getConnection();
 
       // SQLクエリを準備
-      String sql = baseSql + "AND ENT_YEAR = ? AND CLASS_NUM = ? AND IS_ATTEND = ?";
+      String sql = baseSql + "AND ENT_YEAR = ? AND CLASS_NUM = ? AND IS_ATTEND = ?" + endSql;
       PreparedStatement st = con.prepareStatement(sql);
       st.setString(1,school.getCd());
       st.setInt(2, entYear);
@@ -119,7 +120,7 @@ public class StudentDAO extends DAO {
   Connection con = getConnection();
 
   // SQLクエリを準備
-  String sql = baseSql + "AND ENT_YEAR = ? AND IS_ATTEND = ?";
+  String sql = baseSql + "AND ENT_YEAR = ? AND IS_ATTEND = ?" + endSql;
   PreparedStatement st = con.prepareStatement(sql);
   st.setString(1,school.getCd());
   st.setInt(2, entYear); // 入学年度を設定
@@ -143,7 +144,7 @@ public List<Student> studentFilterClassNumAndIsAttend(School school, String clas
 Connection con = getConnection();
 
 // SQLクエリを準備
-String sql = baseSql + "AND CLASS_NUM = ? AND IS_ATTEND = ?";
+String sql = baseSql + "AND CLASS_NUM = ? AND IS_ATTEND = ?" + endSql;
 PreparedStatement st = con.prepareStatement(sql);
 st.setString(1,school.getCd());
 st.setString(2, classNum); // クラス番号を設定
@@ -167,7 +168,7 @@ public List<Student> studentFilterClassNumAndEntYear(School school, String class
 Connection con = getConnection();
 
 //SQLクエリを準備
-String sql = baseSql + "AND CLASS_NUM = ? AND ENT_YEAR = ?";
+String sql = baseSql + "AND CLASS_NUM = ? AND ENT_YEAR = ?" + endSql;
 PreparedStatement st = con.prepareStatement(sql);
 st.setString(1,school.getCd());
 st.setString(2, classNum); // クラス番号を設定
@@ -190,7 +191,7 @@ public List<Student> studentFilter(School school, boolean isAttend) throws Excep
   Connection con = getConnection();
 
   // SQLクエリを準備
-  String sql = baseSql + "AND IS_ATTEND = ?";
+  String sql = baseSql + "AND IS_ATTEND = ?" + endSql;
   PreparedStatement st = con.prepareStatement(sql);
   st.setString(1,school.getCd());
   st.setBoolean(2, isAttend);
@@ -208,7 +209,7 @@ public List<Student> studentFilterClassNum(School school, String classNum) throw
 	  Connection con = getConnection();
 
 	  // SQLクエリを準備
-	  String sql = baseSql + "AND CLASS_NUM = ?";
+	  String sql = baseSql + "AND CLASS_NUM = ?" + endSql;
 	  PreparedStatement st = con.prepareStatement(sql);
 	  st.setString(1,school.getCd());
 	  st.setString(2, classNum);
@@ -226,7 +227,7 @@ public List<Student> studentFilterEntYear(School school, int entYear) throws Exc
 	  Connection con = getConnection();
 
 	  // SQLクエリを準備
-	  String sql = baseSql + "AND ENT_YEAR = ?";
+	  String sql = baseSql + "AND ENT_YEAR = ?" + endSql;
 	  PreparedStatement st = con.prepareStatement(sql);
 	  st.setString(1,school.getCd());
 	  st.setInt(2, entYear);

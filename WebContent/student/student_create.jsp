@@ -68,13 +68,10 @@
                 <label for="name">氏名</label>
                 <input type="text" name="name" placeholder="氏名を入力してください" <c:if test="${not empty beforeName}"> value= "${beforeName}" </c:if> required>
                 <c:if test="${not empty nameError}">
-        				${nameError}
+        				<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${nameError}</p>
    				</c:if>
    				<c:if test="${not empty errorNameMsg}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorNameMsg}</p>
-				</c:if >
-				<c:if test="${not empty nameBlankSpaceError}">
-						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${nameBlankSpaceError}</p>
 				</c:if >
             </div>
 

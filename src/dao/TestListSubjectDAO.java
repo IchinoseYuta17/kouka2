@@ -15,7 +15,7 @@ public class TestListSubjectDAO extends DAO {
 
     // SQLクエリのベース部分を定義
     // private String baseSql = "SELECT student.ent_year, test.class_num, test.student_no, student.name, test.point, FROM test JOIN subject ON test.subject_cd = subject.cd JOIN student ON test.student_no = student.no WHERE student.ent_year = ? AND test.class_num = ? AND subject.cd = ? AND test.school_cd = ?";
-	private String baseSql = "SELECT test.*, student.ent_year, student.name FROM test JOIN subject ON test.subject_cd = subject.cd JOIN student ON test.student_no = student.no WHERE student.ent_year = ? AND test.class_num = ? AND subject.cd = ? AND test.school_cd = ?";
+	private String baseSql = "SELECT test.*, student.ent_year, student.name FROM test JOIN subject ON test.subject_cd = subject.cd JOIN student ON test.student_no = student.no WHERE student.ent_year = ? AND test.class_num = ? AND subject.cd = ? AND test.school_cd = ? order by test.student_no";
     // フィルター条件に基づいてテストリストを取得するメソッド
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
         List<TestListSubject> testListSubjects = new ArrayList<>();
