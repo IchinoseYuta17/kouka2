@@ -60,7 +60,11 @@ public class SubjectCreateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
-
+	    if (subject_name == null || subject_name.matches("^\\d+$")) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("illegalnoError", "科目名が文字で構成されていません");
+	        hasError = true;
+	    }
 
 	    if (hasError) {
 	    	// 送られてきた値を初期表示に使用するのでセットしておく
