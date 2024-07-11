@@ -161,6 +161,30 @@ con.close();
 return studentList;
 }
 
+//クラス番号と在学状況で学生リストをフィルタリングするメソッド
+public List<Student> studentFilterClassNumAndEntYear(School school, String classNum, int entYear) throws Exception {
+//データベース接続を取得
+Connection con = getConnection();
+
+//SQLクエリを準備
+String sql = baseSql + "AND CLASS_NUM = ? AND ENT_YEAR = ?";
+PreparedStatement st = con.prepareStatement(sql);
+st.setString(1,school.getCd());
+st.setString(2, classNum); // クラス番号を設定
+st.setInt(3, entYear); // 在学中フラグを設定
+ResultSet rs = st.executeQuery(); // クエリを実行し、結果を取得
+
+//取得した結果をフィルタリング
+List<Student> studentList = studentPostfilter(rs,school);
+
+//リソースを解放して接続をクローズ
+st.close();
+con.close();
+
+//フィルタリングされた学生リストを返す
+return studentList;
+}
+
 // 在学中フラグで学生リストをフィルタリングするメソッド
 public List<Student> studentFilter(School school, boolean isAttend) throws Exception {
   Connection con = getConnection();
@@ -179,6 +203,44 @@ public List<Student> studentFilter(School school, boolean isAttend) throws Excep
 
   return studentList;
 }
+
+public List<Student> studentFilterClassNum(School school, String classNum) throws Exception {
+	  Connection con = getConnection();
+
+	  // SQLクエリを準備
+	  String sql = baseSql + "AND CLASS_NUM = ?";
+	  PreparedStatement st = con.prepareStatement(sql);
+	  st.setString(1,school.getCd());
+	  st.setString(2, classNum);
+	  ResultSet rs = st.executeQuery();
+
+	  List<Student> studentList = studentPostfilter(rs, school);
+
+	  st.close();
+	  con.close();
+
+	  return studentList;
+	}
+
+public List<Student> studentFilterEntYear(School school, int entYear) throws Exception {
+	  Connection con = getConnection();
+
+	  // SQLクエリを準備
+	  String sql = baseSql + "AND ENT_YEAR = ?";
+	  PreparedStatement st = con.prepareStatement(sql);
+	  st.setString(1,school.getCd());
+	  st.setInt(2, entYear);
+	  ResultSet rs = st.executeQuery();
+
+	  List<Student> studentList = studentPostfilter(rs, school);
+
+	  st.close();
+	  con.close();
+
+	  return studentList;
+	}
+
+
 
     // 学生情報を保存(更新)するメソッド
     public boolean studentUpdate(Student student) throws Exception {
