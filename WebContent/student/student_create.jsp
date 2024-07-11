@@ -58,6 +58,7 @@
    				<c:if test="${not empty errorNumMsg}">
 						${errorNumMsg}
 				</c:if >
+
    				</div>
             </div>
 
@@ -71,6 +72,9 @@
    				</c:if>
    				<c:if test="${not empty errorNameMsg}">
 						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorNameMsg}</p>
+				</c:if >
+				<c:if test="${not empty nameBlankSpaceError}">
+						<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${nameBlankSpaceError}</p>
 				</c:if >
             </div>
 

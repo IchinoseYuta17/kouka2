@@ -40,24 +40,26 @@ public class StudentUpdateExecuteAction extends Action {
 	// エラーを判定するためのフラグhasErrorを定義(falseの場合はエラー無し。trueの場合はエラー有！)
 	    boolean hasError = false;
 
-		// name(学生氏名)の値が未入力かどうかのチェック(
-	    if (name == null || name.isEmpty()) {
+		// name(学生氏名)の値が未入力かどうかのチェック+入力値が空白の場合のエラー
+	    if (name == null || name.isEmpty() || name.trim().isEmpty()) {
 	    	// 表示するエラー文の設定
 	    	request.setAttribute("nameError", "氏名を入力してください");
 	        hasError = true;
 	    }
 
 	    int count2 = name.length();
-        if (count2 > 10 || !isAlphabetic(name)) {
-            request.setAttribute("errorMsg", "学生番号は文字10文字以内で入力してください。");
-            hasError = true;
-        }
+	    if (count2 > 10 || name.matches("^\\d+$")) {
+	        // 表示するエラー文の設定
+	        request.setAttribute("errorMsg", "学生番号は文字10文字以内で入力してください。");
+	        hasError = true;
+	    }
 
 	    // hasError = trueの場合は以下を実行
 	    if (hasError) {
 	    	Student beforeStudent = dao.studentGet(no, teacher.getSchool());
 	    	// 送られてきた値を初期表示に使用するのでセットしておく
-			request.setAttribute("student", beforeStudent);
+			request.setAttribute("beforeStudent", beforeStudent);
+			request.setAttribute("beforeStudentName", name);
 			request.setAttribute("beforeClassNum", classNum);
 			request.setAttribute("beforeIsAttend", isAttend);
 			// 必要な情報をセットしてstudent_create.jspに送り返す
@@ -90,7 +92,5 @@ public class StudentUpdateExecuteAction extends Action {
 		}
 		return "student_update_done.jsp";
 	}
-    private boolean isAlphabetic(String str) {
-        return str != null && str.matches("[\\p{L}]+");
-    }
+
 }

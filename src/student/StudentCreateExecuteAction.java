@@ -73,13 +73,17 @@ public class StudentCreateExecuteAction extends Action {
         }
 
     	// name(学生氏名)の値が未入力かどうかのチェック(
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty() || name.trim().isEmpty()) {
         	// 表示するエラー文の設定
         	req.setAttribute("nameError", "氏名を入力してください");
             hasError = true;
         }
 
-
+        // 入力値が空白の場合のエラー
+        if (name.trim().isEmpty()) {
+            req.setAttribute("nameBlankSpaceError", "氏名が空白です");
+            hasError = true;
+        }
 
 	    int count = no.length();
         if (count > 10 || !isNumeric(no)) {
@@ -88,10 +92,11 @@ public class StudentCreateExecuteAction extends Action {
         }
 
         int count2 = name.length();
-        if (count2 > 10 || isAlphabetic(name)) {
-            req.setAttribute("errorNameMsg", "学生氏名は文字10文字以内で入力してください。");
-            hasError = true;
-        }
+	    if (count2 > 10 || name.matches("^\\d+$")) {
+	        // 表示するエラー文の設定
+	        req.setAttribute("errorNameMsg", "学生氏名は文字10文字以内で入力してください。");
+	        hasError = true;
+	    }
         // hasError = trueの場合は以下を実行
         if (hasError) {
         	// 送られてきた値を初期表示に使用するのでセットしておく
@@ -137,8 +142,4 @@ public class StudentCreateExecuteAction extends Action {
     private boolean isNumeric(String str) {
         return str != null && str.matches("\\d+");
     }
-    private boolean isAlphabetic(String str) {
-        return str != null && str.matches("[\\p{L}]+");
-    }
-
 }
