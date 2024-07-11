@@ -54,7 +54,7 @@ public class SubjectUpdateExecuteAction extends Action {
 	        hasError = true;
 	    }
 
-	    if (subject_name == null || subject_name.matches("^\\d+$")) {
+	    if (subject_name == null || subject_name.matches("^\\d+$") || subject_name.isEmpty() || subject_name.trim().isEmpty()) {
 	        // 表示するエラー文の設定
 	        request.setAttribute("illegalCdError", "科目名が文字で構成されていません");
 	        hasError = true;
