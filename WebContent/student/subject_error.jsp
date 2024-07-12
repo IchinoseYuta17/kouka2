@@ -8,9 +8,13 @@
 <div id="container">
 <%@include file="menu.jsp" %>
     <div id="main-contents">
-		<p>エラーが発生しました</p>
-		<br>
-		<p  class="error-message" style="margin-bottom:10px; margin-top:-10px">${errorMsg}</p>
+		<div class="done-container">
+		  <h2 class="form-title">エラー</h2>
+		  <p class="done-text" style="background-color: #DC143C; color:#fff;">選択されたレコードは存在しません</p>
+		  <div class = "link-container">
+		  	<a href="SubjectList.action">科目一覧</a>
+	  	  </div>
+	    </div>
 	</div>
 </div>
 <%@include file="../footer.html" %>

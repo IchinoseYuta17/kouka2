@@ -9,6 +9,7 @@ import tool.Action;
 
 public class MenuAction extends Action{
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         HttpSession session = req.getSession();
         Teacher teacher = (Teacher) session.getAttribute("teacher");
 
@@ -17,5 +18,8 @@ public class MenuAction extends Action{
         } else {
             return "login.jsp"; // ログイン画面にリダイレクト
         }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

@@ -23,6 +23,7 @@ import util.Util;
 public class TestRegistExecuteAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         HttpSession session = req.getSession();
 
         Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -152,5 +153,8 @@ public class TestRegistExecuteAction extends Action {
             req.setAttribute("message", "テストの登録に失敗しました。");
             return "test_regist.jsp";
         }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

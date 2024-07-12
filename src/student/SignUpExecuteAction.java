@@ -66,11 +66,9 @@ public class SignUpExecuteAction extends Action {
                 return "signup.jsp";
             }
 
-        } catch (Exception e) {
-            // データベースアクセス中に例外が発生した場合
-            req.setAttribute("signupError", "サインアップ中にエラーが発生しました。");
-            return "signup.jsp";
-        }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
 
         // サインアップが成功した場合、ログインページにリダイレクト
         return "login.jsp";

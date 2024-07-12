@@ -17,6 +17,7 @@ public class StudentUpdateAction extends Action {
 	public String execute(
 		HttpServletRequest req, HttpServletResponse res
 	) throws Exception {
+		try{
 
         // セッションから教師情報を取得
         Teacher teacher = (Teacher) req.getSession().getAttribute("teacher");
@@ -39,5 +40,8 @@ public class StudentUpdateAction extends Action {
 		req.setAttribute("classNumList", classNumList);
 
 		return "student_update.jsp";
+	}catch(Exception e){
+		return "error.jsp";
+	}
 	}
 }

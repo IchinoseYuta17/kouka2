@@ -42,8 +42,8 @@ public class LoginExecuteAction extends Action {
             session.setAttribute("teacher", teacher);
             return "index.jsp"; // メニュー画面にリダイレクト
         } else {
-            req.setAttribute("error", "Invalid ID or Password");
-            return "login.jsp";
+            req.setAttribute("errorMsg", "Invalid ID or Password");
+            return "error.jsp";
         }
     }
 }

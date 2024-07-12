@@ -14,6 +14,7 @@ public class StudentUpdateExecuteAction extends Action {
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
 
+		try{
 		// ユーザーからの入力値を受け取る
 		//(このかたまりの受け取り名・受け取り方法などまだ確認が必要)
 		int entYear=Integer.parseInt(request.getParameter("ent_year"));
@@ -91,6 +92,9 @@ public class StudentUpdateExecuteAction extends Action {
 			request.setAttribute("message", "更新に失敗しました");
 		}
 		return "student_update_done.jsp";
+	}catch(Exception e){
+		return "error.jsp";
+	}
 	}
 
 }

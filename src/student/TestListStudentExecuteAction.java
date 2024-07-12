@@ -88,11 +88,9 @@ public class TestListStudentExecuteAction extends Action {
             // JSPページにフォワード
             return "test_list_student.jsp";
 
-        } catch (Exception e) {
-            // エラーハンドリング
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
 
     }
 

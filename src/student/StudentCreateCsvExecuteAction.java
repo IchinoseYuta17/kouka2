@@ -34,6 +34,7 @@ public class StudentCreateCsvExecuteAction extends Action {
      * @throws Exception 処理中に発生した例外
      */
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         req.setCharacterEncoding("UTF-8");
         Part csv = req.getPart("csv");
         BufferedReader br = null;
@@ -84,6 +85,9 @@ public class StudentCreateCsvExecuteAction extends Action {
         req.setAttribute("errors", errors);
 
         return errors.isEmpty() ? "student_create_done.jsp" : "student_create_error.jsp";
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 
     /**
