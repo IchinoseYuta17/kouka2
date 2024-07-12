@@ -18,7 +18,7 @@ import util.Util;
 
 public class TestRegistAction extends Action {
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+    	try{
         // セッションからユーザーデータを取得
         Teacher teacher = Util.getUser(req);
 
@@ -107,7 +107,9 @@ public class TestRegistAction extends Action {
         req.setAttribute("testList", testList);
         req.setAttribute("flg", listFlg);
         return "test_regist.jsp";
-
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 
 

@@ -10,7 +10,8 @@ import tool.Action;
 public class SubjectCreateAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        // セッションから教師情報を取得
+        try{
+    	// セッションから教師情報を取得
         Teacher teacher = (Teacher) req.getSession().getAttribute("teacher");
 
         // 教師情報がセッションに存在しない場合、エラーページにリダイレクト
@@ -26,5 +27,8 @@ public class SubjectCreateAction extends Action {
         req.setAttribute("school", school);
 
         return "subject_create.jsp"; // 遷移先のJSPページ
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

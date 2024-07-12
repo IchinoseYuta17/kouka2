@@ -16,7 +16,7 @@ public class SubjectListAction extends Action{
 
 // executeメソッドは、HTTPリクエストを処理し、レスポンスを生成する
 public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
+	try{
 	Teacher teacher = Util.getUser(req);
 	SubjectDAO subjectDAO = new SubjectDAO();
 
@@ -25,6 +25,9 @@ public String execute(HttpServletRequest req, HttpServletResponse res) throws Ex
 
 	req.setAttribute("subjectList", subjectList);
 	return "subject_list.jsp";
+	}catch(Exception e){
+		return "error.jsp";
+	}
 	}
 }
 

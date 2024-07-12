@@ -13,6 +13,7 @@ public class StudentCreateExecuteAction extends Action {
 	public String execute(
 		HttpServletRequest req, HttpServletResponse res
 	) throws Exception {
+	try {
 		// ユーザーからの入力値を受け取る
 		String entYearStr=req.getParameter("admissionYear");
 		String no=req.getParameter("studentNumber");
@@ -131,8 +132,11 @@ public class StudentCreateExecuteAction extends Action {
 			req.setAttribute("message", "登録に失敗しました");
 		}
 		return "student_create_done.jsp";
-	}
 
+	}catch(Exception e){
+		return "error.jsp";
+	}
+}
     private boolean isNumeric(String str) {
         return str != null && str.matches("\\d+");
     }

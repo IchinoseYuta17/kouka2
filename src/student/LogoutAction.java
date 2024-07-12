@@ -10,6 +10,7 @@ import tool.Action;
 public class LogoutAction extends Action {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         HttpSession session = req.getSession(false);
 
         if (session != null) {
@@ -20,5 +21,8 @@ public class LogoutAction extends Action {
         }
 
         return "logout.jsp"; // ログインページにリダイレクト
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

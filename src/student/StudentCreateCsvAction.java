@@ -10,6 +10,7 @@ import util.Util;
 public class StudentCreateCsvAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         // セッションから教師情報を取得
         Teacher teacher = Util.getUser(req);
         Util.setEntYearSet(req);
@@ -21,5 +22,8 @@ public class StudentCreateCsvAction extends Action {
             return "error.jsp";
         }
        return "create_with_csv.jsp"; // 遷移先のJSPページ
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

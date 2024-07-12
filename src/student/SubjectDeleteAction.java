@@ -12,6 +12,7 @@ public class SubjectDeleteAction extends Action {
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response
 		) throws Exception {
+		try{
 
     // セッションから教師情報を取得
     Teacher teacher = (Teacher) request.getSession().getAttribute("teacher");
@@ -31,5 +32,8 @@ public class SubjectDeleteAction extends Action {
 	request.setAttribute("teacher", teacher);
 
 	return "subject_delete.jsp";
+		}catch(Exception e){
+			return "error.jsp";
+		}
 	}
 }

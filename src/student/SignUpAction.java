@@ -7,6 +7,10 @@ import tool.Action;
 
 public class SignUpAction extends Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return "signup.jsp";
+    	try{
+    		return "signup.jsp";
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

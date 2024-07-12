@@ -30,10 +30,8 @@ public class TestListAction extends Action {
             // JSPページにフォワード
             return "test_list.jsp";
 
-        } catch (Exception e) {
-            // エラーハンドリング
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

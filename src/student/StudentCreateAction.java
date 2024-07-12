@@ -10,6 +10,7 @@ import util.Util;
 public class StudentCreateAction extends Action {
 
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
         // セッションから教師情報を取得
         Teacher teacher = Util.getUser(req);
         Util.setEntYearSet(req);
@@ -21,14 +22,9 @@ public class StudentCreateAction extends Action {
             return "error.jsp";
         }
 
-        // 教師の学校情報を取得
-//        School school = teacher.getSchool();
-        // DAOを使用してクラスデータを取得
-//        ClassNumDAO classnum = new ClassNumDAO();
-//        List<ClassNum> classList = classnum.filter(school);
-//        // 取得したクラスデータをリクエストに設定
-//        req.setAttribute("classList", classList);
-
         return "student_create.jsp"; // 遷移先のJSPページ
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

@@ -13,6 +13,7 @@ public class SubjectCreateExecuteAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
+		try{
 		// ユーザーからの入力値を受け取る
 		String subject_cd=request.getParameter("subject_cd");
 		String subject_name=request.getParameter("subject_name");
@@ -93,5 +94,8 @@ public class SubjectCreateExecuteAction extends Action {
 			request.setAttribute("message", "登録に失敗しました");
 		}
 		return "subject_create_done.jsp";
+		}catch(Exception e){
+			return "error.jsp";
+		}
 	}
 }

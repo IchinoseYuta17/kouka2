@@ -139,10 +139,8 @@ public class TestListSubjectExecuteAction extends Action {
 
             // フォワード先のページを指定してリクエストをフォワード
             return "test_list_student.jsp";
-        } catch (Exception e) {
-            // エラーハンドリング
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
     }
 }

@@ -18,6 +18,7 @@ public class StudentListAction extends Action{
 
     // executeメソッドは、HTTPリクエストを処理し、レスポンスを生成する
     public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+    	try{
     	// パラメータ "flg" を取得し、null チェックとデフォルト値設定
         String flgParam = req.getParameter("flg");
         int listFlg = (flgParam != null) ? Integer.parseInt(flgParam) : 0;
@@ -143,5 +144,9 @@ public class StudentListAction extends Action{
 
             return "student_list.jsp";
         }
+    	}catch(Exception e){
+    		return "error.jsp";
+    	}
 	}
+
 }
